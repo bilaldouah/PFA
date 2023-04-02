@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230402051954_Creation")]
+    [Migration("20230402181148_Creation")]
     partial class Creation
     {
         /// <inheritdoc />
@@ -224,10 +224,6 @@ namespace Fallah_App.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prenom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Preom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
