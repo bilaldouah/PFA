@@ -1,0 +1,31 @@
+version: '3.4'
+networks:
+  my-network:
+
+services:
+  database:
+    container_name: Fallah_App_database
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=PFA_1234@
+    ports:
+      - "8002:1433"
+    networks:
+      - my-network
+  fallah_app:
+    container_name: Fallah_App
+    image: ${DOCKER_REGISTRY-}fallahapp
+    build:
+      context: .
+      dockerfile: Fallah_App/Dockerfile
+    ports:
+      - "8081"
+    depends_on:
+      - database
+    environment:
+      - DB_HOST=database
+      - DB_NAME=fallah_App
+      - DB_SA_PASSWORD=PFA_1234@
+    networks:
+      - my-network
