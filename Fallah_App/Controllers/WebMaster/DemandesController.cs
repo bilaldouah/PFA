@@ -14,7 +14,7 @@ namespace Fallah_App.Controllers.WebMaster
 
         public IActionResult List()
         {
-            return View();
+            return View(db.demandes.ToList());
         }
     }
 }

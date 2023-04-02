@@ -150,7 +150,7 @@ namespace Fallah_App.Migrations
                     Date_Demande = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Statut = table.Column<bool>(type: "bit", nullable: false),
-                    Id_WebMaster = table.Column<int>(type: "int", nullable: false)
+                    Id_WebMaster = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

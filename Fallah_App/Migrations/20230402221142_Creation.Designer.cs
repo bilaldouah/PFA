@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230402212051_Creation")]
+    [Migration("20230402221142_Creation")]
     partial class Creation
     {
         /// <inheritdoc />
@@ -201,7 +201,7 @@ namespace Fallah_App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id_WebMaster")
+                    b.Property<int?>("Id_WebMaster")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -606,8 +606,7 @@ namespace Fallah_App.Migrations
                     b.HasOne("Fallah_App.Models.WebMaster", "webMaster")
                         .WithMany("DemandeList")
                         .HasForeignKey("Id_WebMaster")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("webMaster");
                 });

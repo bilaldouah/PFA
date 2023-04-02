@@ -14,9 +14,9 @@ namespace Fallah_App.Models
         public DateTime Date_Demande{ get; set; }
         public string Image { get; set; }
         public Boolean Statut { get; set; }
-        public WebMaster webMaster { get; set; }
+        public WebMaster? webMaster { get; set; }
 
         [ForeignKey(nameof(webMaster))]
-        public int Id_WebMaster { get; set; }
+        public int? Id_WebMaster { get; set; }
     }
 }
