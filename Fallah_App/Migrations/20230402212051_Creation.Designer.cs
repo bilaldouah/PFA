@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230402181148_Creation")]
+    [Migration("20230402212051_Creation")]
     partial class Creation
     {
         /// <inheritdoc />
@@ -197,9 +197,6 @@ namespace Fallah_App.Migrations
                     b.Property<DateTime>("Date_Demande")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Discriminator")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -226,6 +223,9 @@ namespace Fallah_App.Migrations
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Statut")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

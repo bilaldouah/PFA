@@ -142,7 +142,6 @@ namespace Fallah_App.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Preom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prenom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_De_Naissance = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -150,7 +149,7 @@ namespace Fallah_App.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_Demande = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Discriminator = table.Column<bool>(type: "bit", nullable: false),
+                    Statut = table.Column<bool>(type: "bit", nullable: false),
                     Id_WebMaster = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

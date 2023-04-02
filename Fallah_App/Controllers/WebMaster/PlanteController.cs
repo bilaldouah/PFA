@@ -2,7 +2,7 @@
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Fallah_App.Controllers
+namespace Fallah_App.Controllers.WebMaster
 {
     public class PlanteController : Controller
     {

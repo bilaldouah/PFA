@@ -194,9 +194,6 @@ namespace Fallah_App.Migrations
                     b.Property<DateTime>("Date_Demande")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Discriminator")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -224,9 +221,8 @@ namespace Fallah_App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Preom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Statut")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

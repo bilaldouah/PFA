@@ -13,7 +13,7 @@ namespace Fallah_App.Models
         public string Email { get; set; }
         public DateTime Date_Demande{ get; set; }
         public string Image { get; set; }
-        public Boolean Discriminator { get; set; }
+        public Boolean Statut { get; set; }
         public WebMaster webMaster { get; set; }
 
         [ForeignKey(nameof(webMaster))]
