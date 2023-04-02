@@ -16,13 +16,13 @@ namespace Fallah_App.Controllers.WebMaster
         {
             return View();
         }
-        public IActionResult ajouter()
+        public IActionResult Ajouter()
         {
 
             return View();
         }
         [HttpPost]
-        public IActionResult ajouter(Plante p)
+        public IActionResult Ajouter(Plante p)
         {
             db.plantes.Add(p);
             db.SaveChanges();
