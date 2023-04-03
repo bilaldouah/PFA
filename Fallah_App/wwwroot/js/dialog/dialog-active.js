@@ -21,10 +21,10 @@
 	});
 
 	//Warning Message
-	$('#sa-warning').on('click', function(){
+	$('.sa-warning').on('click', function(){
 		swal({   
 			title: "Are you sure?",   
-			text: "You will not be able to recover this imaginary file!",   
+			text: "sahra ntchawfoooooooooooooooooooooo",   
 			type: "warning",   
 			showCancelButton: true,   
 			confirmButtonText: "Yes, delete it!",
