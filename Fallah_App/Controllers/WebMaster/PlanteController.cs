@@ -16,6 +16,11 @@ namespace Fallah_App.Controllers.WebMaster
         {
             return View();
         }
+        public IActionResult List()
+        {
+
+            return View(db.plantes.ToList());
+        }
         public IActionResult Ajouter()
         {
 
@@ -26,7 +31,26 @@ namespace Fallah_App.Controllers.WebMaster
         {
             db.plantes.Add(p);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("List");
+        }
+        public IActionResult Supprimer(int id)
+        {
+            Plante plante = db.plantes.Find(id);
+            db.plantes.Remove(plante);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+        public IActionResult Modifier(int id)
+        {
+            Plante plante= db.plantes.Find(id);
+            return View(plante);
+        }
+        [HttpPost]
+        public IActionResult Modifier(Plante p)
+        {
+            db.plantes.Update(p);
+            db.SaveChanges();
+            return RedirectToAction("List");
         }
     }
 }
