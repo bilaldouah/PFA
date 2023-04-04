@@ -1,4 +1,4 @@
-using Falla7_App.Context;
+using Fallah_App.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
