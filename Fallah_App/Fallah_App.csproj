@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Client\" />
+    <Folder Include="wwwroot\ClientTemplate\img\imgClient\" />
   </ItemGroup>
 
 </Project>
