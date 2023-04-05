@@ -1,24 +1,30 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System.Numerics;
 
 namespace Fallah_App.Controllers.WebMaster
 {
     public class PlanteController : Controller
     {
+        IMemoryCache memoryCache;
         MyContext db;
-        public PlanteController(MyContext db)
+        public PlanteController(MyContext db, IMemoryCache memoryCache)
         {
+            this.memoryCache = memoryCache;
             this.db = db;
         }
-
-        public IActionResult Index()
+        public void RemplireCache()
         {
-            return View();
+            if (this.memoryCache.Get<List<Plante>>("plantes") == null)
+            {
+                this.memoryCache.Set("plantes", db.plantes.ToList(), TimeSpan.FromHours(2));
+            }
         }
         public IActionResult List()
         {
-
+            RemplireCache();
             return View(db.plantes.ToList());
         }
         public IActionResult Ajouter()
