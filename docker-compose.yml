@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: Fallah_App/Dockerfile
     ports:
-      - "7005:7005"
+      - "7005:443"
     depends_on:
       - database
     environment:

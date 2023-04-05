@@ -34,8 +34,9 @@
 			showCancelButton: true,   
 			confirmButtonText: cfrm,
 		}).then(function () {
-			window.location = url;
+			
 			swal(Action, url, "success");
+			window.location = url;
 
 		});
 	});

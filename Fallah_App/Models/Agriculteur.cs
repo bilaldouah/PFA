@@ -1,4 +1,6 @@
-﻿namespace Fallah_App.Models
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace Fallah_App.Models
 {
     public class Agriculteur:User
     {
@@ -8,5 +10,6 @@
         public DateTime Date_Creation_Compte { get; set; }
         public List<Notification> Notifications { get; set; }
         public List<Terre> Terres { get; set; }
+
     }
 }

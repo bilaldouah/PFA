@@ -29,6 +29,23 @@ namespace Fallah_App.Controllers.WebMaster
             return View(demande);
         }
 
+        public IActionResult Accepter(int id)
+        {
+            Demande demande = db.demandes.Find(id);
+            db.demandes.Remove(demande);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Refuser(int id)
+        {
+            Demande demande = db.demandes.Find(id);
+            demande.Statut = true;
+            db.demandes.Update(demande);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+
         public void RemplireCache()
         {
             if (this.memoryCache.Get<List<Demande>>("Demandes") == null)
