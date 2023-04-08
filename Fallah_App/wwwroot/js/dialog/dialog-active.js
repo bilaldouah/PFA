@@ -20,16 +20,24 @@
 		swal("Good job!", "Lorem ipsum dolor cry sit amet, consectetur adipiscing elit. Sed lorem erat, tincidunt vitae ipsum et, Spensaduran pellentesque maximus eniman. Mauriseleifend ex semper, lobortis purus.", "success")
 	});
 
-	//Warning Message
-	$('.sa-warning').on('click', function(){
-		swal({   
-			title: "Are you sure?",   
-			text: "sahra ntchawfoooooooooooooooooooooo",   
+	//Warning Message for Refuser Demande----------
+	$('.sa-warning').on('click', function () {
+
+		var url = $(this).attr("data-href");
+		var text = $(this).data("text");
+		var Action = $(this).attr("data-Action");
+		var cfrm = $(this).attr("data-confirm");
+		swal({ 
+			title: "Vous etes sur?",   
+			text: text,   
 			type: "warning",   
 			showCancelButton: true,   
-			confirmButtonText: "Yes, delete it!",
-		}).then(function(){
-			swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+			confirmButtonText: cfrm,
+		}).then(function () {
+			
+			swal(Action, url, "success");
+			window.location = url;
+
 		});
 	});
 	

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Fallah_App.Models;
 
-namespace Falla7_App.Context
+namespace Fallah_App.Context
 {
     public class MyContext:DbContext
     {

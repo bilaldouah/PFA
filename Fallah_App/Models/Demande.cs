@@ -15,8 +15,7 @@ namespace Fallah_App.Models
         public DateTime Date_Demande{ get; set; }
         public string Image { get; set; }
         public Boolean Statut { get; set; }
-        [NotMapped]
-        public IFormFile? file { get; set; }
+        public Boolean forme { get; set; }
         public WebMaster? webMaster { get; set; }
         [ForeignKey(nameof(webMaster))]
         public int? Id_WebMaster { get; set; }

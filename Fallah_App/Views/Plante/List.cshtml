@@ -1,0 +1,78 @@
+﻿@model List<Fallah_App.Models.Plante>
+@section title{
+        <title>Liste des Plantes</title>
+}
+
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>Liste des Plantes</h2>
+                                     
+                                    <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="ajouter" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Ajouter Plante" title="" data-original-title="Ajouter">
+                                        Ajouter
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+<!-- Data Table area Start-->
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                     
+                                    <th>Nom</th>
+                                    <th>Type</th>
+                                    <th>Debut de period</th>
+                                    <th>Fin date</th>                                   
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Plante p in Model)
+                                {
+                                        <tr>
+                                            <td>@p.Nom</td>
+                                            <td>@p.type</td>
+                                            <td>@p.Debut_Period</td>
+                                            <td>@p.Fin_Date</td>                              
+                                            <td>
+                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Modifier?id=@p.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier le plante" title="" data-original-title="modifier">
+                                                    <i class="notika-icon notika-draft"></i>
+                                                </a>
+                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="Supprimer?id=@p.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer le plante" title="" data-original-title="supprimer">
+                                                    <i class="notika-icon notika-close"></i>
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                }
+                            </tbody>
+                      
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
