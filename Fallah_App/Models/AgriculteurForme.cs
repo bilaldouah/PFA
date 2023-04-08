@@ -3,7 +3,6 @@
     public class AgriculteurForme:Agriculteur
     {
 
-
         public List<Resultat> resultats {get; set; }
 
     }

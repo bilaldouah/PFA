@@ -10,6 +10,7 @@ namespace Fallah_App.Controllers.WebMaster
     {
         IMemoryCache memoryCache;
         MyContext db;
+        
         public PlanteController(MyContext db, IMemoryCache memoryCache)
         {
             this.memoryCache = memoryCache;
