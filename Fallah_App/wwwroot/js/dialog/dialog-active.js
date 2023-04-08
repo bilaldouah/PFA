@@ -35,7 +35,7 @@
 			confirmButtonText: cfrm,
 		}).then(function () {
 			
-			swal(Action, url, "success");
+			swal(Action, "L'action a bien passe", "success");
 			window.location = url;
 
 		});

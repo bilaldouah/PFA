@@ -5,8 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-if(Environment.GetEnvironmentVariable("DB_NAME") != null)
+builder.Services.AddSession(opt =>
+    {
+        opt.IdleTimeout = TimeSpan.FromDays(10);
+    });
+if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {
     builder.Services.AddDbContext<MyContext>(opt =>
     {
@@ -35,6 +38,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+app.UseSession();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
