@@ -1,0 +1,64 @@
+﻿@model Fallah_App.Models.Demande
+@{
+    Layout="_LayoutClient";
+}
+
+@section title{
+    <title>Inscription</title>
+}
+<div class="checkout_area mb-100">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-12 col-lg-7">
+                <div class="checkout_details_area clearfix">
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="first_name">Nom</label>
+                                <input type="text" class="form-control" id="first_name" asp-for="Nom" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="last_name">Prenom</label>
+                                <input type="text" class="form-control" id="last_name" asp-for="Prenom" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="email_address">Email Address *</label>
+                                <input type="email" class="form-control" id="email_address" asp-for="Email" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="phone_number">Numero telephone</label>
+                                <input type="number" class="form-control" id="phone_number" min="0" asp-for="Telephone" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="Date_De_Naissance">Date_De_Naissance</label>
+                                <input type="date" class="form-control" id="Date_De_Naissance" asp-for="Date_De_Naissance" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="Login">Login</label>
+                                <input type="text" class="form-control" id="Login" asp-for="Login" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="Password">Password</label>
+                                <input type="password" class="form-control" id="Password" asp-for="Password" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="Date_Demande">Date_Demande</label>
+                                <input type="date" class="form-control" id="Date_Demande" asp-for="Date_Demande" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="Date_Demande">choisie une image</label>
+                                <input type="file" class="form-control" asp-for="Image" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <input type="hidden" class="form-control"asp-for="Statut" value="false">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <input type="submit" class="form-control"  value="valider">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+  </div>
+</div> 
