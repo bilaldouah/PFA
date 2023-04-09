@@ -22,8 +22,8 @@ namespace Fallah_App.Controllers.Client
         public IActionResult Index(Demande d)
         {   
             //recuperer le login dans table demande et user
-            Demande demande = (Demande)db.demandes.ToList().Where(D => D.Login == d.Login);
-            User user = (User)db.users.ToList().Where(l=>l.Login==d.Login);
+            Demande demande = (Demande)db.demandes.ToList().Where(D => D.Login == d.Login).FirstOrDefault();
+            User user = (User)db.users.ToList().Where(l=>l.Login==d.Login).FirstOrDefault();
             //comparer le login inserer avec le login deja dans la  base
             if ( demande!=null || user!=null) 
             {
@@ -50,7 +50,6 @@ namespace Fallah_App.Controllers.Client
             else
             {
                 ViewData["erorPrix"] = "le chois de fichier doit etre une Image";
-                return View();
             }
             return View();
         }
