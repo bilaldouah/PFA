@@ -19,9 +19,9 @@ namespace Fallah_App.Controllers.Client
             return View();
         }
         [HttpPost]
-        public IActionResult Index(Demande d,IFormFile file
-            )
-        {
+        public IActionResult Index(Demande d)
+        {   
+            //recuperer le login dans table demande et user
             Demande demande = (Demande)db.demandes.ToList().Where(D => D.Login == d.Login);
             User user = (User)db.users.ToList().Where(l=>l.Login==d.Login);
             //comparer le login inserer avec le login deja dans la  base
@@ -33,17 +33,17 @@ namespace Fallah_App.Controllers.Client
             hashPassword(d.Password);
             //importer image
             String[] ext = { ".jpg", ".png", ".jpeg" };
-            String file_ext = Path.GetExtension(file.FileName).ToLower();
+            String file_ext = Path.GetExtension(d.file.FileName).ToLower();
             if (ext.Contains(file_ext))
             {
-                String newName = Guid.NewGuid() +file.FileName;
-                String path_file = Path.Combine("wwwroot/ClientTemplate/img/imgClient", newName);
+                String newName = Guid.NewGuid() +d.file.FileName;
+                String path_file = Path.Combine("wwwroot/ImageClient", newName);
                 d.Image = newName;
                 db.demandes.Add(d);
                 db.SaveChanges();
                 using (FileStream stream = System.IO.File.Create(path_file))
                 {
-                    file.CopyTo(stream);
+                    d.file.CopyTo(stream);
                 }
                 ViewData["erorPrix"] = "la demande a etait bien enregistrer";
             }

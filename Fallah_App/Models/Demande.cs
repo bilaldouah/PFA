@@ -19,5 +19,7 @@ namespace Fallah_App.Models
         public WebMaster? webMaster { get; set; }
         [ForeignKey(nameof(webMaster))]
         public int? Id_WebMaster { get; set; }
+        [NotMapped]
+        public IFormFile file { get; set; }
     }
 }

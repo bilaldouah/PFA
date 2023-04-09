@@ -11,7 +11,7 @@
         <div class="row justify-content-between">
             <div class="col-12 col-lg-7">
                 <div class="checkout_details_area clearfix">
-                    <form action="#" method="post">
+                    <form action="#" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label for="first_name">Nom</label>
@@ -47,13 +47,27 @@
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="Date_Demande">choisie une image</label>
-                                <input type="file" class="form-control" asp-for="Image" required>
+                                <input type="file" class="form-control" asp-for="file" required>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <input type="hidden" class="form-control"asp-for="Statut" value="false">
                             </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <!-- Single Checkbox -->
+                                    <div class="custom-control custom-checkbox d-flex align-items-center mr-30">
+                                        <input type="checkbox" class="custom-control-input" asp-for=forme id="customCheck1" value="true" name="forme">
+                                        <label class="custom-control-label" for="customCheck1">Agriculteur former?</label>
+                                    </div>
+                                    <!-- Single Checkbox -->
+                                    <div class="custom-control custom-checkbox d-flex align-items-center">
+                                        <input type="checkbox" class="custom-control-input" asp-for=forme id="customCheck2" value="false" name="forme">
+                                        <label class="custom-control-label" for="customCheck2">Agriculteur nom former?</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6 mb-4">
-                                <input type="submit" class="form-control"  value="valider">
+                                <input type="submit" class="form-control" value="valider">
                             </div>
                         </div>
                     </form>
