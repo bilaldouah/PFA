@@ -60,29 +60,29 @@
                                             <td>Refuser</td>
                                         }
                                         <td>
-                                            <a class="btn btn-lightblue lightblue-icon-notika"  data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Afficher tous les Informations du @demande.Nom" title="" data-original-title="Detail">
+                                            <a class="btn btn-lightblue lightblue-icon-notika" href="/Demandes/Information/@demande.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Afficher tous les Informations du @demande.Nom" title="" data-original-title="Detail">
                                                <i class="notika-icon notika-next"></i>
                                            </a>
                                         </td>
                                         <td>
+                                           @if (demande.Statut == false)
+                                           {
                                             <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="Accepter" data-Action="Accepter!" data-acc="La demande a ete bien accepter" data-text="La demande vas etre Accepter" data-href="/Demandes/Accepter/@demande.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Accepter la demande du @demande.Nom" title="" data-original-title="Accepter">
                                                 <i class="notika-icon notika-checked"></i>
                                             </a>
                                             <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="Refuser" data-Action="Refuser!" data-acc="La demande a ete bien Refuser" data-text="La demande vas etre Refuser" data-href="/Demandes/Refuser/@demande.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Refuser la demande du @demande.Nom" title="" data-original-title="Refuser">
                                                 <i class="notika-icon notika-close"></i>
                                             </a>
-
+                                            }
                                         </td>
                                     </tr>
                             }
                            </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Image</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Date de Naissance</th>
-                                    <th>Email</th>
                                     <th>Date de demande</th>
                                     <th>Statut</th>
                                     <th>Detail</th>
