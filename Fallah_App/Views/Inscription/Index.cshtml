@@ -25,30 +25,33 @@
                                 <label for="email_address">Email Address *</label>
                                 <input type="email" class="form-control" id="email_address" asp-for="Email" required>
                             </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                             <div class="col-12 mb-4">
                                 <label for="phone_number">Numero telephone</label>
-                                <input type="number" class="form-control" id="phone_number" min="0" asp-for="Telephone" required>
+                                <input type="tel" class="form-control" id="phone_number" min="0" pattern="^(\+212|0)[5-7]\d{8}$" asp-for="Telephone" required>
                             </div>
+                            <span asp-validation-for="Telephone" class="text-danger"></span>
                             <div class="col-12 mb-4">
                                 <label for="Date_De_Naissance">Date_De_Naissance</label>
-                                <input type="date" class="form-control" id="Date_De_Naissance" asp-for="Date_De_Naissance" required>
+                                <input type="date" class="form-control" id="Date_De_Naissance" pattern="MM-dd-yy" asp-for="Date_De_Naissance" required>
                             </div>
                             <div class="col-12 mb-4">
                                 <label for="Login">Login</label>
                                 <input type="text" class="form-control" id="Login" asp-for="Login" required>
                             </div>
+                            <p class="text-danger">@ViewData["erorLogin"]</p>
                             <div class="col-md-6 mb-4">
                                 <label for="Password">Password</label>
                                 <input type="password" class="form-control" id="Password" asp-for="Password" required>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label for="Date_Demande">Date_Demande</label>
-                                <input type="date" class="form-control" id="Date_Demande" asp-for="Date_Demande" required>
+                                <input type="hidden" class="form-control" id="Date_Demande" asp-for="Date_Demande" value="@DateTime.Now">
                             </div>
                             <div class="col-md-6 mb-4">
                                 <label for="Date_Demande">choisie une image</label>
                                 <input type="file" class="form-control" asp-for="file" required>
                             </div>
+                            <p class="text-danger">@ViewData["erorImage"]</p>
                             <div class="col-md-6 mb-4">
                                 <input type="hidden" class="form-control"asp-for="Statut" value="false">
                             </div>
@@ -62,9 +65,10 @@
                                     <!-- Single Checkbox -->
                                 </div>
                             </div>
-                            <div class="md-6 mb-4">
-                                <input type="submit" class="btn btn-success" value="valider">
+                            <div class="col-12">
+                                <button type="submit" class="btn alazea-btn mt-15">Valider</button>
                             </div>
+                            <p class="text-success">@ViewData["message"]</p>
                         </div>
                     </form>
                 </div>
