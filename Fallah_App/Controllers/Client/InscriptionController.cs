@@ -29,12 +29,16 @@ namespace Fallah_App.Controllers.Client
             User user =db.users.Where(l => l.Login == d.Login).FirstOrDefault();
              User user_Email=db.users.Where(l=>l.Email==d.Email).FirstOrDefault();
             //comparer le login inserer avec le login deja dans la  base
-            if (demande!=null || user!=null|| user_Email != null || demande_Email != null)
+            if (demande!=null || user!=null)
                 {
-                    ViewData["erorLogin"] = "Ce login  ou Email est déjà inscrit ou une demande d'inscription est en cours.";
+                    ViewData["erorLogin"] = "Ce login   est déjà inscrit ou une demande d'inscription est en cours.";
                 }
-                 //hashPassword
-                 d.Password = HashPasswordWithSalt(d.Password);
+            if ( user_Email != null || demande_Email != null)
+            {
+                ViewData["erorLogin"] = "Ce  Email est déjà inscrit ou une demande d'inscription est en cours.";
+            }
+            //hashPassword
+            d.Password = HashPasswordWithSalt(d.Password);
                  d.Date_Demande = DateTime.Now;
                 //importer image
                 String[] ext = { ".jpg", ".png", ".jpeg" };
