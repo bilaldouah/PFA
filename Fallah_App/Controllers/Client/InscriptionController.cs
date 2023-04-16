@@ -35,7 +35,7 @@ namespace Fallah_App.Controllers.Client
                 }
             if ( user_Email != null || demande_Email != null)
             {
-                ViewData["erorLogin"] = "Ce  Email est déjà inscrit ou une demande d'inscription est en cours.";
+                ViewData["errorEmail"] = "Ce  Email est déjà inscrit ou une demande d'inscription est en cours.";
             }
             //hashPassword
             d.Password = HashPasswordWithSalt(d.Password);
