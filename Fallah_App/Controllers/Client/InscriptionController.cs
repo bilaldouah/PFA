@@ -2,6 +2,8 @@
 using Fallah_App.Context;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -20,46 +22,56 @@ namespace Fallah_App.Controllers.Client
         }
         [HttpPost]
         public IActionResult Index(Demande d)
-        {   
+        {
             //recuperer le login dans table demande et user
-            Demande demande = (Demande)db.demandes.ToList().Where(D => D.Login == d.Login).FirstOrDefault();
-            User user = (User)db.users.ToList().Where(l=>l.Login==d.Login).FirstOrDefault();
+            Demande demande = db.demandes.Where(D => D.Login == d.Login).FirstOrDefault();
+            Demande demande_Email=db.demandes.Where(D=>D.Email==d.Email).FirstOrDefault();
+            User user =db.users.Where(l => l.Login == d.Login).FirstOrDefault();
+             User user_Email=db.users.Where(l=>l.Email==d.Email).FirstOrDefault();
             //comparer le login inserer avec le login deja dans la  base
-            if ( demande!=null || user!=null) 
+            if (demande!=null || user!=null)
+                {
+                    ViewData["erorLogin"] = "Ce login   est déjà inscrit ou une demande d'inscription est en cours.";
+                }
+            if ( user_Email != null || demande_Email != null)
             {
-                ViewData["erorPrix"] = "ce login et deja inscrit ou demander l'inscription";
+                ViewData["erorLogin"] = "Ce  Email est déjà inscrit ou une demande d'inscription est en cours.";
             }
             //hashPassword
-            hashPassword(d.Password);
-            //importer image
-            String[] ext = { ".jpg", ".png", ".jpeg" };
-            String file_ext = Path.GetExtension(d.file.FileName).ToLower();
-            if (ext.Contains(file_ext))
-            {
-                String newName = Guid.NewGuid() +d.file.FileName;
-                String path_file = Path.Combine("wwwroot/ImageClient", newName);
-                d.Image = newName;
-                db.demandes.Add(d);
-                db.SaveChanges();
-                using (FileStream stream = System.IO.File.Create(path_file))
+            d.Password = HashPasswordWithSalt(d.Password);
+                 d.Date_Demande = DateTime.Now;
+                //importer image
+                String[] ext = { ".jpg", ".png", ".jpeg" };
+                String file_ext = Path.GetExtension(d.file.FileName).ToLower();
+                if (!ext.Contains(file_ext))
                 {
-                    d.file.CopyTo(stream);
+                    ViewData["erorImage"] = "Le choix de fichier doit être une image.";
+                    return View();
                 }
-                ViewData["erorPrix"] = "la demande a etait bien enregistrer";
-            }
-            else
-            {
-                ViewData["erorPrix"] = "le chois de fichier doit etre une Image";
-            }
+                if (ext.Contains(file_ext))
+                {
+                    String newName = Guid.NewGuid() + d.file.FileName;
+                    String path_file = Path.Combine("wwwroot/ImageClient", newName);
+                    d.Image = newName;
+                    db.demandes.Add(d);
+                    db.SaveChanges();
+                using (FileStream stream = System.IO.File.Create(path_file))
+                    {
+                        d.file.CopyTo(stream);
+                    }
+                    ViewData["message"] = "La demande a été enregistrée avec succès.";
+                }
             return View();
         }
-        public string hashPassword(string password)
+        private static string HashPasswordWithSalt(string password)
         {
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-            SHA256 sha256 = SHA256.Create();
-            byte[] hashBytes = sha256.ComputeHash(passwordBytes);
-            return Convert.ToBase64String(hashBytes);
+            using (var hashAlgorithm = new SHA256Managed())
+            {
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                SHA256 sha256 = SHA256.Create();
+                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+                return Convert.ToBase64String(hashBytes);
+            }
         }
-
     }
 }
