@@ -1,5 +1,7 @@
 ﻿using Fallah_App.Models;
+using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 
@@ -7,8 +9,6 @@ namespace Fallah_App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
 
         public async Task<IActionResult> IndexAsync()
         {
@@ -18,23 +18,25 @@ namespace Fallah_App.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
-                    var parsedData = JObject.Parse(data);
+
+                    //var parsedData = JObject.Parse(data);
+
+                    //  var parsedData = JsonConvert.DeserializeObject;
 
                     // Get the temperature and humidity values from the parsed data
-                    var temperature = parsedData["hourly"]["temperature_2m"].First.Value<float>();
-                    var humidity = parsedData["hourly"]["relativehumidity_2m"].First.Value<float>();
-
-                    // Store the temperature and humidity values in ViewBag for use in the view
-                    ViewBag.Temperature = parsedData;
-                    ViewBag.Humidity = humidity;
-                    return View();
+                    /* Meteo meteo = new Meteo();
+                      meteo.timezone = (string)parsedData["timezone"];
+                      meteo.time_Houre = parsedData["houre"]["time"].ToString();
+                  // meteo.time_Houre = JsonConvert.DeserializeObject<List<string>>((string)parsedData["time"]);
+                     ViewData["api"]= meteo.time_Houre;*/
+                    Meteo weatherData = JsonConvert.DeserializeObject<Meteo>(data);
+                    return View(weatherData);
                 }
                 else
                 {
                     return RedirectToAction("index", "ERROR404");
                 }
             }
-            return View();
         }
 
     }
