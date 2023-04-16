@@ -42,7 +42,8 @@
                                     </div>
                                     <div class="nk-int-st">
                                         <label asp-for="Nom"></label>
-                                        <input asp-for="Nom" class="form-control" required>
+                                        <input asp-for="Nom" class="form-control" >
+                                        <span asp-validation-for="Nom" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +54,8 @@
                                     </div>
                                     <div class="nk-int-st">
                                         <label asp-for="type"></label>
-                                        <input asp-for="type" class="form-control" required>
+                                        <input asp-for="type" class="form-control" >
+                                        <span asp-validation-for="type" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +68,8 @@
                                     </div>
                                     <div class="nk-int-st">
                                         <label asp-for="Debut_Period"></label>
-                                        <input asp-for="Debut_Period" class="form-control" required>
+                                        <input type="date" asp-for="Debut_Period" class="form-control" >
+                                        <span asp-validation-for="Debut_Period" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +82,8 @@
                                     </div>
                                     <div class="nk-int-st">
                                         <label asp-for="Fin_Date"></label>
-                                        <input asp-for="Fin_Date" class="form-control" required>
+                                        <input type="date" asp-for="Fin_Date" class="form-control">
+                                        <span asp-validation-for="Fin_Date" class="text-danger"></span>
                                     </div>                                 
                                 </div>
                             </div>

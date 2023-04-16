@@ -36,9 +36,13 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(Plante p)
         {
-            db.plantes.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("List");
+            if(ModelState.IsValid)
+            {
+                db.plantes.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("List");
+            }
+            return View(p);
         }
         public IActionResult Supprimer(int id)
         {
