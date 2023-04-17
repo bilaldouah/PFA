@@ -12,6 +12,7 @@
         public double elevation { get; set; }
 
         public hourly_units hourly_units { get; set; }
+        public Hourly hourly { get; set; }  
         /*public List<string> time_Houre { get; set; }
         public List<float> temperature_2m_houre { get; set; }
         public List<string> time { get; set; }
