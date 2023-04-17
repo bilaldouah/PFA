@@ -2,8 +2,7 @@
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using System.Numerics;
-
+using System.Device.Location;
 namespace Fallah_App.Controllers.WebMaster
 {
     public class PlanteController : Controller
@@ -63,5 +62,25 @@ namespace Fallah_App.Controllers.WebMaster
             db.SaveChanges();
             return RedirectToAction("List");
         }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                // Create a new GeoCoordinateWatcher
+                GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+
+                // Check if the location service is available
+                if (watcher.Status == GeoPositionStatus.Ready)
+                {
+                    // Get the user's current location
+                    GeoCoordinate location = watcher.Position.Location;
+
+                    // Save the coordinates in session for later use
+                    HttpContext.Current.Session["Latitude"] = location.Latitude;
+                    HttpContext.Current.Session["Longitude"] = location.Longitude;
+                }
+            }
+        }
+
     }
 }

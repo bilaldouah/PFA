@@ -10,7 +10,7 @@ namespace Fallah_App.Controllers
         private readonly ILogger<HomeController> _logger;
 
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync() 
         {
             using (var client = new HttpClient())
             {
