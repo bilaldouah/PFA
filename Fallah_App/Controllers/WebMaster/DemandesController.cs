@@ -20,7 +20,7 @@ namespace Fallah_App.Controllers.WebMaster
         public IActionResult List()
         {
             RemplireCache();
-            //EnvoyerEmailAcceptation();
+            EnvoyerEmailAcceptation();
             return View(this.memoryCache.Get<List<Demande>>("Demandes"));
             //return View(db.demandes.ToList());
         }
@@ -130,7 +130,7 @@ namespace Fallah_App.Controllers.WebMaster
 
             MailMessage message = new MailMessage(from, "yassinemali300@gmail.com", subject, body);
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            smtpClient.Credentials = new System.Net.NetworkCredential("falla7app@gmail.com", "yxlodflzpcvnvjvh");
+            smtpClient.Credentials = new System.Net.NetworkCredential("falla7app@gmail.com", "ifkbjdfapakuqixv");
             smtpClient.EnableSsl = true;
             smtpClient.Send(message);
         }
