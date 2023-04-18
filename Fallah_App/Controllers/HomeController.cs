@@ -17,16 +17,6 @@ namespace Fallah_App.Controllers
                 {
                     var data = await response.Content.ReadAsStringAsync();
 
-                    //var parsedData = JObject.Parse(data);
-
-                    //  var parsedData = JsonConvert.DeserializeObject;
-
-                    // Get the temperature and humidity values from the parsed data
-                    /* Meteo meteo = new Meteo();
-                      meteo.timezone = (string)parsedData["timezone"];
-                      meteo.time_Houre = parsedData["houre"]["time"].ToString();
-                  // meteo.time_Houre = JsonConvert.DeserializeObject<List<string>>((string)parsedData["time"]);
-                     ViewData["api"]= meteo.time_Houre;*/
                     Meteo weatherData = JsonConvert.DeserializeObject<Meteo>(data);
                     ViewBag.hour =weatherData.hourly.time.Take(12);
                     ViewBag.temp = weatherData.hourly.temperature_2m.Take(12);
