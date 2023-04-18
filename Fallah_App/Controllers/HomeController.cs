@@ -30,6 +30,8 @@ namespace Fallah_App.Controllers
                   // meteo.time_Houre = JsonConvert.DeserializeObject<List<string>>((string)parsedData["time"]);
                      ViewData["api"]= meteo.time_Houre;*/
                     Meteo weatherData = JsonConvert.DeserializeObject<Meteo>(data);
+                    ViewBag.hour =weatherData.hourly.time.Take(12);
+                    ViewBag.temp = weatherData.hourly.temperature_2m.Take(12);
                     return View(weatherData);
                 }
                 else

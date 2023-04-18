@@ -2,7 +2,7 @@
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using System.Device.Location;
+ 
 namespace Fallah_App.Controllers.WebMaster
 {
     public class PlanteController : Controller
@@ -37,6 +37,13 @@ namespace Fallah_App.Controllers.WebMaster
         {
             if(ModelState.IsValid)
             {
+                Plante plante = db.plantes.Where(P => P.Nom == p.Nom).FirstOrDefault();
+                if (plante!=null)
+                {
+                    ViewBag.errorNomPlante = "ce plante est déja existé";
+                    return View(p);
+                    
+                }
                 db.plantes.Add(p);
                 db.SaveChanges();
                 return RedirectToAction("List");
@@ -62,6 +69,7 @@ namespace Fallah_App.Controllers.WebMaster
             db.SaveChanges();
             return RedirectToAction("List");
         }
+        /*
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -81,6 +89,6 @@ namespace Fallah_App.Controllers.WebMaster
                 }
             }
         }
-
+        */
     }
 }

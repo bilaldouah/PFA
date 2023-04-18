@@ -2,7 +2,7 @@
 {
     public class Hourly
     {
-        public List<string>time { get; set; }
+        public List<DateTime>time { get; set; }
         public List<float> temperature_2m { get; set; }
         public List<int> relativehumidity_2m { get; set;}
         public List<float> precipitation { get; set; }
