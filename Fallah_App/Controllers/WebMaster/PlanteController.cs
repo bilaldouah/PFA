@@ -36,6 +36,13 @@ namespace Fallah_App.Controllers.WebMaster
         {
             if(ModelState.IsValid)
             {
+                Plante plante = db.plantes.Where(P => P.Nom == p.Nom).FirstOrDefault();
+                if (plante!=null)
+                {
+                    ViewBag.errorNomPlante = "ce plante est déja existé";
+                    return View(p);
+                    
+                }
                 db.plantes.Add(p);
                 db.SaveChanges();
                 return RedirectToAction("List");
@@ -61,7 +68,7 @@ namespace Fallah_App.Controllers.WebMaster
             db.SaveChanges();
             return RedirectToAction("List");
         }
- 
+        
 
     }
 }
