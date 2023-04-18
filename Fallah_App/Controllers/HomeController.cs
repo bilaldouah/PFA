@@ -1,16 +1,14 @@
-﻿using Fallah_App.Models;
+﻿using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using System.Diagnostics;
+using Newtonsoft.Json;
+
 
 namespace Fallah_App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync() 
         {
             using (var client = new HttpClient())
             {
@@ -18,23 +16,17 @@ namespace Fallah_App.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
-                    var parsedData = JObject.Parse(data);
 
-                    // Get the temperature and humidity values from the parsed data
-                    var temperature = parsedData["hourly"]["temperature_2m"].First.Value<float>();
-                    var humidity = parsedData["hourly"]["relativehumidity_2m"].First.Value<float>();
-
-                    // Store the temperature and humidity values in ViewBag for use in the view
-                    ViewBag.Temperature = parsedData;
-                    ViewBag.Humidity = humidity;
-                    return View();
+                    Meteo weatherData = JsonConvert.DeserializeObject<Meteo>(data);
+                    ViewBag.hour =weatherData.hourly.time.Take(12);
+                    ViewBag.temp = weatherData.hourly.temperature_2m.Take(12);
+                    return View(weatherData);
                 }
                 else
                 {
                     return RedirectToAction("index", "ERROR404");
                 }
             }
-            return View();
         }
 
     }

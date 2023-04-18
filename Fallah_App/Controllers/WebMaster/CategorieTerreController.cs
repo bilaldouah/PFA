@@ -31,9 +31,13 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(CategoryTerre c)
         {
-            db.categoryTerres.Add(c);
-            db.SaveChanges();
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                db.categoryTerres.Add(c);
+                db.SaveChanges();
+                return RedirectToAction("List");
+            }
+            return View(c);
         }
         public IActionResult Supprimer(int id)
         {

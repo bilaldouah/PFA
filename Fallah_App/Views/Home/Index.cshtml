@@ -1,7 +1,174 @@
-﻿@section title{
+﻿
+@section title{
     <title>Home Page</title>
 }
+@model Fallah_App.Service.Meteo
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.10.1/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js" integrity="sha512-+IpCthlNahOuERYUSnKFjzjdKXIbJ/7Dd6xvUp+7bEw0Jp2dg6tluyxLs+zq9BMzZgrLv8886T4cBSqnKiVgUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" integrity="sha512-cznfNokevSG7QPA5dZepud8taylLdvgr0lDqw/FEZIhluFsSwyvS81CMnRdrNSKwbsmc43LtRd2/WMQV+Z85AQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcomb-wp">
+                                    <div class="breadcomb-icon">
+                                        <i class="notika-icon notika-windows"></i>
+                                    </div>
+                                    <div class="breadcomb-ctn">
+                                        <h2>Meteo</h2>
+                                        <p>Les donnes des Meteo de la semaines</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="text-center">
-        <p>@ViewBag.Temperature["hourly"]["temperature_2m"][1]</p>
-</div>
+    <div class="visitor-sv-tm-area">
+        <div class="container">
+            <div class="row">
+               
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="visitor-sv-tm-int">
+                       <div class="accordion-stn sm-res-mg-t-30">
+                                    <div class="panel-group" data-collapse-color="nk-blue" id="accordionBlue" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-collapse notika-accrodion-cus">
+                                            <div class="panel-heading" role="tab">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-one" aria-expanded="true">
+															Collapse Blue #1
+														</a>
+                                                </h4>
+                                            </div>
+                                            <div id="accordionBlue-one" class="collapse animated flipInX in" role="tabpanel">
+                                                <div class="panel-body">
+                                            <p id="chart3"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-collapse notika-accrodion-cus">
+                                            <div class="panel-heading" role="tab">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-two" aria-expanded="false">
+															Collapse Blue #2
+														</a>
+                                                </h4>
+                                            </div>
+                                            <div id="accordionBlue-two" class="collapse animated flipInX" role="tabpanel">
+                                                <div class="panel-body">
+                                            <p id="chart2"></p>
+                                        </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-collapse notika-accrodion-cus">
+                                            <div class="panel-heading" role="tab">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-three" aria-expanded="false">
+															Collapse Blue #3
+														</a>
+                                                </h4>
+                                            </div>
+                                            <div id="accordionBlue-three" class="collapse animated flipInX" role="tabpanel">
+                                                <div class="panel-body">
+                                            <p>swdsdcsc</p>
+                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="visitor-sv-tm-int sm-res-mg-t-30">
+                        <div id="chart1"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var chart1 = c3.generate({
+        bindto: "#chart1",
+        data: {
+            columns: [
+                ['temperature',
+    @foreach (var temp in ViewBag.temp)
+    {
+        @: @temp,
+    }
+            ]
+    
+            ]
+        },
+        axis: {
+            x: {
+      type: 'category',
+                categories: [
+    @foreach (DateTime time in ViewBag.hour)
+    {
+        @:'@time.ToString("H:mm")',
+    }
+                ]
+            }
+        }
+    });
+    var chart2 = c3.generate({
+            bindto: "#chart2",
+            data: {
+                columns: [
+                    ['temperature',
+    @foreach (var temp in ViewBag.temp)
+    {
+        @: @temp,
+    }
+                ]
+
+                ]
+            },
+            axis: {
+                x: {
+          type: 'category',
+                    categories: [
+    @foreach (DateTime time in ViewBag.hour)
+    {
+        @:'@time.ToString("H:mm")',
+    }
+                    ]
+                }
+            }
+        });
+            var chart3 = c3.generate({
+            bindto: "#chart3",
+            data: {
+                columns: [
+                    ['temperature',
+    @foreach (var temp in ViewBag.temp)
+    {
+        @: @temp,
+    }
+                ]
+
+                ]
+            },
+            axis: {
+                x: {
+          type: 'category',
+                    categories: [
+    @foreach (DateTime time in ViewBag.hour)
+    {
+        @:'@time.ToString("H:mm")',
+    }
+                    ]
+                }
+            }
+        });
+    </script>
