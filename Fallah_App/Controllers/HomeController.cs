@@ -1,9 +1,7 @@
-﻿using Fallah_App.Models;
-using Fallah_App.Service;
+﻿using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Diagnostics;
+
 
 namespace Fallah_App.Controllers
 {
