@@ -4,9 +4,10 @@
 }
 @model Fallah_App.Service.Meteo
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.10.1/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js" integrity="sha512-+IpCthlNahOuERYUSnKFjzjdKXIbJ/7Dd6xvUp+7bEw0Jp2dg6tluyxLs+zq9BMzZgrLv8886T4cBSqnKiVgUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" integrity="sha512-cznfNokevSG7QPA5dZepud8taylLdvgr0lDqw/FEZIhluFsSwyvS81CMnRdrNSKwbsmc43LtRd2/WMQV+Z85AQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="~/js/charts/Chart.js"></script>
+
+    <link rel="stylesheet" href="~/icons/css/weather-icons.min.css" />
+
 </head>
     <div class="breadcomb-area">
         <div class="container">
@@ -39,13 +40,14 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="visitor-sv-tm-int">
                        <div class="accordion-stn sm-res-mg-t-30">
+                                      
                                     <div class="panel-group" data-collapse-color="nk-blue" id="accordionBlue" role="tablist" aria-multiselectable="true">
                                         <div class="panel panel-collapse notika-accrodion-cus">
                                             <div class="panel-heading" role="tab">
                                                 <h4 class="panel-title">
                                                     <a data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-one" aria-expanded="true">
-															Collapse Blue #1
-														</a>
+												        @Model.daily.time[1]
+                                                    </a>
                                                 </h4>
                                             </div>
                                             <div id="accordionBlue-one" class="collapse animated flipInX in" role="tabpanel">
@@ -58,8 +60,8 @@
                                             <div class="panel-heading" role="tab">
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-two" aria-expanded="false">
-															Collapse Blue #2
-														</a>
+                                                @Model.daily.time[2]
+                                            </a>
                                                 </h4>
                                             </div>
                                             <div id="accordionBlue-two" class="collapse animated flipInX" role="tabpanel">
@@ -72,8 +74,8 @@
                                             <div class="panel-heading" role="tab">
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-three" aria-expanded="false">
-															Collapse Blue #3
-														</a>
+                                                @Model.daily.time[3]
+                                            </a>
                                                 </h4>
                                             </div>
                                             <div id="accordionBlue-three" class="collapse animated flipInX" role="tabpanel">
@@ -82,93 +84,111 @@
                                         </div>
                                             </div>
                                         </div>
+                                <div class="panel panel-collapse notika-accrodion-cus">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-four" aria-expanded="false">
+                                                @Model.daily.time[4]
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="accordionBlue-four" class="collapse animated flipInX" role="tabpanel">
+                                        <div class="panel-body">
+                                            <p>swdsdcsc</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-collapse notika-accrodion-cus">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-five" aria-expanded="false">
+                                                @Model.daily.time[5]
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="accordionBlue-five" class="collapse animated flipInX" role="tabpanel">
+                                        <div class="panel-body">
+                                            <p>swdsdcsc</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-collapse notika-accrodion-cus">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordionBlue" href="#accordionBlue-six" aria-expanded="false">
+												        @Model.daily.time[6]
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="accordionBlue-six" class="collapse animated flipInX" role="tabpanel">
+                                        <div class="panel-body">
+                                            <p>swdsdcsc</p>
+                                        </div>
+                                    </div>
+                                </div>
                                     </div>
                                 </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="visitor-sv-tm-int sm-res-mg-t-30">
-                        <div id="chart1"></div>
-
+                        <canvas height="140vh" width="180vw" id="areachartfalse"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-    var chart1 = c3.generate({
-        bindto: "#chart1",
-        data: {
-            columns: [
-                ['temperature',
-    @foreach (var temp in ViewBag.temp)
-    {
-        @: @temp,
-    }
-            ]
-    
-            ]
-        },
-        axis: {
-            x: {
-      type: 'category',
-                categories: [
-    @foreach (DateTime time in ViewBag.hour)
-    {
-        @:'@time.ToString("H:mm")',
-    }
-                ]
-            }
-        }
-    });
-    var chart2 = c3.generate({
-            bindto: "#chart2",
+   <script>
+        var ctx = document.getElementById("areachartfalse");
+        var areachartfalse = new Chart(ctx, {
+            type: 'line',
             data: {
-                columns: [
-                    ['temperature',
-    @foreach (var temp in ViewBag.temp)
-    {
-        @: @temp,
-    }
-                ]
-
-                ]
-            },
-            axis: {
-                x: {
-          type: 'category',
-                    categories: [
-    @foreach (DateTime time in ViewBag.hour)
-    {
-        @:'@time.ToString("H:mm")',
-    }
+                labels: [
+                @foreach (DateTime time in ViewBag.hour)
+                {
+                    @:'@time.ToString("H:mm")',
+                }
+                ],
+                datasets: [{
+                label: "Temperature en °C",
+                    fill: false,
+                    backgroundColor: '#00c292',
+                    borderColor: '#00c292',
+                    data: [
+                    @foreach (var temp in ViewBag.temp)
+                    {
+                        @: @temp,
+                    }
                     ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                spanGaps: false,
+                title: {
+                    display: true,
+                text: "Temperature d'Aujourd'hui "
+
+                    },
+                elements: {
+                    line: {
+                        tension: 0.000001
+                    }
+                },
+                plugins: {
+                    filler: {
+                        propagate: false
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 0
+                        }
+                    }]
                 }
             }
         });
-            var chart3 = c3.generate({
-            bindto: "#chart3",
-            data: {
-                columns: [
-                    ['temperature',
-    @foreach (var temp in ViewBag.temp)
-    {
-        @: @temp,
-    }
-                ]
-
-                ]
-            },
-            axis: {
-                x: {
-          type: 'category',
-                    categories: [
-    @foreach (DateTime time in ViewBag.hour)
-    {
-        @:'@time.ToString("H:mm")',
-    }
-                    ]
-                }
-            }
-        });
-    </script>
+   </script>
