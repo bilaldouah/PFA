@@ -33,8 +33,8 @@ namespace Fallah_App.Models
         [EmailAddress( ErrorMessage = "Invalid Email format.")]
         public string Email { get; set; }
         [Required(ErrorMessage = "ce champ est obligatoire")]
+        [DataType(DataType.Date)]
         public DateTime Date_Demande{ get; set; }
-        [Required(ErrorMessage = "ce champ est obligatoire")]
         public string Image { get; set; }
         public Boolean Statut { get; set; }
         public Boolean forme { get; set; }

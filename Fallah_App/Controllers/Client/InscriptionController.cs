@@ -1,5 +1,4 @@
-﻿
-using Fallah_App.Context;
+﻿using Fallah_App.Context;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -24,15 +23,7 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult Index(Demande d)
         {
-            if (ModelState.IsValid)
-            {
-                if (d.conf_Password != d.Password)
-                {
-                    ViewData["erorconfpass"] = "le mot de passe est confirmation de mot de passe pas le meme.";
-                    return View(d);
-                }
-                else
-                {
+           
                     //recuperer le login dans table demande et user
                     Demande demande = db.demandes.Where(D => D.Login == d.Login).FirstOrDefault();
                     Demande demande_Email = db.demandes.Where(D => D.Email == d.Email).FirstOrDefault();
@@ -44,11 +35,16 @@ namespace Fallah_App.Controllers.Client
                         ViewData["erorLogin"] = "Ce login   est déjà inscrit ou une demande d'inscription est en cours.";
                         return View(d);
                     }
-                    if (user_Email != null || demande_Email != null)
+                   if (user_Email != null || demande_Email != null)
                     {
                         ViewData["errorEmail"] = "Ce  Email est déjà inscrit ou une demande d'inscription est en cours.";
                         return View(d);
                     }
+                     if (d.Password != d.conf_Password) 
+                     {
+                         ViewData["message1"] = "Le password et confiramation du password et diferent";
+                         return View(d);
+                      }
                     //hashPassword
                     d.Password = HashPasswordWithSalt(d.Password);
                     d.Date_Demande = DateTime.Now;
@@ -69,12 +65,10 @@ namespace Fallah_App.Controllers.Client
                         db.SaveChanges();
                         using (FileStream stream = System.IO.File.Create(path_file))
                         {
-                            d.file.CopyTo(stream);
+                           d.file.CopyTo(stream);
                         }
-                    }
-                    ViewData["message"] = "La demande a été enregistrée avec succès.";
-                }
-            }
+                      ViewData["message"] = "La demande a été enregistrée avec succès.";
+                     }
                 return View();
         }
         private static string HashPasswordWithSalt(string password)

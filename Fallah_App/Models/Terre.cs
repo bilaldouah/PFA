@@ -18,7 +18,8 @@ namespace Fallah_App.Models
         public List<Notification> notifications { get; set; }
         public List<Plante> plantes { get; set; }
         public CategoryTerre categoryTerre { get; set; }
-
+        [NotMapped]
+        public IFormFile file { get; set; }
         [ForeignKey(nameof(categoryTerre))]
         public int Id_categoryTerre { get; set; }
 
