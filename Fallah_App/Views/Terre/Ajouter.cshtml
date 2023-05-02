@@ -1,0 +1,56 @@
+﻿@model Fallah_App.Models.Terre
+
+@section title {
+    <title>Ajouter Terre</title>
+}
+<form action="#" method="post">
+    <div class="container">
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label for="localisation">Localisation:</label>
+                <input type="text" id="localisation" class="form-control" asp-for="Localisation" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="type">Type:</label>
+                <input type="text" id="type" class="form-control" asp-for="Type" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="image">Image:</label>
+                <input type="file" id="file" class="form-control" asp-for="file" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="surface">Surface:</label>
+                <input type="text" id="surface" class="form-control" asp-for="Surface" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="hauteur">Hauteur:</label>
+                <input type="number" id="hauteur" class="form-control" asp-for="Hauteur" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="categorie">Catégorie:</label>
+                <select id="categorie" class="custom-select widget-title" asp-for="Id_categoryTerre" required>
+                    @foreach (CategoryTerre c in ViewBag.list)
+                    {
+                        <option value="@c.Id">@c.Attribut_De_Categorisation</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="google-map-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="google-map-single">
+                            <div id="us3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success success-icon-notika" value="Ajouter">
+            <!-- map -->
+            <div style="height: 400px;"></div>
+        </div>
+    </div>
+</form>
+<script src="~/wwwroot/js/LocalisationTerre/Localisation.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
