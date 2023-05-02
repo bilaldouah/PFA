@@ -1,8 +1,8 @@
-﻿@model Fallah_App.Models.CategoryTerre
+﻿@model Fallah_App.Models.Sol
 @section title
     {
     <title>
-        Ajouter Categorie
+        Modifier Sol
 
     </title>
 }
@@ -20,7 +20,7 @@
                                         <i class="notika-icon notika-edit"></i>
                                     </div>
                                     <div class="breadcomb-ctn">
-                                        <h2>Ajouter Categorie</h2>
+                                        <h2>Modifier Sol</h2>
 
                                     </div>
                                 </div>
@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <div class="form-element-area">
         <div class="container">
             <div class="row">
@@ -40,23 +41,22 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
-                                        <i class=""></i>
+                                        <i class="notika-icon notika-support"></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Attribut_De_Categorisation"></label>
-                                        <input asp-for="Attribut_De_Categorisation" class="form-control" required>
-                                        <span class="text-danger">@ViewBag.ERR</span>
+                                        <label asp-for="Type"></label>
+                                        <input asp-for="Type" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
-                                        <i class=""></i>
+                                        <i class="notika-icon notika-mail"></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Valeur_Min"> </label>
-                                        <input asp-for="Valeur_Min" class="form-control" required>
+                                        <label asp-for="Couleur"></label>
+                                        <input asp-for="Couleur" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -65,11 +65,11 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
-                                        <i class=""></i>
+                                        <i class="notika-icon notika-calendar"></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Valeur_Max"> </label>
-                                        <input asp-for="Valeur_Max" class="form-control" required>
+                                        <label asp-for="Acidite"></label>
+                                        <input asp-for="Acidite" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb form-elet-mg">
                                     <div class="nk-int-st">
-                                        <input type="submit" class="btn btn-success success-icon-notika" value="Ajouter" />
+                                        <input type="submit" class="btn btn-lightblue" value="Modifer" />
                                     </div>
 
                                 </div>
