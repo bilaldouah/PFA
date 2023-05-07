@@ -13,9 +13,9 @@ namespace Fallah_App.Models
         [Required(ErrorMessage = "ce champ est obligatoire")]
         public string type { get; set; }
         [Required(ErrorMessage = "ce champ est obligatoire")]
-        public DateTime Debut_Period { get; set; }
+        public int Debut_Period { get; set; }
         [Required(ErrorMessage = "ce champ est obligatoire")]
-        public DateTime Fin_Date { get; set; }
+        public int Fin_Date { get; set; }
        
         public List<Notification> ? notifications { get; set; }
         

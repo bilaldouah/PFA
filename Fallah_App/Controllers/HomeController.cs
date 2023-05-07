@@ -4,7 +4,7 @@ using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
-
+using System.Globalization;
 
 namespace Fallah_App.Controllers
 {
@@ -25,6 +25,7 @@ namespace Fallah_App.Controllers
             }*/
             ViewBag.hour = meteo.hourly.time.Take(12);
             ViewBag.temp = meteo.hourly.temperature_2m.Take(12);
+    //        ViewBag.dayName = DateTime.ParseExact("meteo.daily.time[1]", "MM/dd/yyyy", CultureInfo.InvariantCulture);
             return View(meteo);
 
         }

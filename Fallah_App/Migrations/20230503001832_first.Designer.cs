@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230402221142_Creation")]
-    partial class Creation
+    [Migration("20230503001832_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -210,21 +210,32 @@ namespace Fallah_App.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("Statut")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("forme")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -265,17 +276,17 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.Plante", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
-                    b.Property<DateTime>("Debut_Period")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Debut_Period")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("Fin_Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Fin_Date")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()

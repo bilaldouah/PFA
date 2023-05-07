@@ -207,19 +207,23 @@ namespace Fallah_App.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("Statut")
                         .HasColumnType("bit");
@@ -269,17 +273,17 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.Plante", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
-                    b.Property<DateTime>("Debut_Period")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Debut_Period")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("Fin_Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Fin_Date")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()
