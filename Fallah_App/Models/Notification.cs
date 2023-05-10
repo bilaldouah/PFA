@@ -6,7 +6,7 @@ namespace Fallah_App.Models
     {
         public int Id { get; set; }
         public Boolean IsSeen { get; set; }
-        public string TextArabe { get; set; }
+        public string ? TextArabe { get; set; }
         public string TextFrancais { get; set; }
         public WebMaster webMaster { get; set; }
         [ForeignKey(nameof(webMaster))]

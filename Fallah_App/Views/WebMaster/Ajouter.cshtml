@@ -1,0 +1,146 @@
+﻿@model Fallah_App.Models.WebMaster
+@section title
+    {
+    <title>Ajouter Web master</title>
+}
+@section style
+    {
+  
+}
+<body>
+    <form method="post">
+        <div class="breadcomb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="breadcomb-list">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="breadcomb-wp">
+                                        <div class="breadcomb-icon">
+                                            <i class="notika-icon notika-windows"></i>
+                                        </div>
+                                        <div class="breadcomb-ctn">
+                                            <h2>Ajouter Web master</h2>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-element-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-element-list mg-t-30">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group ic-cmp-int float-lb floating-lb">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <label asp-for="Nom"></label>
+                                            <input asp-for="Nom" class="form-control input-lg">
+                                            <span asp-validation-for="Nom" class="text-danger"></span>
+                                            <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group ic-cmp-int float-lb floating-lb">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <label asp-for="Prenom"></label>
+                                            <input asp-for="Prenom" class="form-control input-lg">
+                                            <span asp-validation-for="Prenom" class="text-danger"></span>
+                                            <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group ic-cmp-int float-lb floating-lb">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <label asp-for="Login"></label>
+                                            <input asp-for="Login" class="form-control input-lg">
+                                            <span asp-validation-for="Login" class="text-danger"></span>
+                                            <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group ic-cmp-int float-lb floating-lb">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-ip-locator"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <label asp-for="Password"></label>
+                                            <input asp-for="Password" class="form-control input-lg">
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                            <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group ic-cmp-int float-lb floating-lb">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-mail"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <label asp-for="Email"></label>
+                                            <input asp-for="Email" class="form-control input-lg">
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                            <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-group ic-cmp-int float-lb floating-lb">
+                                        <div class="form-ic-cmp">
+                                            <i class="notika-icon notika-support"></i>
+                                        </div>
+                                        <div class="nk-int-st">
+                                            <label asp-for="Image"></label>
+                                            <input asp-for="Image" class="form-control input-lg">
+                                            <span asp-validation-for="Image" class="text-danger"></span>
+                                            <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <div class="form-group ic-cmp-int float-lb form-elet-mg">
+                                            <div class="nk-int-st">
+                                                <button type="submit" class="btn btn-success notika-btn-success waves-effect btn-lg">Ajouter</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+@section script
+    {
+     
+  }

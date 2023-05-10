@@ -2,8 +2,12 @@
 {
     public class User
     {
+<<<<<<< HEAD
+        public int? Id { get; set; }
+=======
         public int Id { get; set; }
 
+>>>>>>> 8a26e79a047e40f2708896434c866842a74ed9e3
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Login { get; set; }
