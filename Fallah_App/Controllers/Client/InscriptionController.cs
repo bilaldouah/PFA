@@ -24,8 +24,7 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult Index(Demande d)
         {
-            if (ModelState.IsValid)
-            {
+
                 if (d.conf_Password != d.Password)
                 {
                     ViewData["erorconfpass"] = "le mot de passe est confirmation de mot de passe pas le meme.";
@@ -74,10 +73,9 @@ namespace Fallah_App.Controllers.Client
                     }
                     ViewData["message"] = "La demande a été enregistrée avec succès.";
                 }
-            }
                 return View();
         }
-        private static string HashPasswordWithSalt(string password)
+        public static string HashPasswordWithSalt(string password)
         {
             using (var hashAlgorithm = new SHA256Managed())
             {
