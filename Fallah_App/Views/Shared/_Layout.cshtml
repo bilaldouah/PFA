@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- favicon
         ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.ico">
@@ -21,6 +20,7 @@
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
@@ -71,14 +71,11 @@
             <link rel="stylesheet" href="~/css/dropzone/dropzone.css">
 
     <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
-    @RenderSection("style",required:false)
 
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="~/http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+
     <!-- Start Header Top Area -->
     <div class="header-top-area">
         <div class="container">
@@ -682,6 +679,8 @@
             </div>
         </div>
     </div>
+    @RenderSection("style",required:false)
+
     <!-- Main Menu area End-->
     @RenderBody()
     <!-- Start Footer area-->

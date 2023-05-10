@@ -12,6 +12,8 @@
         public string weathercode { get; set; }
         public string cloudcover { get; set; }
         public string windspeed_10m { get; set; }
+        public string windspeed_80m { get; set; }
+        
         public string windspeed_180m { get; set; }
         public string winddirection_10m { get; set; }
         public string winddirection_80m { get; set; }
