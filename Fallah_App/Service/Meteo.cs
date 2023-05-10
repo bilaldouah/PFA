@@ -38,8 +38,10 @@ namespace Fallah_App.Service
                     else
                     {
                         i++;
+                        await Task.Delay(10000);
                     }
                 }
+           
             }
             return weatherData;
 
