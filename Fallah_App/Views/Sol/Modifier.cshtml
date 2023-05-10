@@ -1,7 +1,10 @@
-﻿@model Fallah_App.Models.Plante
+﻿@model Fallah_App.Models.Sol
 @section title
     {
-    <title>Modifier Plante</title>
+    <title>
+        Modifier Sol
+
+    </title>
 }
 
 <form method="post">
@@ -17,7 +20,7 @@
                                         <i class="notika-icon notika-edit"></i>
                                     </div>
                                     <div class="breadcomb-ctn">
-                                        <h2>Modifier Plante ici</h2>
+                                        <h2>Modifier Sol</h2>
 
                                     </div>
                                 </div>
@@ -41,8 +44,8 @@
                                         <i class="notika-icon notika-support"></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Nom"></label>
-                                        <input asp-for="Nom" class="form-control" required>
+                                        <label asp-for="Type"></label>
+                                        <input asp-for="Type" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -52,8 +55,8 @@
                                         <i class="notika-icon notika-mail"></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="type"></label>
-                                        <input asp-for="type" class="form-control" required>
+                                        <label asp-for="Couleur"></label>
+                                        <input asp-for="Couleur" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -65,39 +68,29 @@
                                         <i class="notika-icon notika-calendar"></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Debut_Period"></label>
-                                        <input asp-for="Debut_Period" class="form-control" required>
+                                        <label asp-for="Acidite"></label>
+                                        <input asp-for="Acidite" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ic-cmp-int float-lb floating-lb">
-                                    <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-calendar"></i>
-                                    </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="form-group ic-cmp-int float-lb form-elet-mg">
                                     <div class="nk-int-st">
-                                        <label asp-for="Fin_Date"></label>
-                                        <input asp-for="Fin_Date" class="form-control" required>
+                                        <input type="submit" class="btn btn-lightblue" value="Modifer" />
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <div class="form-group ic-cmp-int float-lb form-elet-mg">
-                                        <div class="nk-int-st">
 
-                                            <button type="submit" class="btn btn-warning notika-btn-warning waves-effect btn-lg">Modifer</button>
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
 </form>

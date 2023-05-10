@@ -1,7 +1,7 @@
-﻿@model Fallah_App.Models.Plante
+﻿@model Fallah_App.Models.Sol
 @section title
     {
-    <title>Modifier Plante</title>
+    <title>Ajouter Sol</title>
 }
 
 <form method="post">
@@ -14,10 +14,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="breadcomb-wp">
                                     <div class="breadcomb-icon">
-                                        <i class="notika-icon notika-edit"></i>
+                                        <i class="notika-icon notika-windows"></i>
                                     </div>
                                     <div class="breadcomb-ctn">
-                                        <h2>Modifier Plante ici</h2>
+                                        <h2>Ajouter Sol</h2>
 
                                     </div>
                                 </div>
@@ -38,22 +38,25 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-support"></i>
+                                        <i class=""></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Nom"></label>
-                                        <input asp-for="Nom" class="form-control" required>
+                                        <label asp-for="Type"></label>
+                                        <input asp-for="Type" class="form-control input-lg">
+                                        <span asp-validation-for="Type" class="text-danger"></span>
+                                        <span class="text-danger">@ViewBag.error</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-mail"></i>
+                                        <i class=""></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="type"></label>
-                                        <input asp-for="type" class="form-control" required>
+                                        <label asp-for="Couleur"></label>
+                                        <input asp-for="Couleur" class="form-control input-lg">
+                                        <span asp-validation-for="Couleur" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -62,33 +65,24 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-calendar"></i>
+                                        <i class=""></i>
                                     </div>
                                     <div class="nk-int-st">
-                                        <label asp-for="Debut_Period"></label>
-                                        <input asp-for="Debut_Period" class="form-control" required>
+                                        <label asp-for="Acidite"></label>
+                                        <input type="number" asp-for="Acidite" class="form-control input-lg">
+                                        <span asp-validation-for="Acidite" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ic-cmp-int float-lb floating-lb">
-                                    <div class="form-ic-cmp">
-                                        <i class="notika-icon notika-calendar"></i>
-                                    </div>
-                                    <div class="nk-int-st">
-                                        <label asp-for="Fin_Date"></label>
-                                        <input asp-for="Fin_Date" class="form-control" required>
-                                    </div>
-                                </div>
+                            
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                     <div class="form-group ic-cmp-int float-lb form-elet-mg">
                                         <div class="nk-int-st">
-
-                                            <button type="submit" class="btn btn-warning notika-btn-warning waves-effect btn-lg">Modifer</button>
+                                            <input type="submit" class="btn btn-lightblue" value="Ajouter" />
                                         </div>
 
                                     </div>

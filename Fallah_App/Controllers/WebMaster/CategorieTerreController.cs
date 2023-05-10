@@ -31,13 +31,19 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(CategoryTerre c)
         {
-            if (ModelState.IsValid)
-            {
+            
+            
+               CategoryTerre categoryterre = db.categoryTerres.Where(ct=> ct.Attribut_De_Categorisation == c.Attribut_De_Categorisation).FirstOrDefault();
+                if (categoryterre!= null)
+                {
+                    ViewBag.ERR = "cette categorie existe deja";
+                    return View(c);
+                }
                 db.categoryTerres.Add(c);
                 db.SaveChanges();
                 return RedirectToAction("List");
-            }
-            return View(c);
+           
+            
         }
         public IActionResult Supprimer(int id)
         {

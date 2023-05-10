@@ -39,7 +39,7 @@ namespace Fallah_App.Controllers.WebMaster
                 Plante plante = db.plantes.Where(P => P.Nom == p.Nom).FirstOrDefault();
                 if (plante!=null)
                 {
-                    ViewBag.errorNomPlante = "ce plante est déja existé";
+                    ViewBag.errorNomPlante = "cette plante existe déja ";
                     return View(p);
                     
                 }
