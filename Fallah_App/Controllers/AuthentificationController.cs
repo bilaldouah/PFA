@@ -1,8 +1,8 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
+
 
 namespace Fallah_App.Controllers
 {
@@ -18,26 +18,36 @@ namespace Fallah_App.Controllers
         {
             return View();
         }
-
-        public IActionResult Login(User u) 
+        [HttpPost]
+        public IActionResult Index(User u)
         {
-            if (ModelState.IsValid)
+            //String password = InscriptionController.HashPasswordWithSalt(u.Password);
+            Models.User user =db.users.Where(us => us.Login.Equals(u.Login) && us.Password.Equals(u.Password)).FirstOrDefault();
+            
+            if (user != null)
             {
-                User user = db.users.Where(u => u.Login.Equals(u.Login) && u.Password.Equals(u.Password)).FirstOrDefault() ;
-                if(user!= null) 
+                
+
+                if (user is Models.WebMaster)
                 {
-                    string id = user.Id.ToString();
-                    HttpContext.Session.SetString("id", id);
-                    return RedirectToAction("userdashboard");
-                                 
                 }
+                if (user is Models.Agriculteur)
+                {
+                    if (user is Models.AgriculteurForme)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+               
+
             }
-            return View(u);
-        }
-        public IActionResult userdashboard()
-        {//filtre if session != null ===> return view()
-            // else return page login;
-            return View();
+
+
+                    return View();
         }
     }
 }
