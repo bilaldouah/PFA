@@ -1,6 +1,7 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Fallah_App.Controllers.WebMaster
@@ -61,9 +62,25 @@ namespace Fallah_App.Controllers.WebMaster
             db.SaveChanges();
             return RedirectToAction("List");
         }
-
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult Broadcast(int id)
+        {
+            List<Notification> notifications = db.notifications.Include(N => N.AgriculteurNotifications).ThenInclude(AN=> AN.Agriculteur).Where(N=>N.Id==id).ToList();
+            Notification notification = db.notifications.Find(id);
+            AgriculteurNotification ag = new AgriculteurNotification();
+            foreach(Notification agN in notifications) 
+            {
+                ag.Agriculteur.Id = agN.
+                    
+                    }
+
+           
+            db.agriculteurNotifications.Add(ag);
+           // ViewBag.notif = notification.TextFrancais;
             return View();
         }
     }
