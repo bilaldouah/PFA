@@ -15,7 +15,6 @@ namespace Fallah_App.Context
         public DbSet<Resultat> resultats { get; set; }
         public DbSet<Sol> sols { get; set; }
         public DbSet<Terre> terres { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
