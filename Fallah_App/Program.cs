@@ -26,7 +26,7 @@ if (Environment.GetEnvironmentVariable("DB_NAME") != null)
     });
 
 }*/
-/////////////////////////////////
+
 else
 {
     builder.Services.AddDbContext<MyContext>(opt =>
