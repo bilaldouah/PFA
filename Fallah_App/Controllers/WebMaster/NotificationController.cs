@@ -67,21 +67,6 @@ namespace Fallah_App.Controllers.WebMaster
             return View();
         }
 
-        public IActionResult Broadcast(int id)
-        {
-            List<Notification> notifications = db.notifications.Include(N => N.AgriculteurNotifications).ThenInclude(AN=> AN.Agriculteur).Where(N=>N.Id==id).ToList();
-            Notification notification = db.notifications.Find(id);
-            AgriculteurNotification ag = new AgriculteurNotification();
-            foreach(Notification agN in notifications) 
-            {
-                ag.Agriculteur.Id = agN.
-                    
-                    }
-
-           
-            db.agriculteurNotifications.Add(ag);
-           // ViewBag.notif = notification.TextFrancais;
-            return View();
-        }
+      
     }
 }

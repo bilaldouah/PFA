@@ -23,9 +23,9 @@ namespace Fallah_App.Controllers.Client
         }
         public IActionResult Ajouter()
         {
-            //ViewBag.list = db.categoryTerres.ToList();
-            //ViewBag.sols=db.sols.ToList();
-            //ViewBag.plants=db.plantes.ToList();
+            ViewBag.list = db.categoryTerres.ToList();
+            ViewBag.sols=db.sols.ToList();
+            ViewBag.plants=db.plantes.ToList();
             return View();
         }
         [HttpPost]

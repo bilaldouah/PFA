@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/css/bootstrap-select/bootstrap-select.css">
 }
 <body>
-<form method="post">
     <div class="breadcomb-area">
         <div class="container">
             <div class="row">
@@ -21,7 +20,7 @@
                                         <i class="notika-icon notika-windows"></i>
                                     </div>
                                     <div class="breadcomb-ctn">
-                                        <h2>Ajouter Plante ici</h2>
+                                        <h2>Ajouter une Plante </h2>
 
                                     </div>
                                 </div>
@@ -32,14 +31,136 @@
             </div>
         </div>
     </div>
+        <div class="form-example-area">
+            <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="cmp-tb-hd cmp-int-hd">
+                        <h2>Horizontal Form</h2>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                     <label class="hrzn-fm">Nom du Plante</label>
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input asp-for="Nom" class="form-control input-lg">
+                                        <span asp-validation-for="Nom" class="text-danger"></span>
+                                        <span class="text-danger">@ViewBag.errorNomPlante</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Type du plante</label>
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                    <div class="nk-int-st">
+                                                <div class="bootstrap-select fm-cmp-mg">
+                                                    <select asp-for="type" class="selectpicker" data-live-search="true">
 
+                                                        <option class="text-center" value="Fruit">Fruit</option>
+                                                        <option class="text-center" value="Légumes">Légumes</option>
+
+
+                                                    </select>
+                                                    <span asp-validation-for="type" class="text-danger"></span>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Mois du debut</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <div class="bootstrap-select fm-cmp-mg">
+                                                    <select asp-for="Debut_Period" class="selectpicker" data-live-search="true">
+                                                        <option class="text-center" value="1">Janvier</option>
+                                                        <option class="text-center" value="2">Février</option>
+                                                        <option class="text-center" value="3">Mars</option>
+                                                        <option class="text-center" value="4">Avril</option>
+                                                        <option class="text-center" value="5">Mai</option>
+                                                        <option class="text-center" value="6">Juin</option>
+                                                        <option class="text-center" value="7">Juillet</option>
+                                                        <option class="text-center" value="8">Août</option>
+                                                        <option class="text-center" value="9">Septembre</option>
+                                                        <option class="text-center" value="10">Octobre</option>
+                                                        <option class="text-center" value="11">Novembre</option>
+                                                        <option class="text-center" value="12">Décembre</option>
+                                                    </select>
+                                                    <span asp-validation-for="Debut_Period" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Mois du Fin</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                    <div class="bootstrap-select fm-cmp-mg">
+                                                        <select asp-for="Fin_Date" class="selectpicker" data-live-search="true">
+                                                            <option class="text-center" value="1">Janvier</option>
+                                                            <option class="text-center" value="2">Février</option>
+                                                            <option class="text-center" value="3">Mars</option>
+                                                            <option class="text-center" value="4">Avril</option>
+                                                            <option class="text-center" value="5">Mai</option>
+                                                            <option class="text-center" value="6">Juin</option>
+                                                            <option class="text-center" value="7">Juillet</option>
+                                                            <option class="text-center" value="8">Août</option>
+                                                            <option class="text-center" value="9">Septembre</option>
+                                                            <option class="text-center" value="10">Octobre</option>
+                                                            <option class="text-center" value="11">Novembre</option>
+                                                            <option class="text-center" value="12">Décembre</option>
+                                                        </select>
+                                                        <span asp-validation-for="Fin_Date" class="text-danger"></span>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="form-example-int mg-t-15">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                            </div>
+                            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                <button class="btn btn-success notika-btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
     <div class="form-element-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-element-list mg-t-30">
+                    <div class="form-element-list mg-t-30 ">
+
+                        <form method="post">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group ic-cmp-int float-lb floating-lb">
                                     <div class="form-ic-cmp">
                                         <i class="notika-icon notika-support"></i>
@@ -52,7 +173,7 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
                                         <label asp-for="type"></label>
                                     </div>
@@ -69,7 +190,7 @@
                                 </div>
                         </div>
                         <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
                                         <label asp-for="Debut_Period"></label>
                                     </div>
@@ -94,7 +215,7 @@
                                 </div>
 
 
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="nk-int-mk sl-dp-mn sm-res-mg-t-10">
                                         <label asp-for="Fin_Date"></label>
                                 </div>
@@ -117,7 +238,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group ic-cmp-int float-lb form-elet-mg">
                                         <div class="nk-int-st">
                                             <button type="submit" class="btn btn-success notika-btn-success waves-effect btn-lg">Ajouter</button>
@@ -127,13 +248,14 @@
                                 </div>
                             </div>
                         </div>
+                                </form>
                     </div>
 
                 </div>
             </div>
         </div>
         </div>
-</form>
+
 
 </body>
   @section script
