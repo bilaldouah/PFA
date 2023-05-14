@@ -360,4 +360,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-./Fallah_App/Program.cs
+
+Program.cs
+Fallah_App/Program.cs
+
