@@ -71,6 +71,7 @@
             <link rel="stylesheet" href="~/css/dropzone/dropzone.css">
 
     <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+    @RenderSection("style",required:false)
 
 </head>
 
@@ -638,7 +639,6 @@
             </div>
         </div>
     </div>
-    @RenderSection("style",required:false)
 
     <!-- Main Menu area End-->
     @RenderBody()
