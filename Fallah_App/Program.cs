@@ -18,7 +18,7 @@ if (Environment.GetEnvironmentVariable("DB_NAME") != null)
     });
     
 }
-/*else
+else
 {
     builder.Services.AddDbContext<MyContext>(opt =>
     {
@@ -26,8 +26,8 @@ if (Environment.GetEnvironmentVariable("DB_NAME") != null)
     });
 
 }
-//////////////////////////test ya rbi t5dm
-else
+//////////////////////////test tali 
+/*else
 {
     builder.Services.AddDbContext<MyContext>(opt =>
     {
