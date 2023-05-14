@@ -5,8 +5,8 @@ namespace Fallah_App.Models
     public class Terre
     {
         public int Id { get; set; }
-        public int latitude  { get; set; }
-        public int longitude { get; set; }
+        public float latitude  { get; set; }
+        public float longitude { get; set; }
         public string Type { get; set; }
         public string image { get; set; }
         public double Surface { get; set; }
