@@ -22,7 +22,6 @@ namespace Fallah_App.Controllers.WebMaster
         public IActionResult List()
         {
             return View(db.categoryTerres.ToList());
-            
         }
         public IActionResult Ajouter()
         {

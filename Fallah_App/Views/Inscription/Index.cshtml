@@ -2,7 +2,6 @@
 @{
     Layout="_LayoutClient";
 }
-
 @section title{
     <title>Inscription</title>
 }
@@ -27,7 +26,7 @@
                                 <label for="email_address">Email Address *</label>
                                 <input type="email" class="form-control" id="email_address" asp-for="Email" >
                                 <span class="text-danger">@ViewData["errorEmail"]</span>
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <span asp-validation-for="Email"></span>
                             </div>
                             <div class="col-12 mb-4">
                                 <label for="phone_number">Numero telephone</label>
@@ -52,19 +51,18 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label for="Password">confirmation du mot de passe</label>
+                                <label for="conf_Password">Password</label>
                                 <input type="password" class="form-control" id="conf_Password" asp-for="conf_Password">
                                 <span asp-validation-for="conf_Password" class="text-danger"></span>
-                                <span class="text-danger">@ViewData["erorconfpass"]</span>
+                                <span class="text-danger">@ViewData["message1"]</span>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <input type="hidden" class="form-control" id="Date_Demande" asp-for="Date_Demande" value="@DateTime.Now">
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label for="Date_Demande">choisie une image</label>
+                                <label for="file">choisie une image</label>
                                 <input type="file" class="form-control" asp-for="file" >
                                 <span class="text-danger">@ViewData["erorImage"]</span>
-                                <span asp-validation-for="Image" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <input type="hidden" class="form-control"asp-for="Statut" value="false">
