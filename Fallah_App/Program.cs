@@ -25,7 +25,7 @@ if (Environment.GetEnvironmentVariable("DB_NAME") != null)
         opt.UseSqlServer(builder.Configuration.GetConnectionString("localConnection"));
     });
 
-}*/
+}
 else
 {
     builder.Services.AddDbContext<MyContext>(opt =>
@@ -33,7 +33,7 @@ else
         opt.UseSqlServer(builder.Configuration.GetConnectionString("adnaneConnection"));
     });
 
-}
+}*/
 
 
 
