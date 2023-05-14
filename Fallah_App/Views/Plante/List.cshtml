@@ -8,7 +8,13 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="breadcomb-list">
+
                     <div class="row">
+                        <a class="btn btn-success notika-btn-success waves-effect btn-lg " href="ajouter" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Ajouter Plante" title="" data-original-title="Ajouter">
+                                        Ajouter
+                                    </a>
+                     
+                         
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="breadcomb-wp">
                                 <div class="breadcomb-icon">
@@ -17,9 +23,7 @@
                                 <div class="breadcomb-ctn">
                                     <h2>Liste des Plantes</h2>
                                      
-                                    <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="ajouter" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Ajouter Plante" title="" data-original-title="Ajouter">
-                                        Ajouter
-                                    </a>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -40,35 +44,48 @@
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>
-                                     
                                     <th>Nom</th>
                                     <th>Type</th>
-                                    <th>Debut de period</th>
-                                    <th>Fin date</th>                                   
+                                    <th>mois de debut</th>
+                                    <th>mois de fin</th>
+                                    <th>Action</th>
+                    
 
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (Plante p in Model)
                                 {
-                                        <tr>
-                                            <td>@p.Nom</td>
-                                            <td>@p.type</td>
-                                            <td>@p.Debut_Period</td>
-                                            <td>@p.Fin_Date</td>                              
-                                            <td>
-                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Modifier?id=@p.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier le plante" title="" data-original-title="modifier">
-                                                    <i class="notika-icon notika-draft"></i>
+                                    <tr>
+                                        <td>@p.Nom</td>
+                                        <td>@p.type</td>
+                                        <td>@p.Debut_Period</td>
+                                        <td>@p.Fin_Date</td>
+                                       
+ 
+                                        <td>
+
+                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="Modifier"  data-text=" Le Plante  vas etre Modifier " data-href="/Plante/Modifier/@p.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Modifier le Plante du @p.Nom" title="" data-original-title="modifier">
+                                                    <i class="notika-icon notika-edit"></i>
                                                 </a>
-                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="Supprimer?id=@p.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer le plante" title="" data-original-title="supprimer">
+                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="Supprimer" data-text="Le Plante  vas etre supprimer" data-href="/Plante/Supprimer/@p.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer Le plante du @p.Nom" title="" data-original-title="supprimer">
                                                     <i class="notika-icon notika-close"></i>
                                                 </a>
-
-                                            </td>
-                                        </tr>
+                                             
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
-                      
+                            <tfoot>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Type</th>
+                                    <th>mois de debut</th>
+                                    <th>mois de fin</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

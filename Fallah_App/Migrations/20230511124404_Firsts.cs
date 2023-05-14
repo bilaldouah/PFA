@@ -5,25 +5,18 @@
 namespace Fallah_App.Migrations
 {
     /// <inheritdoc />
-    public partial class update3 : Migration
+    public partial class Firsts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "forme",
-                table: "demandes",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
+
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "forme",
-                table: "demandes");
+
         }
     }
 }

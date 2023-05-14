@@ -20,7 +20,6 @@ namespace Fallah_App.Controllers.WebMaster
         public IActionResult List()
         {
             RemplireCache();
-            //EnvoyerEmailAcceptation();
             return View(this.memoryCache.Get<List<Demande>>("Demandes"));
             //return View(db.demandes.ToList());
         }
@@ -83,7 +82,7 @@ namespace Fallah_App.Controllers.WebMaster
             db.SaveChanges();
             memoryCache.Remove("Demandes");
             RemplireCache();
-            
+            EnvoyerEmailAcceptation();
             return RedirectToAction("List");
         }
 

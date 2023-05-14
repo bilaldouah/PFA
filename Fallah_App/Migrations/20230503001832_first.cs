@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Fallah_App.Migrations
 {
     /// <inheritdoc />
-    public partial class Creation : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,8 +34,8 @@ namespace Fallah_App.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Debut_Period = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Fin_Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Debut_Period = table.Column<int>(type: "int", nullable: false),
+                    Fin_Date = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,15 +141,17 @@ namespace Fallah_App.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Prenom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nom = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Prenom = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_De_Naissance = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Login = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_Demande = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Statut = table.Column<bool>(type: "bit", nullable: false),
+                    forme = table.Column<bool>(type: "bit", nullable: false),
                     Id_WebMaster = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

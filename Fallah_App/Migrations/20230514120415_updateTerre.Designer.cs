@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230408025518_update3")]
-    partial class update3
+    [Migration("20230514120415_updateTerre")]
+    partial class updateTerre
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace Fallah_App.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AgriculteurNotification", b =>
-                {
-                    b.Property<int>("AgriculteursId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NotificationsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AgriculteursId", "NotificationsId");
-
-                    b.HasIndex("NotificationsId");
-
-                    b.ToTable("AgriculteurNotification");
-                });
 
             modelBuilder.Entity("CategoryTerreConseilTerre", b =>
                 {
@@ -68,6 +53,32 @@ namespace Fallah_App.Migrations
                     b.HasIndex("plantesId");
 
                     b.ToTable("ConseilPlantePlante");
+                });
+
+            modelBuilder.Entity("Fallah_App.Models.AgriculteurNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AgriculteurId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsSeen")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NotificationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgriculteurId");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("AgriculteurNotification");
                 });
 
             modelBuilder.Entity("Fallah_App.Models.CategoryTerre", b =>
@@ -210,19 +221,23 @@ namespace Fallah_App.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("Statut")
                         .HasColumnType("bit");
@@ -252,11 +267,7 @@ namespace Fallah_App.Migrations
                     b.Property<int>("Id_WebMaster")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsSeen")
-                        .HasColumnType("bit");
-
                     b.Property<string>("TextArabe")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TextFrancais")
@@ -272,17 +283,17 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.Plante", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
-                    b.Property<DateTime>("Debut_Period")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Debut_Period")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("Fin_Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Fin_Date")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()
@@ -363,21 +374,11 @@ namespace Fallah_App.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Hauteur")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Humidite")
-                        .HasColumnType("float");
-
                     b.Property<int>("Id_Agriculteur")
                         .HasColumnType("int");
 
                     b.Property<int>("Id_categoryTerre")
                         .HasColumnType("int");
-
-                    b.Property<string>("Localisation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Surface")
                         .HasColumnType("float");
@@ -390,6 +391,12 @@ namespace Fallah_App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("latitude")
+                        .HasColumnType("int");
+
+                    b.Property<int>("longitude")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Id_Agriculteur");
@@ -401,11 +408,11 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<DateTime>("Date_Dernier_Auth")
                         .HasColumnType("datetime2");
@@ -541,21 +548,6 @@ namespace Fallah_App.Migrations
                     b.HasDiscriminator().HasValue("AgriculteurForme");
                 });
 
-            modelBuilder.Entity("AgriculteurNotification", b =>
-                {
-                    b.HasOne("Fallah_App.Models.Agriculteur", null)
-                        .WithMany()
-                        .HasForeignKey("AgriculteursId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Fallah_App.Models.Notification", null)
-                        .WithMany()
-                        .HasForeignKey("NotificationsId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("CategoryTerreConseilTerre", b =>
                 {
                     b.HasOne("Fallah_App.Models.CategoryTerre", null)
@@ -584,6 +576,25 @@ namespace Fallah_App.Migrations
                         .HasForeignKey("plantesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Fallah_App.Models.AgriculteurNotification", b =>
+                {
+                    b.HasOne("Fallah_App.Models.Agriculteur", "Agriculteur")
+                        .WithMany("AgriculteurNotifications")
+                        .HasForeignKey("AgriculteurId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Fallah_App.Models.Notification", "Notification")
+                        .WithMany("AgriculteurNotifications")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Agriculteur");
+
+                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("Fallah_App.Models.ConseilPlante", b =>
@@ -738,8 +749,15 @@ namespace Fallah_App.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Fallah_App.Models.Notification", b =>
+                {
+                    b.Navigation("AgriculteurNotifications");
+                });
+
             modelBuilder.Entity("Fallah_App.Models.Agriculteur", b =>
                 {
+                    b.Navigation("AgriculteurNotifications");
+
                     b.Navigation("Terres");
                 });
 

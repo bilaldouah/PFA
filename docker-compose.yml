@@ -3,14 +3,14 @@ networks:
   my-network:
 
 services:
-  mailcatcher:
-    container_name: 'smtp_server'
-    networks:
-       - my-network
-    image: yappabe/mailcatcher
-    ports:
-      - 1025:1025
-      - 1080:1080
+  #mailcatcher:
+    #container_name: 'smtp_server'
+    #networks:
+    #   - my-network
+    #image: yappabe/mailcatcher
+   # ports:
+      #- 1025:1025
+     # - 1080:1080
   database:
     container_name: Fallah_App_database
     image: mcr.microsoft.com/mssql/server:2022-latest

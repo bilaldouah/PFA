@@ -3,15 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fallah_App.Models
 {
-    public class Terre:terreL
+    public class Terre
     {
         public int Id { get; set; }
+
         public string Localisation { get; set; }
         public string? Type { get; set; }
         [Required(ErrorMessage = "ce champ est obligatoire")]
         public string image { get; set; }
         public double? Humidite { get; set; }
         public double? Hauteur { get; set; }
+        public int latitude  { get; set; }
+        public int longitude { get; set; }
+        public string Type { get; set; }
+        public string image { get; set; }
         public double Surface { get; set; }
         public List<Sol> sols { get; set; }
         public Agriculteur Agriculteur { get; set; }

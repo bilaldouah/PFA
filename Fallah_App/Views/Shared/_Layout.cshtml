@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- favicon
         ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.ico">
@@ -21,6 +20,7 @@
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
+
     <!-- Bootstrap CSS
         ============================================ -->
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
@@ -71,14 +71,11 @@
             <link rel="stylesheet" href="~/css/dropzone/dropzone.css">
 
     <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
-    @RenderSection("style",required:false)
 
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="~/http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+
     <!-- Start Header Top Area -->
     <div class="header-top-area">
         <div class="container">
@@ -181,55 +178,14 @@
                                                     <img src="~/img/post/1.jpg" alt="" />
                                                 </div>
                                                 <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                                    <h3>Admin</h3>
+                                               
+                                                    <p>@ViewBag.notif</p>
+                                                   
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Jonathan Morris</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/4.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Fredric Mitchell</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Glenn Jecobs</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
+                                    
                                     </div>
                                     <div class="hd-mg-va">
                                         <a href="~/#">View All</a>
@@ -237,7 +193,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>2</span></div></a>
+                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>10</span></div></a>
                                 <div role="menu" class="dropdown-menu message-dd task-dd animated zoomIn">
                                     <div class="hd-mg-tt">
                                         <h2>Tasks</h2>
@@ -500,10 +456,10 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li class="active">
-                            <a data-toggle="tab" href="~/#Home"><i class="notika-icon notika-house"></i> Home</a>
+                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="~/#mailbox"><i class="notika-icon notika-mail"></i> Email</a>
+                            <a data-toggle="tab" href="~/#mailbox"><i class="notika-icon notika-mail"></i></a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="~/#Interface"><i class="notika-icon notika-edit"></i> Interface</a>
@@ -682,6 +638,8 @@
             </div>
         </div>
     </div>
+    @RenderSection("style",required:false)
+
     <!-- Main Menu area End-->
     @RenderBody()
     <!-- Start Footer area-->
@@ -777,6 +735,7 @@
         ============================================ -->
     <script src="~/js/data-table/jquery.dataTables.min.js"></script>
     <script src="~/js/data-table/data-table-act.js"></script>
+     @RenderSection("script",required:false)
 </body>
 
 </html>

@@ -6,9 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(opt =>
-    {
-        opt.IdleTimeout = TimeSpan.FromDays(10);
-    });
+{
+    opt.IdleTimeout = TimeSpan.FromDays(10);
+}
+    );
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {
     builder.Services.AddDbContext<MyContext>(opt =>
