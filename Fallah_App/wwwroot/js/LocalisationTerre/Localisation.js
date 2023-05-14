@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿/*$(document).ready(function () {
     var map = null;
     var myMarker;
     var myLatlng;
@@ -34,7 +34,7 @@
         google.maps.event.trigger(map, "resize");
         map.setCenter(myLatlng);
     });
-});
+});*/
 /*<script>
         function initMap() {
             var myLatLng = { lat: @Model.Latitude, lng: @Model.Longitude };
@@ -60,3 +60,22 @@
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 }*/
+$('#us3').locationpicker({
+    zoom: 5,
+    location: {
+        latitude: 31.562275,
+        longitude: -5.431578
+    },
+    radius: 0,
+    inputBinding: {
+        latitudeInput: $('#us3-lat'),
+        longitudeInput: $('#us3-lon'),
+        radiusInput: $('#us3-radius'),
+        locationNameInput: $('#us3-address')
+    },
+    enableAutocomplete: true,
+    onchanged: function (currentLocation, radius, isMarkerDropped) {
+        // Uncomment line below to show alert on each Location Changed event
+        //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+    }
+});

@@ -18,36 +18,41 @@ namespace Fallah_App.Controllers.Client
         }
         public IActionResult List()
         {
-            return View();
+            
+            return View(db.terres.ToList());
         }
         public IActionResult Ajouter()
         {
-            ViewBag.list = db.categoryTerres.ToList();
+            //ViewBag.list = db.categoryTerres.ToList();
+            //ViewBag.sols=db.sols.ToList();
+            //ViewBag.plants=db.plantes.ToList();
             return View();
         }
         [HttpPost]
         public IActionResult Ajouter(Terre t)
         {
-
-            String[] ext = { ".jpg", ".png", ".jpeg" };
-            String file_ext = Path.GetExtension(t.file.FileName).ToLower();
-            if (!ext.Contains(file_ext))
+            if (ModelState.IsValid)
             {
-                ViewData["erorImage"] = "Le choix de fichier doit être une image.";
-                return View(t);
-            }
-            if (ext.Contains(file_ext))
-            {
-                String newName = Guid.NewGuid() + t.file.FileName;
-                String path_file = Path.Combine("wwwroot/ImageClient", newName);
-                t.image = newName;
-                db.terres.Add(t);
-                db.SaveChanges();
-                using (FileStream stream = System.IO.File.Create(path_file))
+                String[] ext = { ".jpg", ".png", ".jpeg" };
+                String file_ext = Path.GetExtension(t.file.FileName).ToLower();
+                if (!ext.Contains(file_ext))
                 {
-                    t.file.CopyTo(stream);
+                    ViewData["erorImage"] = "Le choix de fichier doit être une image.";
+                    return View(t);
                 }
-                ViewData["message"] = "Bien Ajouter";
+                if (ext.Contains(file_ext))
+                {
+                    String newName = Guid.NewGuid() + t.file.FileName;
+                    String path_file = Path.Combine("wwwroot/ImageClient", newName);
+                    t.image = newName;
+                    db.terres.Add(t);
+                    db.SaveChanges();
+                    using (FileStream stream = System.IO.File.Create(path_file))
+                    {
+                        t.file.CopyTo(stream);
+                    }
+                    ViewData["message"] = "Bien Ajouter";
+                }
             }
             return View();
         }
