@@ -6,10 +6,7 @@ namespace Fallah_App.Models
     public class Terre
     {
         public int Id { get; set; }
-        public string Localisation { get; set; }
-        [Required(ErrorMessage = "ce champ est obligatoire")]
         public string image { get; set; }
-        public double? Hauteur { get; set; }
         public float latitude  { get; set; }
         public float longitude { get; set; }
         public double Surface { get; set; }

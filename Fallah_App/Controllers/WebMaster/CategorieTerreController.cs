@@ -15,10 +15,6 @@ namespace Fallah_App.Controllers.WebMaster
             
             this.db = db;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         public IActionResult List()
         {
             return View(db.categoryTerres.ToList());
@@ -30,8 +26,6 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(CategoryTerre c)
         {
-            
-            
                CategoryTerre categoryterre = db.categoryTerres.Where(ct=> ct.Attribut_De_Categorisation == c.Attribut_De_Categorisation).FirstOrDefault();
                 if (categoryterre!= null)
                 {
@@ -46,14 +40,36 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult Supprimer(int id)
         {
+            if (id == 0 || !(id is int))
+            {
+                return RedirectToAction("Index", "ERROR404");
+            }
             CategoryTerre ct = db.categoryTerres.Find(id);
+
+            if (ct == null)
+            {
+                return RedirectToAction("Index", "ERROR404");
+
+
+            }
             db.categoryTerres.Remove(ct);
             db.SaveChanges();
             return RedirectToAction("List");
         }
         public IActionResult Modifier(int id)
         {
+            if (id == 0 || !(id is int))
+            {
+                return RedirectToAction("Index", "ERROR404");
+            }
             CategoryTerre ct = db.categoryTerres.Find(id);
+
+            if (ct == null)
+            {
+                return RedirectToAction("Index", "ERROR404");
+
+
+            }
             return View(ct);
         }
         [HttpPost]

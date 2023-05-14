@@ -12,10 +12,7 @@ namespace Fallah_App.Controllers.Client
         {
             this.db = db;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         public IActionResult List()
         {
             
@@ -33,7 +30,7 @@ namespace Fallah_App.Controllers.Client
         {
             if (ModelState.IsValid)
             {
-                t.Localisation = t.latitude + "/" + t.longitude;
+               // t.Localisation = t.latitude + "/" + t.longitude;
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))
