@@ -33,7 +33,6 @@ namespace Fallah_App.Controllers.Client
         {
             if (ModelState.IsValid)
             {
-                t.Localisation = t.latitude + "/" + t.longitude;
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))
