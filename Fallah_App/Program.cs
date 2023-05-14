@@ -18,11 +18,20 @@ if (Environment.GetEnvironmentVariable("DB_NAME") != null)
     });
     
 }
-else
+/*else
 {
     builder.Services.AddDbContext<MyContext>(opt =>
     {
         opt.UseSqlServer(builder.Configuration.GetConnectionString("localConnection"));
+    });
+
+}*/
+
+else
+{
+    builder.Services.AddDbContext<MyContext>(opt =>
+    {
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("adnaneConnection"));
     });
 
 }
