@@ -26,7 +26,7 @@ else
     });
 
 }
-//////////////////////////test tali 
+//////////////////////////test tali /////////
 /*else
 {
     builder.Services.AddDbContext<MyContext>(opt =>
