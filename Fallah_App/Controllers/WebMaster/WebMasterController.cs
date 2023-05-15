@@ -29,6 +29,7 @@ namespace Fallah_App.Controllers.WebMaster
             db.users.Add(webMaster);
             db.SaveChanges();
             return View();
+            db.users.OfType<Models.WebMaster>().ToList();
         }
     }
 }
