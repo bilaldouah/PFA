@@ -45,7 +45,7 @@ namespace Fallah_App.Controllers.WebMaster
                 return RedirectToAction("Index", "ERROR404");
             }
             RemplireCache();
-            Demande demande = this.memoryCache.Get<List<Demande>>("Demandes").Where(demande => demande.Id == id).FirstOrDefault();
+            Demande demande = db.demandes.Where(demande => demande.Id == id).FirstOrDefault();
             if (demande == null)
             {
                 return RedirectToAction("Index", "ERROR404");

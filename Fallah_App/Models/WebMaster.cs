@@ -1,4 +1,6 @@
-﻿namespace Fallah_App.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Fallah_App.Models
 {
     public class WebMaster:User
     {

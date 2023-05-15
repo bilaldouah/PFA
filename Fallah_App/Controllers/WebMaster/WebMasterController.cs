@@ -1,4 +1,5 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -26,9 +27,31 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(Models.WebMaster webMaster)
         {
-            db.users.Add(webMaster);
-            db.SaveChanges();
-            return View();
+           
+                webMaster.Password= InscriptionController.HashPasswordWithSalt(webMaster.Password);           
+                String[] ext = { ".jpg", ".png", ".jpeg" };
+                String file_ext = Path.GetExtension(webMaster.file.FileName).ToLower();
+                if (!ext.Contains(file_ext))
+                {
+                    ViewBag.erorImage = "Le choix de fichier doit être une image.";
+                    return View(webMaster);
+                }
+                if (ext.Contains(file_ext))
+                {
+                    String newName = Guid.NewGuid() + webMaster.file.FileName;
+                    String path_file = Path.Combine("wwwroot/imageAdmin", newName);
+                    webMaster.Image = newName;
+                    db.users.Add(webMaster);
+                    db.SaveChanges();
+                    using (FileStream stream = System.IO.File.Create(path_file))
+                    {
+                        webMaster.file.CopyTo(stream);
+                    }
+                    return RedirectToAction("List");
+                }
+            
+           
+            return View(webMaster);
         }
     }
 }
