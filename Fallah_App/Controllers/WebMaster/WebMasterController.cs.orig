@@ -26,7 +26,9 @@ namespace Fallah_App.Controllers.WebMaster
         }
         [HttpPost]
         public IActionResult Ajouter(Models.WebMaster webMaster)
-        {           
+        {
+<<<<<<< HEAD
+           
                 webMaster.Password= InscriptionController.HashPasswordWithSalt(webMaster.Password);           
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(webMaster.file.FileName).ToLower();
@@ -51,7 +53,12 @@ namespace Fallah_App.Controllers.WebMaster
             
            
             return View(webMaster);
+=======
+            db.users.Add(webMaster);
+            db.SaveChanges();
+            return View();
             db.users.OfType<Models.WebMaster>().ToList();
+>>>>>>> c682e2d04cf35c488bba8a4ff64348708b923b72
         }
     }
 }

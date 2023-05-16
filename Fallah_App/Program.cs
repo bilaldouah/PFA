@@ -26,17 +26,6 @@ else
     });
 
 }
-//////////////////////////test tali 
-/*else
-{
-    builder.Services.AddDbContext<MyContext>(opt =>
-    {
-        opt.UseSqlServer(builder.Configuration.GetConnectionString("adnaneConnection"));
-    });
-
-}*/
-
-
 
 var app = builder.Build();
 

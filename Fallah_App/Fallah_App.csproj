@@ -29,4 +29,8 @@
     <None Include="wwwroot\Icons\font\weathericons-regular-webfont.woff2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\imageAdmin\" />
+  </ItemGroup>
+
 </Project>
