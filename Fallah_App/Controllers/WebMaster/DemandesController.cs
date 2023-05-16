@@ -45,7 +45,7 @@ namespace Fallah_App.Controllers.WebMaster
                 return RedirectToAction("Index", "ERROR404");
             }
             RemplireCache();
-            Demande demande = this.memoryCache.Get<List<Demande>>("Demandes").Where(demande => demande.Id == id).FirstOrDefault();
+            Demande demande = db.demandes.Where(demande => demande.Id == id).FirstOrDefault();
             if (demande == null)
             {
                 return RedirectToAction("Index", "ERROR404");
@@ -127,7 +127,7 @@ namespace Fallah_App.Controllers.WebMaster
                 "Nous vous remercions de votre confiance et espérons vous offrir une expérience exceptionnelle chez FallahApp." +
                 "Cordialement,";
 
-            MailMessage message = new MailMessage(from, "yassinemali300@gmail.com", subject, body);
+            MailMessage message = new MailMessage(from, "anasszekhnini682@gmail.com", subject, body);
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.Credentials = new System.Net.NetworkCredential("falla7app@gmail.com", "ifkbjdfapakuqixv");
             smtpClient.EnableSsl = true;

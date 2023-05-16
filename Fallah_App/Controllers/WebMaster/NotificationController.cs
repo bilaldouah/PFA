@@ -66,7 +66,23 @@ namespace Fallah_App.Controllers.WebMaster
         {
             return View();
         }
+        public IActionResult Broadcast(Notification notification)
+        {
+            Notification no= db.notifications.Find(notification.Id);
+            List < User > users = db.users.Where(u => u is Agriculteur || u is AgriculteurForme).ToList();
+            // db.notifications.Include(n => n.AgriculteurNotifications).ThenInclude(an => an.Agriculteur).Where(n => n.Id == id);
+            AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
+            Agriculteur agriculteur = new Agriculteur();            
+            foreach (User user in users) 
+            {
+                agriculteurNotification.Id = notification.Id;
+                agriculteurNotification.Agriculteur.Id = user.Id;
+            }
+     
+            db.agriculteurNotifications.Add(agriculteurNotification);
+            return RedirectToAction("List");
+        }
 
-      
+
     }
 }
