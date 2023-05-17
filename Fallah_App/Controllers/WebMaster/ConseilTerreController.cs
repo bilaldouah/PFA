@@ -14,11 +14,11 @@ namespace Fallah_App.Controllers.WebMaster
 
         public IActionResult Ajouter()
         {
-            //ViewBag.Category=db.categoryTerres.ToList();
+            ViewBag.Category=db.categoryTerres.ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult Ajouter(String test)
+        public IActionResult Ajouter(Models.ConseilTerre conseil)
         {
            // ViewBag.Category = db.categoryTerres.ToList();
             return View();
