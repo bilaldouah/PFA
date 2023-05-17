@@ -14,7 +14,7 @@ namespace Fallah_App.Controllers.WebMaster
     {
         IMemoryCache memoryCache;
         MyContext db;
-        public NotificationController(MyContext db,IMemoryCache memoryCache)
+        public NotificationController(MyContext db, IMemoryCache memoryCache):base(db)
         {
 
             this.db = db;
