@@ -1,17 +1,22 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Fallah_App.Controllers.WebMaster
 {
-    public class NotificationController : Controller
+
+ 
+    public class NotificationController : FilterNotifController
     {
         IMemoryCache memoryCache;
         MyContext db;
         public NotificationController(MyContext db,IMemoryCache memoryCache)
         {
+
             this.db = db;
             this.memoryCache = memoryCache;
         }
@@ -66,23 +71,23 @@ namespace Fallah_App.Controllers.WebMaster
         {
             return View();
         }
-        public IActionResult Broadcast(Notification notification)
+        public IActionResult Broadcast(Notification notif)
         {
-            Notification no= db.notifications.Find(notification.Id);
-            List < User > users = db.users.Where(u => u is Agriculteur || u is AgriculteurForme).ToList();
-            // db.notifications.Include(n => n.AgriculteurNotifications).ThenInclude(an => an.Agriculteur).Where(n => n.Id == id);
-            AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
-            Agriculteur agriculteur = new Agriculteur();            
-            foreach (User user in users) 
+            Notification notification = db.notifications.Find(notif.Id);
+            List < Agriculteur > agriculteurs= db.users.OfType<Agriculteur>().ToList();
+
+        
+            foreach (Agriculteur u in agriculteurs)
             {
-                agriculteurNotification.Id = notification.Id;
-                agriculteurNotification.Agriculteur.Id = user.Id;
-            }
-     
-            db.agriculteurNotifications.Add(agriculteurNotification);
+                AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
+                agriculteurNotification.Notification = notification;
+                agriculteurNotification.Agriculteur = u;
+                agriculteurNotification.IsSeen= false;
+                db.agriculteurNotifications.Add(agriculteurNotification);
+            }                      
+            db.SaveChanges();         
             return RedirectToAction("List");
         }
-
 
     }
 }

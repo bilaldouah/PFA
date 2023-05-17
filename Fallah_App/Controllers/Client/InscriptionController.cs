@@ -9,6 +9,7 @@ using System.Text;
 
 namespace Fallah_App.Controllers.Client
 {
+ 
     public class InscriptionController : Controller
     {
         MyContext db;
