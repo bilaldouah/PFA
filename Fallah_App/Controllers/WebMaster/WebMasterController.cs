@@ -51,7 +51,7 @@ namespace Fallah_App.Controllers.WebMaster
             
            
             return View(webMaster);
-            db.users.OfType<Models.WebMaster>().ToList();
+           
         }
     }
 }
