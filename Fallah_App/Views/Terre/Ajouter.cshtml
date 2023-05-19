@@ -51,6 +51,7 @@
             </div>
         </div>
     </div>
+   <form method="post">
  <div class="form-example-area">
         <div class="container">
             <div class="row">
@@ -200,14 +201,13 @@
                       </div>
                       </div>
                       </div>
+</form>
 @section script{
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyCXrUM9dtr0xSBfu_SKYHHYBSq6g4iEMcI&region=MA&region=MA&sensor=false&amp;libraries=places"></script>
 <script src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
         <script>
-            var lat;
-            var long;
         $('#us3').locationpicker({
             zoom: 5,
             location: {
@@ -216,8 +216,8 @@
             },
             radius: 0,
             inputBinding: {
-                latitudeInput: lat,
-                longitudeInput: long,
+                latitudeInput: $("#us3-lat"),
+                longitudeInput: $("#us3-lon"),
                 radiusInput: $('#us3-radius'),
                 locationNameInput: $('#us3-address')
             },
@@ -228,7 +228,6 @@
             }
                    
         });
-        $('#btn').click(function () {
-            alert(lat + ":"+long);})
+       
     </script>
     }

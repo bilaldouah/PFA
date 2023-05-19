@@ -13,6 +13,7 @@ namespace Fallah_App.Models
         public List<AgriculteurNotification> AgriculteurNotifications { get; set; }
         public List<Plante> Plantes { get; set; }
         public List<Terre> terres { get; set; }
+        public string type { get; set; }
         
 
     }
