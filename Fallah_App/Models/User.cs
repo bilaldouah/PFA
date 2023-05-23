@@ -21,10 +21,10 @@ namespace Fallah_App.Models
         [Required(ErrorMessage = "Email est obligatoire")]
         public string Email { get; set; }
         public DateTime ? Date_Dernier_Auth { get; set; }
-        [Required(ErrorMessage = "ce champ est obligatoire")]
-        public string Image { get; set; }
+        [Required(ErrorMessage = "image est obligatoire")]
+        public string? Image { get; set; }
         [NotMapped]
-        public IFormFile file { get; set; }
+        public IFormFile ? file { get; set; }
 
 
     }
