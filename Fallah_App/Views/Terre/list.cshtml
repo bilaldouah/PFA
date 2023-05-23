@@ -16,7 +16,7 @@
                                 <div class="breadcomb-ctn">
                                     <h2>Liste des Terre</h2>
 
-                                    <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="ajouter" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Ajouter Categorie" title="" data-original-title="Ajouter">
+                                    <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="Ajouter" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Ajouter terre" title="" data-original-title="Ajouter">
                                         Ajouter
                                     </a>
                                 </div>
@@ -54,7 +54,7 @@
                                         <tr>
                                             <td>@t.Id</td>
                                             <td>@t.Surface</td>
-                                            <td>@t.image</td>
+                                            <td><a class="form-control" href="~/wwwroot/@t.image">scan de document</a></td>
                                             <td>@t.latitude</td>
                                             <td>@t.longitude</td>
                                             <td>@t.Id_categoryTerre</td>
