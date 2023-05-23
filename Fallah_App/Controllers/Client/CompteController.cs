@@ -35,6 +35,9 @@ namespace Fallah_App.Controllers.Client
                 if (user.Password == user.PasswordConfirmation) 
                 {
                     user.Password = InscriptionController.HashPasswordWithSalt(user.Password);
+                    db.users.Update(user);
+                    db.SaveChanges();
+                    RedirectToAction("Authentification/login");
                 }
             }
             return View();
