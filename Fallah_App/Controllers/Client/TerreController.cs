@@ -28,9 +28,7 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult Ajouter(Terre t)
         {
-            if (ModelState.IsValid)
-            {
-               // t.Localisation = t.latitude + "/" + t.longitude;
+               t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))
@@ -51,7 +49,6 @@ namespace Fallah_App.Controllers.Client
                     }
                     ViewData["message"] = "Bien Ajouter";
                 }
-            }
             return View();
         }
         public IActionResult supprimer(int id)
