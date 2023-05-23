@@ -167,26 +167,44 @@
                                 </div>
                             </li>
                             <li class="nav-item nc-al">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-alarm"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>3</span></div></a>
+                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                    <span><i class="notika-icon notika-alarm"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn">
+                                        <span>                                       
+                                            @Context.Items["count"]
+                                        </span>
+                                    </div>
+                                </a>
                                 <div role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
                                     <div class="hd-mg-tt">
                                         <h2>Notification</h2>
                                     </div>
                                     <div class="hd-message-info">
+                                                                  @{
+                                                        var myData = Context.Items["listNotif"] ;
+                                                    
+                                                    @if (myData != null)
+                                                    {
+
+                                                @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
+                                                    {
                                         <a href="~/#">
                                             <div class="hd-message-sn">
                                                 <div class="hd-message-img">
-                                                    <img src="~/img/post/1.jpg" alt="" />
+                                                  
                                                 </div>
                                                 <div class="hd-mg-ctn">
-                                                    <h3>Admin</h3>
-                                               
-                                                    <p>@ViewBag.notif</p>
-                                                   
+                                                  
+                          
+                                                          <h3>Admin</h3>
+                                                        <p class="d-flex flex-start">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+                                                
                                                 </div>
                                             </div>
                                         </a>
-                                    
+                                                }
+
+                                            }
+                                        }
                                     </div>
                                     <div class="hd-mg-va">
                                         <a href="~/#">View All</a>
@@ -194,7 +212,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>10</span></div></a>
+                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span> @Context.Items["count"]</span></div></a>
                                 <div role="menu" class="dropdown-menu message-dd task-dd animated zoomIn">
                                     <div class="hd-mg-tt">
                                         <h2>Tasks</h2>

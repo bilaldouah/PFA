@@ -7,8 +7,8 @@ namespace Fallah_App.Models
     {
         public int Id { get; set; }
         public string image { get; set; }
-        public float latitude  { get; set; }
-        public float longitude { get; set; }
+        public string latitude  { get; set; }
+        public string longitude { get; set; }
         public double Surface { get; set; }
         public List<Sol> sols { get; set; }
         public Agriculteur Agriculteur { get; set; }

@@ -9,6 +9,7 @@ using System.Text;
 
 namespace Fallah_App.Controllers.Client
 {
+ 
     public class InscriptionController : Controller
     {
         MyContext db;
@@ -85,13 +86,21 @@ namespace Fallah_App.Controllers.Client
         }
         public static string HashPasswordWithSalt(string password)
         {
-            using (var hashAlgorithm = new SHA256Managed())
+            if (password != null)
             {
-                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-                SHA256 sha256 = SHA256.Create();
-                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
-                return Convert.ToBase64String(hashBytes);
+                using (var hashAlgorithm = new SHA256Managed())
+                {
+
+
+
+                    byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                    SHA256 sha256 = SHA256.Create();
+                    byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+
+                    return Convert.ToBase64String(hashBytes);
+                }
             }
+            return null;
         }
     }
 }

@@ -1,17 +1,23 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using System.Net.Http;
 
 namespace Fallah_App.Controllers.WebMaster
 {
-    public class NotificationController : Controller
+
+ 
+    public class NotificationController : FilterNotifController
     {
         IMemoryCache memoryCache;
         MyContext db;
-        public NotificationController(MyContext db,IMemoryCache memoryCache)
+        public NotificationController(MyContext db, IMemoryCache memoryCache):base(db)
         {
+
             this.db = db;
             this.memoryCache = memoryCache;
         }
@@ -34,7 +40,7 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(Notification notification)
         {
-            notification.Id_WebMaster = 2;
+            notification.Id_WebMaster = (int)HttpContext.Session.GetInt32("id"); ;
                 db.notifications.Add(notification);
                 db.SaveChanges();
                 return RedirectToAction("List");
@@ -57,7 +63,7 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Modifier(Notification N)
         {
-            N.Id_WebMaster = 2;
+            N.Id_WebMaster = (int)HttpContext.Session.GetInt32("id"); 
             db.notifications.Update(N);
             db.SaveChanges();
             return RedirectToAction("List");
@@ -66,23 +72,25 @@ namespace Fallah_App.Controllers.WebMaster
         {
             return View();
         }
-        public IActionResult Broadcast(Notification notification)
+        public IActionResult Broadcast(Notification notif)
         {
-            Notification no= db.notifications.Find(notification.Id);
-            List < User > users = db.users.Where(u => u is Agriculteur || u is AgriculteurForme).ToList();
-            // db.notifications.Include(n => n.AgriculteurNotifications).ThenInclude(an => an.Agriculteur).Where(n => n.Id == id);
-            AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
-            Agriculteur agriculteur = new Agriculteur();            
-            foreach (User user in users) 
-            {
-                agriculteurNotification.Id = notification.Id;
-                agriculteurNotification.Agriculteur.Id = user.Id;
-            }
+            Notification notification = db.notifications.Find(notif.Id);
+            List < Agriculteur > agriculteurs= db.users.OfType<Agriculteur>().ToList();
      
-            db.agriculteurNotifications.Add(agriculteurNotification);
+
+
+            foreach (Agriculteur u in agriculteurs)
+            {
+                AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
+                agriculteurNotification.Notification = notification;
+                agriculteurNotification.Agriculteur = u;
+                agriculteurNotification.IsSeen= false;
+                agriculteurNotification.webmasterid = (int)HttpContext.Session.GetInt32("id");
+                db.agriculteurNotifications.Add(agriculteurNotification);
+            }                      
+            db.SaveChanges();         
             return RedirectToAction("List");
         }
-
 
     }
 }
