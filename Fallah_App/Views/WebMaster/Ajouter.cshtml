@@ -54,7 +54,7 @@
                 <div class="form-example-wrap mg-t-30">
                     <div class="dcenter w-100">
                         <div style="width:60%;">
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 <div class="form-example-int form-horizental">
                                     <div class="form-group">
                                         <div class="row">
@@ -158,7 +158,7 @@
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="bootstrap-select fm-cmp-mg w-100">
-                                                    <input type="file" class="form-control" asp-for="Image">
+                                                    <input type="file" class="form-control" asp-for="file">
                                                     <span asp-validation-for="Image" class="text-danger"></span>
                                                 </div>
                                             </div>

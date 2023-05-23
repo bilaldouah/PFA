@@ -2,3 +2,21 @@
 @section title{
     <title> List des Conseils </title>
 }
+<div class="summernote-clickable">
+    <button class="btn btn-primary btn-sm hec-button">
+        Click here to edit the content
+    </button>
+    <button class="btn btn-success btn-sm hec-save" style="display:none;">Save</button>
+</div>
+@foreach(ConseilPlante cp in Model)
+{
+<div class="html-editor-click">
+    <p >
+        @cp.Text_Francais
+    </p>
+    <p>
+        @cp.Text_Arabe
+    </p>
+
+</div>
+}
