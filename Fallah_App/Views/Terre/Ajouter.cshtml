@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-   <form method="post">
+<form method="post" enctype="multipart/form-data">
  <div class="form-example-area">
         <div class="container">
             <div class="row">
@@ -74,8 +74,6 @@
                                                     <span class="text-danger"></span>
                                                     </div>
                                             </div>
-                                        </div>
-                                    </div>
                                     <div class="form-example-int form-horizental">
                                         <div class="form-group">
                                             <div class="row">
@@ -202,6 +200,10 @@
                       </div>
                       </div>
                       </div>
+
+                      @section style
+                       {
+                        }
 </form>
 @section script{
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

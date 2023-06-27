@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using System.Net.Http;
 
 namespace Fallah_App.Controllers.WebMaster
 {
@@ -39,7 +40,7 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(Notification notification)
         {
-            notification.Id_WebMaster = 2;
+            notification.Id_WebMaster = (int)HttpContext.Session.GetInt32("id"); ;
                 db.notifications.Add(notification);
                 db.SaveChanges();
                 return RedirectToAction("List");
@@ -62,7 +63,7 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Modifier(Notification N)
         {
-            N.Id_WebMaster = 2;
+            N.Id_WebMaster = (int)HttpContext.Session.GetInt32("id"); 
             db.notifications.Update(N);
             db.SaveChanges();
             return RedirectToAction("List");
@@ -75,14 +76,16 @@ namespace Fallah_App.Controllers.WebMaster
         {
             Notification notification = db.notifications.Find(notif.Id);
             List < Agriculteur > agriculteurs= db.users.OfType<Agriculteur>().ToList();
+     
 
-        
+
             foreach (Agriculteur u in agriculteurs)
             {
                 AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
                 agriculteurNotification.Notification = notification;
                 agriculteurNotification.Agriculteur = u;
                 agriculteurNotification.IsSeen= false;
+                agriculteurNotification.webmasterid = (int)HttpContext.Session.GetInt32("id");
                 db.agriculteurNotifications.Add(agriculteurNotification);
             }                      
             db.SaveChanges();         

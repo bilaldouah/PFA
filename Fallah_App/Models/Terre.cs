@@ -21,7 +21,5 @@ namespace Fallah_App.Models
         public IFormFile file { get; set; }
         [ForeignKey(nameof(categoryTerre))]
         public int Id_categoryTerre { get; set; }
-
-
     }
 }
