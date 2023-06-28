@@ -11,7 +11,7 @@ namespace Fallah_App.Models
         public String?  Audio { get; set; }
         [NotMapped]
         public IFormFile  File { get; set; }
-        public WebMaster webMaster { get; set; }
+        public WebMaster? webMaster { get; set; }
 
         [ForeignKey(nameof(webMaster))]
         public int Id_WebMaster { get; set; }
