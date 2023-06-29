@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 
 namespace Fallah_App.Controllers.WebMaster
 {
@@ -31,7 +32,20 @@ namespace Fallah_App.Controllers.WebMaster
         public IActionResult List()
         {
             RemplireCache();
+            ViewBag.m = "noti bilal";
             return View(db.notifications.ToList());
+        }
+        public IActionResult Selected(int id)
+        {
+            int idAgriculteur= (int)HttpContext.Session.GetInt32("id"); 
+            Notification notification = db.notifications.Where(n => n.Id==id).FirstOrDefault();
+            var not = db.agriculteurNotifications.Include(u => u.Notification).Where(a => a.Agriculteur.Id == idAgriculteur && a.Notification.Id==id && a.IsSeen==false).FirstOrDefault();
+            ViewBag.textArab = notification.TextArabe;
+            ViewBag.textFr = notification.TextFrancais;
+            not.IsSeen = true;
+            db.agriculteurNotifications.Update(not);
+            db.SaveChanges();
+            return RedirectToAction("List");
         }
         public IActionResult Ajouter()
         {

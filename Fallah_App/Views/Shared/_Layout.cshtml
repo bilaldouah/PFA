@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item nc-al">
+                            <li class="nav-item nc-al" id="notifId">
                                 <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                     <span><i class="notika-icon notika-alarm"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn">
                                         <span>                                       
@@ -184,23 +184,62 @@
                                                     
                                                     @if (myData != null)
                                                     {
-
+                                                    
                                                 @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
                                                     {
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                  
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                  
-                          
-                                                          <h3>Admin</h3>
-                                                        <p class="d-flex flex-start">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
-                                                
-                                                </div>
-                                            </div>
-                                        </a>
+                                                        @if(n.Notification.type=="danger")
+                                                    {
+                                                        <a id="sa-title" class="bg-danger" href="/Notification/Selected/@n.Notification.Id" data-value="@ViewBag.textFr" onclick="myF()">
+                                                            <div class="hd-message-sn">
+                                                                <div class="hd-message-img">
+                                                                </div>
+                                                                <div class="hd-mg-ctn">
+
+
+                                                                    <h3>@n.webMaster.Nom</h3>
+                                                                    <input type="hidden" value="@n.Notification.Id">
+                                                                    <p id="test" class="d-flex flex-start">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                    @if(n.Notification.type=="normal")
+                                                    {
+                                                        <a id="sa-title" class="bg-success" href="/Notification/Selected/@n.Notification.Id" data-value="@ViewBag.textFr" onclick="myF()">
+                                                            <div class="hd-message-sn">
+                                                                <div class="hd-message-img">
+                                                                </div>
+                                                                <div class="hd-mg-ctn">
+
+
+                                                                    <h3>@n.webMaster.Nom</h3>
+                                                                    <input type="hidden" value="@n.Notification.Id">
+                                                                    <p id="test" class="d-flex flex-start ">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                    @if (n.Notification.type == "meduim")
+                                                    {
+                                                        <a id="sa-title" class="bg-yellow" href="/Notification/Selected/@n.Notification.Id" data-value="@ViewBag.textFr" onclick="myF()">
+                                                            <div class="hd-message-sn">
+                                                                <div class="hd-message-img">
+                                                                </div>
+                                                                <div class="hd-mg-ctn">
+
+
+                                                                    <h3>@n.webMaster.Nom</h3>
+                                                                    <input type="hidden" value="@n.Notification.Id">
+                                                                    <p id="test" class="d-flex flex-start">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                    
+                                                   
                                                 }
 
                                             }
@@ -755,5 +794,13 @@
     <script src="~/js/data-table/data-table-act.js"></script>
      @RenderSection("script",required:false)
 </body>
-
+ 
 </html>
+<script>
+    function myF() {
+        var notif = document.getElementsById('notifId').value;
+       alert(notif);
+ 
+      //  windows.location.href = '/Notification/selected';
+    }
+</script>

@@ -1,3 +1,4 @@
+
 (function ($) {
  "use strict";
  
@@ -11,8 +12,10 @@
 	});
 
 	//A title with a text under
-	$('#sa-title').on('click', function(){
-		swal("Here's a message!", "Lorem ipsum dolor cry sit amet, consectetur adipiscing elit. Sed lorem erat, tincidunt vitae ipsum et, Spensaduran pellentesque maximus eniman. Mauriseleifend ex semper, lobortis purus.")
+	$('#sa-title').on('click', function () {
+
+		var myVal = $("#sa-title").data("value");
+		swal(myVal);
 	});
 
 	//Success Message
