@@ -19,7 +19,23 @@
         .hrzn-fm {
             font-weight: bold !important;
         }
-
+                .recording {
+          font-family: verdana,sans-serif;
+          color: firebrick;
+          display: inline-block;
+          padding-left: 1.2em;
+          line-height: 1.5em;
+        }
+        .recording::before {
+          content: '🔴';
+          position: absolute;
+          left: 5px;
+          animation: recording 600ms alternate infinite;
+        }
+        @@keyframes recording {
+          from { opacity: 1; }
+          to { opacity: 0.2; }
+        }
     </style>
     <link rel="stylesheet" href="~/css/summernote/summernote.css">
     <link rel="stylesheet" href="~/css/themesaller-forms.css">
@@ -59,7 +75,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <form method="post">
+                    <div class="container">
+                            <div class="display">
+                            </div>
+
+                            <div class="controllers">
+                            </div>
+                        </div>
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" id="fileInput" asp-for="File">
 
                     <div class="summernote-wrap mg-t-30">
                             <div class="cmp-tb-hd bsc-smp-sm">
@@ -67,7 +91,7 @@
                             </div>
                             <div class="bootstrap-select fm-cmp-mg w-100">
 
-                                <select asp-for="CategoryTerres" class="selectpicker" data-live-search="true">
+                                <select name="categories[]" class="selectpicker" data-live-search="true" multiple>
                                 @foreach (CategoryTerre c in ViewBag.Category)
                                 {
                                     <option value="@c.Id">@c.Attribut_De_Categorisation  - ValeurMax = @c.Valeur_Max  - ValeurMin = @c.Valeur_Min</option>
@@ -83,9 +107,9 @@
                             <label>Conseil En arabe</label>
                         </div>
                             <textarea class="html-editor" asp-for="Text_Arabe"></textarea>
+
+
                         
-               
-                            
 
                         <div class="form-example-int mg-t-15">
                             <div class="row">
@@ -113,5 +137,7 @@
     <script src="~/js/summernote/summernote-updated.min.js"></script>
     <script src="~/js/summernote/summernote-active.js"></script>
     <script src="~/js/chosen/chosen.jquery.js"></script>
+    <script src="~/js/vrecorder.js"></script>
+
 
   }
