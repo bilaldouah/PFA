@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="Views\Inscription\vorw1yob.ct3~" />
+    <None Remove="Views\Terre\paa5teji.txg~" />
   </ItemGroup>
 
   <ItemGroup>
