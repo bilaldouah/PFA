@@ -4,6 +4,7 @@ using Fallah_App.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230630190415_cascade2")]
+    partial class cascade2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,15 +27,15 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("CategoryTerreConseilTerre", b =>
                 {
-                    b.Property<int>("CategoryTerresId")
+                    b.Property<int>("CategoryTerreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ConseilTerresId")
+                    b.Property<int>("ConseilTerreId")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryTerresId", "ConseilTerresId");
+                    b.HasKey("CategoryTerreId", "ConseilTerreId");
 
-                    b.HasIndex("ConseilTerresId");
+                    b.HasIndex("ConseilTerreId");
 
                     b.ToTable("CategoryTerreConseilTerre");
                 });
@@ -558,13 +561,13 @@ namespace Fallah_App.Migrations
                 {
                     b.HasOne("Fallah_App.Models.CategoryTerre", null)
                         .WithMany()
-                        .HasForeignKey("CategoryTerresId")
+                        .HasForeignKey("CategoryTerreId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Fallah_App.Models.ConseilTerre", null)
                         .WithMany()
-                        .HasForeignKey("ConseilTerresId")
+                        .HasForeignKey("ConseilTerreId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
