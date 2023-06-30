@@ -4,6 +4,7 @@ using Fallah_App.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230523142813_addingAudio")]
+    partial class addingAudio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,12 +30,12 @@ namespace Fallah_App.Migrations
                     b.Property<int>("CategoryTerresId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ConseilTerresId")
+                    b.Property<int>("conseilTerresId")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryTerresId", "ConseilTerresId");
+                    b.HasKey("CategoryTerresId", "conseilTerresId");
 
-                    b.HasIndex("ConseilTerresId");
+                    b.HasIndex("conseilTerresId");
 
                     b.ToTable("CategoryTerreConseilTerre");
                 });
@@ -179,6 +182,7 @@ namespace Fallah_App.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Audio")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Id_WebMaster")
@@ -276,6 +280,7 @@ namespace Fallah_App.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TextFrancais")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("type")
@@ -564,7 +569,7 @@ namespace Fallah_App.Migrations
 
                     b.HasOne("Fallah_App.Models.ConseilTerre", null)
                         .WithMany()
-                        .HasForeignKey("ConseilTerresId")
+                        .HasForeignKey("conseilTerresId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

@@ -38,7 +38,44 @@ namespace Fallah_App.Context
              modelBuilder.Entity<AgriculteurNotification>()
                  .HasOne(w => w.notification)
                  .WithMany(c => c.AgriculteurNotifications)
-                 .OnDelete(DeleteBehavior.Restrict);*/
+                 .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<ConseilTerre>()
+     .HasMany(c => c.CategoryTerres)
+     .WithMany(c => c.conseilTerres)
+     .UsingEntity<Dictionary<string, object>>(
+         "CategoryTerreConseilTerre",
+         j => j
+             .HasOne<CategoryTerre>()
+             .WithMany()
+             .HasForeignKey("CategoryTerreId") // Corrected foreign key name
+             .OnDelete(DeleteBehavior.Restrict), // Set to Restrict
+
+         j => j
+             .HasOne<ConseilTerre>()
+             .WithMany()
+             .HasForeignKey("ConseilTerreId") // Corrected foreign key name
+             .OnDelete(DeleteBehavior.Restrict) // Set to Restrict
+     );
+
+
+
+
+            /*modelBuilder.Entity<ConseilTerre>()
+               .HasMany(c => c.CategoryTerres)
+               .WithMany(c => c.conseilTerres)
+               .UsingEntity(join => join.ToTable("CategoryTerreConseilTerre"))
+               .Property<int>("CategoryTerresId")
+               .HasColumnName("CategoryTerresId")
+               .IsRequired();
+
+            modelBuilder.Entity<ConseilTerre>()
+                .HasMany(c => c.CategoryTerres)
+                .WithMany(c => c.conseilTerres)
+                .UsingEntity(join => join.ToTable("CategoryTerreConseilTerre"))
+                .Property<int>("CategoryTerresId")
+                .HasColumnName("CategoryTerresId")
+                .IsRequired();*/
+
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
