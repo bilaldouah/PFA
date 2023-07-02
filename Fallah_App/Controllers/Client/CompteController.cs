@@ -20,26 +20,42 @@ namespace Fallah_App.Controllers.Client
         {
             if (HttpContext.Session.GetInt32("id") == null) 
             {
-                RedirectToAction("Authentification/login");
+                RedirectToAction("login","Authentification");
             }
             return View();
         }
         [HttpPost]
-        public IActionResult changerpassword(string NvPassword)
+        public IActionResult changerpassword(string NvPassword,User user)
         {
-            int id = (int)HttpContext.Session.GetInt32("id"); 
-            User user=db.users.Where(us =>us.Id==id).FirstOrDefault();
-            string Password= InscriptionController.HashPasswordWithSalt(user.Password);
-            if (user.Password== NvPassword)
+            if (ModelState.IsValid)
             {
-                if (user.Password == user.PasswordConfirmation) 
+                int id = (int)HttpContext.Session.GetInt32("id");
+                User u = (User)db.users.Where(us => us.Id == id).FirstOrDefault();
+                string Password = InscriptionController.HashPasswordWithSalt(user.Password);
+                u = (User)db.users.Where(us => us.Password == Password).FirstOrDefault();
+                if (u == null)
                 {
-                    user.Password = InscriptionController.HashPasswordWithSalt(user.Password);
-                    db.users.Update(user);
+                    ViewData["message1"] = "le mot de passe actuel et incorect";
+                    return View();
+                }
+                if (NvPassword == user.PasswordConfirmation)
+                {
+                    string Password_ = InscriptionController.HashPasswordWithSalt(NvPassword);
+                    u.Password = Password_;
+                    db.users.Update(u);
                     db.SaveChanges();
-                    RedirectToAction("Authentification/login");
+                    return RedirectToAction("login", "Authentification");
+                }
+                else
+                {
+                    ViewData["message"] = "le mot de pass ou confirmation de mot de pass et incorect";
                 }
             }
+            return View();
+        }
+        public IActionResult MotDePasseOublier()
+        {
+            
             return View();
         }
     }

@@ -117,73 +117,29 @@
                                         <div class="nk-int-st">
                                            <input type="file" class="form-control" asp-for="file"  required/>
                                         </div>
-                                        <span asp-validation-for="image" class="text-danger"></span>
-                                        <span class="text-danger"></span>
+                                        <span asp-validation-for="file" class="text-danger"></span>
+                                        <span class="text-danger">@ViewData["erorImage"]</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                                        <div class="form-example-int form-horizental">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                                        <label class="hrzn-fm">categorie terre</label>
+                                                    </div>
 
-                    <div class="form-example-int form-horizental mg-t-15">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">categorie terre</label>
-                                </div>
-                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                    <div class="bootstrap-select fm-cmp-mg w-100">
-                                        <select asp-for="categoryTerre" class="selectpicker">
-                                            @foreach (CategoryTerre c in ViewBag.list)
-                                            {
-                                                <option value="@c.Id">@c.Attribut_De_Categorisation</option>
-                                            }
-                                        </select>
-                                        <span asp-validation-for="categoryTerre" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-example-int form-horizental mg-t-15">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">categorie terre</label>
-                                </div>
-                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                    <div class="bootstrap-select fm-cmp-mg w-100">
-                                        <select asp-for="categoryTerre" class="selectpicker">
-                                            @foreach (Plante p in ViewBag.plants)
-                                            {
-                                                <option value="@p.Id">@p.type</option>
-                                            }
-                                        </select>
-                                        <span asp-validation-for="categoryTerre" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-example-int form-horizental mg-t-15">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">sol</label>
-                                </div>
-                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                    <div class="bootstrap-select fm-cmp-mg w-100">
-                                        <select asp-for="categoryTerre" class="selectpicker">
-                                            @foreach (Sol s in ViewBag.sols)
-                                            {
-                                                <option value="@s.Id">@s.Type"_"@s.Acidite</option>
-                                            }
-                                        </select>
-                                        <span asp-validation-for="sols" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                                    <select asp-for="Id_categoryTerre">
+                                                        @foreach (CategoryTerre c in ViewBag.list)
+                                                        {
+                                                            <option  value="@c.Id">@c.Attribut_De_Categorisation</option>
+                                                        }
+                                                    </select>
+                                                    <span asp-validation-for="categoryTerre"></span>
+                                                </div>
+                                            </div>
+                                        </div>
                     <!-- map -->
                          <div id="us3" style="height: 400px;"></div>
                             <div class="form-example-int mg-t-15">
@@ -200,10 +156,8 @@
                       </div>
                       </div>
                       </div>
-
-                      @section style
-                       {
-                        }
+                      </div>
+                      </div>
 </form>
 @section script{
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
