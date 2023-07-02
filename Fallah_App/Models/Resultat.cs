@@ -7,7 +7,7 @@ namespace Fallah_App.Models
         public int Id { get; set; }
         public string Description { get; set; }
         public DateTime Date_De_Saisie { get; set; }
-        public Boolean Statut_Favorable { get; set; }
+        public int Statut_Favorable { get; set; }
 
         public ConseilPlante ConseilPlante { get; set; }
 
@@ -18,5 +18,9 @@ namespace Fallah_App.Models
         [ForeignKey(nameof(agriculteurForme))]
         public int Id_agriculteurForme { get; set; }
 
+        public ConseilTerre ConseilTerre { get; set; }
+
+        [ForeignKey(nameof(ConseilTerre))]
+        public int Id_ConseilTerre { get; set; }
     }
 }
