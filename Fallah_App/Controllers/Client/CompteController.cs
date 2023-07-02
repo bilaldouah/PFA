@@ -27,8 +27,8 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult changerpassword(string NvPassword)
         {
-            int id = (int)HttpContext.Session.GetInt32("id"); 
-            User user=db.users.Where(us =>us.Id==id).FirstOrDefault();
+            int iduser = (int)HttpContext.Session.GetInt32("id"); 
+            User user=db.users.Where(us =>us.Id== iduser).FirstOrDefault();
             string Password= InscriptionController.HashPasswordWithSalt(user.Password);
             if (user.Password== NvPassword)
             {
