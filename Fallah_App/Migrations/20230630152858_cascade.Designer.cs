@@ -4,6 +4,7 @@ using Fallah_App.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230630152858_cascade")]
+    partial class cascade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,15 +27,15 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("CategoryTerreConseilTerre", b =>
                 {
-                    b.Property<int>("CategoryTerresId")
+                    b.Property<int>("CategoryTerreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ConseilTerresId")
+                    b.Property<int>("ConseilTerreId")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryTerresId", "ConseilTerresId");
+                    b.HasKey("CategoryTerreId", "ConseilTerreId");
 
-                    b.HasIndex("ConseilTerresId");
+                    b.HasIndex("ConseilTerreId");
 
                     b.ToTable("CategoryTerreConseilTerre");
                 });
@@ -156,13 +159,11 @@ namespace Fallah_App.Migrations
                     b.Property<double>("Vent_Min")
                         .HasColumnType("float");
 
-                    b.Property<string>("audio")
+                    b.Property<string>("Weather_Code")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("nbr_Modif")
-                        .HasColumnType("int");
-
-                    b.Property<int>("weatherCode")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -336,21 +337,15 @@ namespace Fallah_App.Migrations
                     b.Property<int>("Id_ConseilPlante")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_ConseilTerre")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_agriculteurForme")
                         .HasColumnType("int");
 
-                    b.Property<int>("Statut_Favorable")
-                        .HasColumnType("int");
+                    b.Property<bool>("Statut_Favorable")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Id_ConseilPlante")
-                        .IsUnique();
-
-                    b.HasIndex("Id_ConseilTerre")
                         .IsUnique();
 
                     b.HasIndex("Id_agriculteurForme");
@@ -566,13 +561,13 @@ namespace Fallah_App.Migrations
                 {
                     b.HasOne("Fallah_App.Models.CategoryTerre", null)
                         .WithMany()
-                        .HasForeignKey("CategoryTerresId")
+                        .HasForeignKey("CategoryTerreId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Fallah_App.Models.ConseilTerre", null)
                         .WithMany()
-                        .HasForeignKey("ConseilTerresId")
+                        .HasForeignKey("ConseilTerreId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -670,12 +665,6 @@ namespace Fallah_App.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Fallah_App.Models.ConseilTerre", "ConseilTerre")
-                        .WithOne("resultat")
-                        .HasForeignKey("Fallah_App.Models.Resultat", "Id_ConseilTerre")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Fallah_App.Models.AgriculteurForme", "agriculteurForme")
                         .WithMany("resultats")
                         .HasForeignKey("Id_agriculteurForme")
@@ -683,8 +672,6 @@ namespace Fallah_App.Migrations
                         .IsRequired();
 
                     b.Navigation("ConseilPlante");
-
-                    b.Navigation("ConseilTerre");
 
                     b.Navigation("agriculteurForme");
                 });
@@ -774,12 +761,6 @@ namespace Fallah_App.Migrations
                 });
 
             modelBuilder.Entity("Fallah_App.Models.ConseilPlante", b =>
-                {
-                    b.Navigation("resultat")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Fallah_App.Models.ConseilTerre", b =>
                 {
                     b.Navigation("resultat")
                         .IsRequired();

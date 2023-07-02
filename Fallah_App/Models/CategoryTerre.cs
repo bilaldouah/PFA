@@ -11,8 +11,8 @@ namespace Fallah_App.Models
         public double Valeur_Max { get; set; }
         [Required(ErrorMessage = "ce champ est obligatoire")]
         public double Valeur_Min { get; set; }
-     
-        public List<ConseilTerre> conseilTerres {get; set; }
+
+        public List<ConseilTerre> ConseilTerres {get; set; }
         public List<Terre> terres {get; set; }
 
     }
