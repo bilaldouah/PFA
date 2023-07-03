@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Fallah_App.Enum;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fallah_App.Models
 {
@@ -18,7 +19,13 @@ namespace Fallah_App.Models
         public double Humidite_Min { get; set; }
         public double Vent_Max { get; set; }
         public double Vent_Min { get; set; }
-        public string Weather_Code { get; set; }
+        [NotMapped]
+        public EnumWeatherCode Weather_Code { get; set; }
+        [NotMapped]
+        public IFormFile File { get; set; }
+        public string? audio { get; set; }
+
+        public int weatherCode { get; set; }
         public Resultat resultat { get; set; }
         public WebMaster webMaster { get; set; }
 
