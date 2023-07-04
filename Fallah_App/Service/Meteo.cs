@@ -18,7 +18,9 @@ namespace Fallah_App.Service
         public daily daily { get; set; }
         public daily_units daily_units { get; set; }
 
-        public static async Task<Meteo> getMeteo()
+
+
+        public static async Task<Meteo> getMeteo(double lat,double lon)
         {
             Meteo weatherData = null;
             int i = 0;
@@ -28,7 +30,7 @@ namespace Fallah_App.Service
                 {
                     try
                     {
-                        var response = await client.GetAsync("https://api.open-meteo.com/v1/forecast?latitude=34.68&longitude=-1.91&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,precipitation_probability,rain,snowfall,weathercode,cloudcover,windspeed_10m,windspeed_80m,windspeed_180m,winddirection_10m,winddirection_80m,windgusts_10m,temperature_80m,temperature_120m,soil_temperature_0cm,soil_temperature_6cm,soil_temperature_18cm,soil_moisture_0_1cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max&timezone=auto");
+                        var response = await client.GetAsync("https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lon+"&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,precipitation_probability,rain,snowfall,weathercode,cloudcover,windspeed_10m,windspeed_80m,windspeed_180m,winddirection_10m,winddirection_80m,windgusts_10m,temperature_80m,temperature_120m,soil_temperature_0cm,soil_temperature_6cm,soil_temperature_18cm,soil_moisture_0_1cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max&timezone=auto");
                         //var response = await client.GetAsync("-1.91&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,precipitation_probability,rain,snowfall,weathercode,cloudcover,windspeed_10m,windspeed_80m,windspeed_180m,winddirection_10m,winddirection_80m,windgusts_10m,temperature_80m,temperature_120m,soil_temperature_0cm,soil_temperature_6cm,soil_temperature_18cm,soil_moisture_0_1cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max&timezone=auto");
                         if (response.IsSuccessStatusCode)
                         {

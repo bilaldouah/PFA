@@ -2,6 +2,7 @@
 using Fallah_App.Models;
 using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System.Globalization;
@@ -11,14 +12,21 @@ namespace Fallah_App.Controllers
     public class HomeController : Controller
     {
         IMemoryCache memoryCache;
-        public HomeController( IMemoryCache memoryCache)
+
+        MyContext db;
+        public HomeController( IMemoryCache memoryCache,MyContext db)
         {
             this.memoryCache = memoryCache;
+            this.db = db;
 
         }
         public async Task<IActionResult> IndexAsync() 
         {
-            Meteo meteo = await Meteo.getMeteo();
+           // int id = (int)HttpContext.Session.GetInt32("id");
+            //float lat = db.users.OfType<Agriculteur>().Include(a=>a.Terres)
+
+
+            Meteo meteo = await Meteo.getMeteo(34.68, -1.91);
             CultureInfo culture = new CultureInfo("fr-FR");
             ViewBag.Culture = culture;
 
