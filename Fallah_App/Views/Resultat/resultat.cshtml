@@ -99,9 +99,9 @@
                                 <label>Status Favorable</label>
                             </div>
                             <div class="bootstrap-select fm-cmp-mg w-100">
-                                <label for="statusFavorable">Favorable &#x1F603;</label><input type="radio" value="Bien" name="status" id="statusFavorable" asp-for="Statut_Favorable" />
-                                <label for="statusFavorable">Non favorable &#x1F614;</label> <input type="radio" value="Mal" name="status" id="statusFavorable" asp-for="Statut_Favorable" />
-                                <label for="statusFavorable">Sans status  &#x1F636;</label>  <input type="radio" value="Sans Status" name="status" id="statusFavorable" asp-for="Statut_Favorable" />
+                                <label for="statusFavorable">Favorable &#x1F603;</label><input type="radio" value="1" name="status" id="statusFavorable" asp-for="Statut_Favorable" />
+                                <label for="statusFavorable">Non favorable &#x1F614;</label> <input type="radio" value="0" name="status" id="statusFavorable" asp-for="Statut_Favorable" />
+                                <label for="statusFavorable">Sans status  &#x1F636;</label>  <input type="radio" value="-1" name="status" id="statusFavorable" asp-for="Statut_Favorable" />
                             </div>
                         </div>
                         <div class="form-example-int mg-t-15">
@@ -112,9 +112,7 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
-
             </div>
         </div>
     </div>

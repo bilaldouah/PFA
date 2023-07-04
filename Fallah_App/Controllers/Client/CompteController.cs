@@ -29,34 +29,30 @@ namespace Fallah_App.Controllers.Client
         {
 
             if (ModelState.IsValid)
-
-            int iduser = (int)HttpContext.Session.GetInt32("id"); 
-            User user=db.users.Where(us =>us.Id== iduser).FirstOrDefault();
-            string Password= InscriptionController.HashPasswordWithSalt(user.Password);
-            if (user.Password== NvPassword)
-
             {
-                int id = (int)HttpContext.Session.GetInt32("id");
-                User u = (User)db.users.Where(us => us.Id == id).FirstOrDefault();
-                string Password = InscriptionController.HashPasswordWithSalt(user.Password);
-                u = (User)db.users.Where(us => us.Password == Password).FirstOrDefault();
-                if (u == null)
-                {
-                    ViewData["message1"] = "le mot de passe actuel et incorect";
-                    return View();
-                }
-                if (NvPassword == user.PasswordConfirmation)
-                {
-                    string Password_ = InscriptionController.HashPasswordWithSalt(NvPassword);
-                    u.Password = Password_;
-                    db.users.Update(u);
-                    db.SaveChanges();
-                    return RedirectToAction("login", "Authentification");
-                }
-                else
-                {
-                    ViewData["message"] = "le mot de pass ou confirmation de mot de pass et incorect";
-                }
+                    string Password = InscriptionController.HashPasswordWithSalt(user.Password);
+                    int id = (int)HttpContext.Session.GetInt32("id");
+                    User u = (User)db.users.Where(us => us.Id == id).FirstOrDefault();
+                    string Password1 = InscriptionController.HashPasswordWithSalt(user.Password);
+                    u = (User)db.users.Where(us => us.Password == Password1).FirstOrDefault();
+                    if (u == null)
+                    {
+                        ViewData["message1"] = "le mot de passe actuel et incorect";
+                        return View();
+                    }
+                    if (NvPassword == user.PasswordConfirmation)
+                    {
+                        string Password_ = InscriptionController.HashPasswordWithSalt(NvPassword);
+                        u.Password = Password_;
+                        db.users.Update(u);
+                        db.SaveChanges();
+                        return RedirectToAction("login", "Authentification");
+                    }
+                    else
+                    {
+                        ViewData["message"] = "le mot de pass ou confirmation de mot de pass et incorect";
+                    }
+                
             }
             return View();
         }
