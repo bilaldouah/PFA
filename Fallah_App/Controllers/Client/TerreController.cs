@@ -1,4 +1,5 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.les_filtres;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
@@ -17,6 +18,7 @@ namespace Fallah_App.Controllers.Client
         {
             return View(db.terres.ToList());
         }
+        [FiltreAgriculteur]
         public IActionResult Ajouter()
         {
             ViewBag.list = db.categoryTerres.ToList();

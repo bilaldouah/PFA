@@ -1,4 +1,5 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.les_filtres;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -16,7 +17,7 @@ namespace Fallah_App.Controllers.WebMaster
             this.memoryCache = memoryCache;
 
         }
-
+        [FiltreWebMaster]
         public IActionResult List()
         {
             RemplireCache();
