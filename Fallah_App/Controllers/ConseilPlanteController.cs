@@ -17,11 +17,7 @@ namespace Fallah_App.Controllers
         }
        
        
-        public IActionResult List()
-        {
-            return View(db.conseilPlantes.ToList());
-
-        }
+    
         public IActionResult Ajouter()
         {
             if (TempData["erorImage"] != null)
@@ -29,7 +25,7 @@ namespace Fallah_App.Controllers
                 ViewBag.eror = true;
             }
 
-            ViewBag.Category = db.categoryTerres.ToList();
+           
             return View();
             
         }
@@ -38,8 +34,6 @@ namespace Fallah_App.Controllers
         {
             if (csp.File != null)
             {
-
-
                 String[] ext = { ".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma", ".aiff" };
                 String file_ext = Path.GetExtension(csp.File.FileName).ToLower();
                 if (!ext.Contains(file_ext))
@@ -61,13 +55,19 @@ namespace Fallah_App.Controllers
 
             }
            
-            csp.Id_WebMaster = 1;
+            csp.Id_WebMaster = 4;
            
             db.conseilPlantes.Add(csp);
             db.SaveChanges();
 
             return RedirectToAction("List");
         }
-   
+        public IActionResult List()
+        {
+
+            ViewBag.conseilplantes = db.conseilPlantes.Include(c => c.plantes).Include(c => c.webMaster).ToList()   ;
+            return View();
+        }
+
     }
 }

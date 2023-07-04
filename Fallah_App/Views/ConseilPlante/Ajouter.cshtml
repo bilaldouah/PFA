@@ -103,19 +103,7 @@
                 <form method="post" enctype="multipart/form-data">
                     <input type="file" id="fileInput" asp-for="File">
 
-                    <div class="summernote-wrap mg-t-30">
-                        <div class="cmp-tb-hd bsc-smp-sm">
-                            <label>Categori Terre</label>
-                        </div>
-                        <div class="bootstrap-select fm-cmp-mg w-100">
-
-                            <select name="categories[]" class="selectpicker" data-live-search="true" multiple>
-                                    @foreach (CategoryTerre c in ViewBag.Category)
-                                    {
-                                    <option value="@c.Id">@c.Attribut_De_Categorisation  - ValeurMax = @c.Valeur_Max  - ValeurMin = @c.Valeur_Min</option>
-                                    }
-                            </select>
-                        </div>
+                    
                         <div class="cmp-tb-hd bsc-smp-sm">
                             <label>Conseil en Francais</label>
                         </div>
@@ -296,5 +284,9 @@
     <script src="~/js/jquery.scrollUp.min.js"></script>
     <script src="~/js/summernote/summernote-updated.min.js"></script>
     <script src="~/js/summernote/summernote-active.js"></script>
+    <script src="~/js/chosen/chosen.jquery.js"></script>
+    <script src="~/js/vrecorder.js"></script>
+
+
   }
 
