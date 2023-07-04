@@ -24,7 +24,7 @@ namespace Fallah_App.Controllers.Client
             foreach (Terre terre in agriculteur.Terres)
             {
                 Meteo meteo = await Meteo.getMeteo(Double.Parse(terre.latitude), Double.Parse(terre.longitude));
-                List<Models.ConseilPlante> cp = db.conseilPlantes.Include(c => c.plantes).ThenInclude(c => c.terres).ThenInclude(c => c.Agriculteur).Where(c => c.weatherCode == meteo.daily.weathercode[0] &&  c.plantes.Any(p => p.terres.Any(t => t.Agriculteur.Id == id))).ToList();
+                List<Models.ConseilPlante> cp = db.conseilPlantes.Include(c => c.plantes).ThenInclude(c => c.terres).ThenInclude(c => c.Agriculteur).Where(c => c.Weather_Code == meteo.daily.weathercode[0] &&  c.plantes.Any(p => p.terres.Any(t => t.Agriculteur.Id == id))).ToList();
                 conseils.AddRange(cp);
             }
             ViewBag.conseil = conseils;

@@ -92,13 +92,10 @@
                         <div class="contact-ctn mb-70">
                             <div class="contact-ad-hd">
                                 <h2>@ct.webMaster.Nom</h2>
-                                @foreach (CategoryTerre cc in ct.CategoryTerres)
-                                {
-                                    <p class="ctn-ads">@cc.Attribut_De_Categorisation   @cc.Valeur_Max  @cc.Valeur_Min</p>
-                                }
+                               
                             </div>
                             <div class="audio-player">
-                                <audio class="audio" src="~/Audio/@ct.Audio"></audio>
+                                <audio class="audio" src="~/Audio/@ct"></audio>
                                 <div class="audio-controls">
                                     <button class="play-btn">Play</button>
                                     <button class="pause-btn">Pause</button>
