@@ -1,5 +1,7 @@
 using Fallah_App.Context;
+using Fallah_App.QuartzJobs;
 using Microsoft.EntityFrameworkCore;
+using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,24 @@ builder.Services.AddSession(opt =>
 {
     opt.IdleTimeout = TimeSpan.FromDays(10);
 }
+);
+
+builder.Services.AddQuartz(q =>
+{
+    q.UseMicrosoftDependencyInjectionScopedJobFactory();
+    // Just use the name of your job that you created in the Jobs folder.
+    var jobKey = new JobKey("EnvoyerConseil");
+    q.AddJob<EnvoyerConseil>(opts => opts.WithIdentity(jobKey));
+
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey)
+        .WithIdentity("SendEmailJob-trigger")
+        //This Cron interval can be described as "run every minute" (when second is zero)
+        .WithCronSchedule("0 * * ? * *")
     );
+});
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {
     builder.Services.AddDbContext<MyContext>(opt =>
