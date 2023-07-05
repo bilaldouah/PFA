@@ -3,7 +3,7 @@
 @section title {
     <title>Ajouter Terre</title>
 }
-    @section style
+@section style
     {
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 
@@ -24,21 +24,20 @@
     </style>
 }
 
-    <div class="breadcomb-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="breadcomb-list">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="breadcomb-wp">
-                                    <div class="breadcomb-icon">
-                                        <i class="notika-icon notika-windows"></i>
-                                    </div>
-                                    <div class="breadcomb-ctn">
-                                        <h2>Plante </h2>
-                                        <p>Ajouter Plante</p>
-                                    </div>
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>Plante </h2>
+                                    <p>Ajouter Plante</p>
                                 </div>
                             </div>
                         </div>
@@ -47,117 +46,124 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div class="form-example-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                    <div class="form-example-wrap mg-t-30">
-                        <div class="dcenter w-100">
-                            <div style="width:60%;">
-                                <form method="post">
-                                    <div class="form-example-int form-horizental">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="hrzn-fm">latitude</label>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                    <div class="nk-int-st">
-                                                        <input class="form-control" asp-for="latitude" id="us3-lat" readonly />
-                                                    </div>
-                                                    <span asp-validation-for="latitude" class="text-danger"></span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-example-int form-horizental">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="hrzn-fm">longitude</label>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                    <div class="nk-int-st">
-                                                        <input type="text" class="form-control" asp-for="longitude" id="us3-lon" readonly />
-                                                    </div>
-                                                    <span asp-validation-for="longitude" class="text-danger"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-example-int form-horizental">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="hrzn-fm">Surface</label>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                    <div class="nk-int-st">
-                                                        <input class="form-control" asp-for="Surface" placeholder="Tapez la surface ">
-                                                    </div>
-                                                    <span asp-validation-for="Surface" class="text-danger"></span>
-                                                    <span class="text-danger">@ViewBag.errorNomPlante</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-example-int form-horizental">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="hrzn-fm">Image</label>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                    <div class="nk-int-st">
-                                                        <input class="form-control" type="file" asp-for="file">
-                                                    </div>
-                                                    <span asp-validation-for="file" class="text-danger"></span>
-                                                    <span class="text-danger">@ViewData["erorImage"]</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-example-int form-horizental mg-t-15">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="hrzn-fm">categorie terre</label>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                    <div class="bootstrap-select fm-cmp-mg w-100">
-                                                        <select class="selectpicker" asp-for="Id_categoryTerre">
-                                                        @foreach (CategoryTerre c in ViewBag.list)
-                                                        {
-                                                            <option class="text-center" value="@c.Id">@c.Attribut_De_Categorisation</option>
-                                                        }
-                                                        </select>
-                                                        <span asp-validation-for="categoryTerre" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <div id="us3" style="height: 400px;"></div>
-                                    <div class="form-example-int mg-t-15">
+<div class="form-example-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="dcenter w-100">
+                        <div style="width:60%;">
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="form-example-int form-horizental">
+                                    <div class="form-group">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-7 col-sm-7 col-xs-12 dcenter">
-                                                <button class="btn btn-success notika-btn-success" type="submit">Ajouter</button>
+                                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                                <label class="hrzn-fm">latitude</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                                <div class="nk-int-st">
+                                                    <input class="form-control" asp-for="latitude" id="us3-lat" readonly />
+                                                </div>
+                                                <span asp-validation-for="latitude" class="text-danger"></span>
+
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="form-example-int form-horizental">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                                <label class="hrzn-fm">longitude</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                                <div class="nk-int-st">
+                                                    <input type="text" class="form-control" asp-for="longitude" id="us3-lon" readonly />
+                                                </div>
+                                                <span asp-validation-for="longitude" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-example-int form-horizental">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                                <label class="hrzn-fm">Surface</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                                <div class="nk-int-st">
+                                                    <input class="form-control" asp-for="Surface" placeholder="Tapez la surface ">
+                                                </div>
+                                                <span asp-validation-for="Surface" class="text-danger"></span>
+                                                <span class="text-danger">@ViewBag.errorNomPlante</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-example-int form-horizental">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                                <label class="hrzn-fm">Image</label>
+                                            </div>
+                                            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                                <div class="nk-int-st">
+                                                    <input class="form-control" type="file" asp-for="file">
+                                                </div>
+                                                <span asp-validation-for="file" class="text-danger"></span>
+                                                <span class="text-danger">@ViewData["erorImage"]</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="summernote-wrap mg-t-30">
+                                <div class="cmp-tb-hd bsc-smp-sm">
+                                    <label>Categori Terre</label>
+                                </div>
+                                <div class="bootstrap-select fm-cmp-mg w-100">
+
+                                        <select name="plante[]" class="selectpicker" data-live-search="true" multiple>
+                                        @foreach (CategoryTerre p in ViewBag.list)
+                                        {
+                                            <option value="@p.Id">@p.Attribut_De_Categorisation</option>
+                                        }
+                                    </select>
+                                </div>
+                                    <div class="cmp-tb-hd bsc-smp-sm">
+                                        <label>Plantes</label>
+                                    </div>
+                                    <div class="bootstrap-select fm-cmp-mg w-100">
+
+                                        <select name="plante[]" class="selectpicker" data-live-search="true" multiple>
+                                            @foreach (Plante p in ViewBag.plante)
+                                            {
+                                                <option value="@p.Id">@p.Nom</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="us3" style="height: 400px;"></div>
+                                <div class="form-example-int mg-t-15">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-7 col-sm-7 col-xs-12 dcenter">
+                                            <button class="btn btn-success notika-btn-success" type="submit">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @section script
+</div>
+@section script
     {
     <script src="~/js/bootstrap-select/bootstrap-select.js"></script>
     <script src="~/js/jquery.scrollUp.min.js"></script>
