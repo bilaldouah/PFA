@@ -166,89 +166,103 @@
                                     </div>
                                 </div>
                             </li>
+                        
                             <li class="nav-item nc-al" id="notifId">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                <a href="/#" data-toggle="dropdown" role="button" aria-expanded="true" class="nav-link dropdown-toggle">
                                     <span><i class="notika-icon notika-alarm"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn">
-                                        <span>                                       
-                                            @Context.Items["count"]
+                                        <span>
+                                                @Context.Items["count"]
                                         </span>
                                     </div>
                                 </a>
-                                <div role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
+                                <div  role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
+                                    <div  class="hd-mg-tt">
                                         <h2>Notification</h2>
                                     </div>
-                                    <div class="hd-message-info">
-                                                                  @{
-                                                        var myData = Context.Items["listNotif"] ;
-                                                    
-                                                    @if (myData != null)
+                                    <div  class="hd-message-info">
+                                            @{
+                                                var myData = Context.Items["listNotif"];
+
+                                                @if (myData != null)
+                                                {
+
+                                                    @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
                                                     {
-                                                    
-                                                @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
-                                                    {
-                                                        @if(n.Notification.type=="danger")
-                                                    {
-                                                        <a id="sa-title" class="bg-danger" href="/Notification/Selected/@n.Notification.Id" data-value="@ViewBag.textFr" onclick="myF()">
-                                                            <div class="hd-message-sn">
-                                                                <div class="hd-message-img">
+
+
+                                                        @if (n.Notification.type == "risque")
+                                                        {
+                                                        <a class="nk-deep-orange sa-title text-center">
+
+                                                            <div  class="hd-message-sn">
+                                                                <div  class="">
+                                                                    <img style="width: 50%" src="/images/notif.png">
                                                                 </div>
                                                                 <div class="hd-mg-ctn">
 
 
                                                                     <h3>@n.webMaster.Nom</h3>
-                                                                    <input type="hidden" value="@n.Notification.Id">
-                                                                    <p id="test" class="d-flex flex-start">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+
+                                                                    <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                    <p  class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
 
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                    }
-                                                    @if(n.Notification.type=="normal")
-                                                    {
-                                                        <a id="sa-title" class="bg-success" href="/Notification/Selected/@n.Notification.Id" data-value="@ViewBag.textFr" onclick="myF()">
-                                                            <div class="hd-message-sn">
-                                                                <div class="hd-message-img">
+                                                        }
+                                                        @if (n.Notification.type == "informatif")
+                                                        {
+                                                        <a  class="nk-light-green sa-title text-center">
+
+                                                            <div  class="hd-message-sn">
+                                                                <div  class="">
+                                                                  <img style="width: 50%" src="/images/notif.png">
                                                                 </div>
                                                                 <div class="hd-mg-ctn">
 
 
                                                                     <h3>@n.webMaster.Nom</h3>
-                                                                    <input type="hidden" value="@n.Notification.Id">
-                                                                    <p id="test" class="d-flex flex-start ">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+
+                                                                    <input  type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                    <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
 
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                    }
-                                                    @if (n.Notification.type == "meduim")
-                                                    {
-                                                        <a id="sa-title" class="bg-yellow" href="/Notification/Selected/@n.Notification.Id" data-value="@ViewBag.textFr" onclick="myF()">
+                                                        }
+                                                        @if (n.Notification.type == "moyen")
+                                                        {
+                                                        <a class="nk-amber sa-title text-center ">
+
                                                             <div class="hd-message-sn">
-                                                                <div class="hd-message-img">
+                                                                <div  class="">
+                                                                      <img style="width: 50%" src="/images/notif.png">
                                                                 </div>
                                                                 <div class="hd-mg-ctn">
 
 
                                                                     <h3>@n.webMaster.Nom</h3>
-                                                                    <input type="hidden" value="@n.Notification.Id">
-                                                                    <p id="test" class="d-flex flex-start">@n.Notification.TextFrancais @n.Notification.TextArabe</p>
+
+                                                                    <input  type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                    <p  class="data border border-white border-2" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
 
                                                                 </div>
                                                             </div>
                                                         </a>
+                                                        }
+
+
                                                     }
-                                                    
-                                                   
+
                                                 }
-
                                             }
-                                        }
+
                                     </div>
-                                    <div class="hd-mg-va">
-                                        <a href="~/#">View All</a>
+                                    <div  class="hd-mg-va">
+                                        <a  href="/Notification/ListNotification">Voir tous</a>
                                     </div>
                                 </div>
+                            
                             </li>
                             <li class="nav-item">
                                 <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span> @Context.Items["count"]</span></div></a>
@@ -796,11 +810,3 @@
 </body>
  
 </html>
-<script>
-    function myF() {
-        var notif = document.getElementsById('notifId').value;
-       alert(notif);
- 
-      //  windows.location.href = '/Notification/selected';
-    }
-</script>

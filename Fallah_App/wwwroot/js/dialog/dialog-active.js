@@ -12,11 +12,19 @@
 	});
 
 	//A title with a text under
-	$('#sa-title').on('click', function () {
-
-		var myVal = $("#sa-title").data("value");
-		swal(myVal);
+	$('.sa-title').on('click', function () {
+		var myVal = $(this).find('.data').data("value");
+		var id = $(this).find("#idNot").val();
+		var Action = $(this).attr("data-Action");
+		swal({
+			text: myVal
+		}).then(function () {
+			swal(Action, "L'action a bien passé", "success");
+			window.location = '/Notification/selected?id=' + id;
+		});
 	});
+
+
 
 	//Success Message
 	$('#sa-success').on('click', function(){

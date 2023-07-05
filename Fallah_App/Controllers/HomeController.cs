@@ -1,4 +1,5 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
 using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,11 @@ namespace Fallah_App.Controllers
     public class HomeController : Controller
     {
         IMemoryCache memoryCache;
-        public HomeController( IMemoryCache memoryCache)
+        
+        public HomeController( IMemoryCache memoryCache) 
         {
             this.memoryCache = memoryCache;
-
+           
         }
         public async Task<IActionResult> IndexAsync() 
         {
