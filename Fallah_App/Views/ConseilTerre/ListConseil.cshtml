@@ -1,8 +1,8 @@
 ﻿@section title
     {
-    <title>Conseil Plante</title>
+    <title>List Conseil Terre</title>
 }
-@section style
+    @section style
     {
     <link rel="stylesheet" href="~/css/bootstrap-select/bootstrap-select.css">
     <style>
@@ -48,23 +48,24 @@
         }
     </style>
 }
-<!-- Main Menu area End-->
-<!-- Breadcomb area Start-->
+    <!-- Main Menu area End-->
+    <!-- Breadcomb area Start-->
 
-<div class="breadcomb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcomb-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcomb-wp">
-                                <div class="breadcomb-icon">
-                                    <i class="notika-icon notika-windows"></i>
-                                </div>
-                                <div class="breadcomb-ctn">
-                                    <h2>Conseil plante </h2>
-                                    <p>List des Conseils Plante </p>
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcomb-wp">
+                                    <div class="breadcomb-icon">
+                                        <i class="notika-icon notika-windows"></i>
+                                    </div>
+                                    <div class="breadcomb-ctn">
+                                        <h2>Conseil Terre </h2>
+                                        <p>List des Conseils</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -73,13 +74,12 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Breadcomb area End-->
-<!-- Contact area Start-->
-<div class="contact-area">
-    <div class="container">
-        <div class="row">
-            @foreach (ConseilPlante ct in ViewBag.conseil)
+    <!-- Breadcomb area End-->
+    <!-- Contact area Start-->
+    <div class="contact-area">
+        <div class="container">
+            <div class="row">
+            @foreach (ConseilTerre ct in ViewBag.conseilTerres)
             {
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-5">
                     <div class="contact-list">
@@ -91,15 +91,14 @@
                         </div>
                         <div class="contact-ctn mb-70">
                             <div class="contact-ad-hd">
-                                <h2>@ct.webMaster.Prenom</h2>
-
-                                @foreach (Plante cc in ct.plantes)
+                                <h2>@ct.webMaster.Nom</h2>
+                                @foreach (CategoryTerre cc in ct.CategoryTerres)
                                 {
-                                    <p class="ctn-ads">@cc.Nom</p>
+                                    <p class="ctn-ads">@cc.Attribut_De_Categorisation   @cc.Valeur_Max  @cc.Valeur_Min</p>
                                 }
                             </div>
                             <div class="audio-player">
-                                <audio class="audio" src="~/Audio/@ct.audio"></audio>
+                                <audio class="audio" src="~/Audio/@ct.Audio"></audio>
                                 <div class="audio-controls">
                                     <button class="play-btn">Play</button>
                                     <button class="pause-btn">Pause</button>
@@ -109,18 +108,6 @@
                                 <div class="audio-seek-bar">
                                     <div class="audio-progress"></div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="social-st-list mt-5 d-flex justify-content-center">
-                            <div class="social-sn">
-                                <a class="btn btn-amber amber-icon-notika btn-reco-mg btn-button-mg waves-effect" asp-controller="ConseilPlante" asp-action="Modifier" asp-route-id="@ct.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="donner votre avis pour Cette Conseil" title="" data-original-title="Resultat">
-                                    <i class="notika-icon notika-search"></i>
-                                </a>
-                            </div>
-                            <div class="social-sn">
-                                <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg waves-effect sa-warning" data-confirm="Supprimer" data-Action="Supprimer!" data-acc="La Conseil a ete bien Supprimer" data-text="La Conseil va etre Supprimer" data-href="/ConseilPlante/Supprimer/@ct.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Supprimer Cette Conseil" title="" data-original-title="Supprimer">
-                                    <i class="notika-icon notika-close"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -133,30 +120,6 @@
                             </div>
                             <div class="modal-body">
                                 <h2>Conseil</h2>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Quantite d'Eau</th>
-                                            <th>Temperature</th>
-                                            <th>Vent</th>
-                                            <th>Humidite</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>@ct.Quantite_Eau</td>
-                                            <td>Max : @ct.Temperature_Max</td>
-                                            <td>Max : @ct.Vent_Max</td>
-                                            <td>Max : @ct.Humidite_Max</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>Min : @ct.Temperature_Min</td>
-                                            <td>Min : @ct.Vent_Min</td>
-                                            <td>Min : @ct.Humidite_Min</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                                 <p>@Html.Raw(ct.Text_Francais)</p>
                             </div>
                             <div class="modal-footer">
@@ -173,31 +136,6 @@
                             </div>
                             <div class="modal-body">
                                 <h2>النصيحة</h2>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>كمية الماء</th>
-                                            <th>درجة حرارة</th>
-                                            <th>رياح</th>
-                                            <th>رطوبة</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>@ct.Quantite_Eau</td>
-                                            <td>@ct.Temperature_Max : أقصى</td>
-                                            <td>@ct.Vent_Max : أقصى</td>
-                                            <td>@ct.Humidite_Max : أقصى</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>@ct.Temperature_Min : أدنى</td>
-                                            <td>@ct.Vent_Min : أدنى</td>
-                                            <td>@ct.Humidite_Min : أدنى</td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
                                 <p>@Html.Raw(ct.Text_Arabe)</p>
                             </div>
                             <div class="modal-footer">
