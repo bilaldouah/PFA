@@ -48,17 +48,23 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult ListNotification()
         {
-            int idLog = (int)HttpContext.Session.GetInt32("id");
-            ViewBag.listNotif= db.agriculteurNotifications.Include(u => u.Notification).Include(a => a.webMaster).Where(a => a.Agriculteur.Id == idLog).OrderBy(a => a.IsSeen == false).ThenBy(a => a.Notification.type == "risque").ToList();
-           /* List<AgriculteurNotification> listNotifAgr = db.agriculteurNotifications.Include(u => u.Notification).Include(a => a.webMaster).Where(a => a.Agriculteur.Id == idLog && a.IsSeen==false).ToList();
-            foreach(AgriculteurNotification ag in listNotifAgr)
+            if (HttpContext.Session.GetInt32("id") != null)
             {
-                ag.IsSeen= true;
-                db.agriculteurNotifications.Update(ag);
-                db.SaveChanges();
+                int idLog = (int)HttpContext.Session.GetInt32("id");
+                ViewBag.listNotif = db.agriculteurNotifications.Include(u => u.Notification).Include(a => a.webMaster).Where(a => a.Agriculteur.Id == idLog).ToList();
+                /* List<AgriculteurNotification> listNotifAgr = db.agriculteurNotifications.Include(u => u.Notification).Include(a => a.webMaster).Where(a => a.Agriculteur.Id == idLog && a.IsSeen==false).ToList();
+                 foreach(AgriculteurNotification ag in listNotifAgr)
+                 {
+                     ag.IsSeen= true;
+                     db.agriculteurNotifications.Update(ag);
+                     db.SaveChanges();
+                 }
+                */
+                return View();
             }
-           */
+            else RedirectToAction("login", "authentification");
             return View();
+           
         }
         public IActionResult Selected(int id)
         {

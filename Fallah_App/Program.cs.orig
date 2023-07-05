@@ -28,8 +28,11 @@ builder.Services.AddSession(opt =>
         .WithCronSchedule("0 * * ? * *")
     );
 }); 
-}); 
-<<<<<<< .minebuilder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);*/
+<<<<<<< HEAD
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);*/
+=======
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true*/
+>>>>>>> 016b8cfd0290abfac8d51f7d1e7ff0119683b8a4
 
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {

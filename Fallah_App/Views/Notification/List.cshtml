@@ -48,7 +48,8 @@
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>contenu</th>
+                                    <th>text français</th>
+                                    <th>text arabic</th>
                                     <th>type</th>
                                     <th>action</th>
                                 </tr>
@@ -57,7 +58,8 @@
                                 @foreach (Notification N in Model)
                                 {
                                     <tr>
-                                        <td>@N.TextFrancais @N.TextArabe</td>
+                                        <td>@N.TextFrancais</td>
+                                        <td>@N.TextArabe </td>
                                         <td>@N.type</td>
                                         <td>
 
@@ -79,7 +81,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>contenu</th>
+                                    
+                                    <th>text français</th>
+                                    <th>text arabic</th>
+                                    <th>type</th>
                                     <th>action</th>
 
                                 </tr>
