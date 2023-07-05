@@ -7,10 +7,10 @@ using NUnit.Framework;
 
 namespace Fallah_App.Controllers
 {
-    public class ConseilPlante : Controller
+    public class ConseilPlanteController : Controller
     {
         MyContext db;
-        public ConseilPlante(MyContext db)
+        public ConseilPlanteController(MyContext db)
         {
 
             this.db = db;
@@ -25,7 +25,7 @@ namespace Fallah_App.Controllers
                 ViewBag.eror = true;
             }
 
-           
+            ViewBag.listeplante = db.plantes.ToList();
             return View();
             
         }
@@ -58,6 +58,7 @@ namespace Fallah_App.Controllers
             csp.Id_WebMaster = 4;
            
             db.conseilPlantes.Add(csp);
+            csp.Date_De_Creation = DateTime.Now;
             db.SaveChanges();
 
             return RedirectToAction("List");
@@ -69,5 +70,16 @@ namespace Fallah_App.Controllers
             return View();
         }
 
+        public IActionResult Supprimer(int id)
+        {
+            ConseilPlante cp = db.conseilPlantes.Include(c => c.plantes).Where(cc => cc.Id == id).FirstOrDefault();
+            foreach(Plante p in cp.plantes.ToList()) {
+                cp.plantes.Remove(p);
+            }
+            db.conseilPlantes.Remove(cp);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+      
     }
 }

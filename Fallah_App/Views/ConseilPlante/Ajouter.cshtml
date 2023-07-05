@@ -102,7 +102,21 @@
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     <input type="file" id="fileInput" asp-for="File">
+                    <div class="summernote-wrap mg-t-30">
+                        <div class="cmp-tb-hd bsc-smp-sm">
+                            <label>Plante</label>
+                        </div>
+                        <div class="bootstrap-select fm-cmp-mg w-100">
 
+                            <select name="categories[]" class="selectpicker" data-live-search="true" multiple>
+                                    @foreach (Plante p in ViewBag.listeplante)
+                                    {
+                                    <option value="@p.Id">@p.Nom</option>
+                                    }
+                            </select>
+                        </div>
+                        </div>
+                        <div class="cmp-tb-hd bsc-smp
                     
                         <div class="cmp-tb-hd bsc-smp-sm">
                             <label>Conseil en Francais</label>
