@@ -112,8 +112,8 @@
                         </div>
                         <div class="social-st-list mt-5 d-flex justify-content-center">
                             <div class="social-sn">
-                                <a class="btn btn-amber amber-icon-notika btn-reco-mg btn-button-mg waves-effect" asp-controller="ConseilTerre" asp-action="Modifier" asp-route-id="@ct.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="donner votre avis pour Cette Conseil" title="" data-original-title="Resultat">
-                                    <i class="notika-icon notika-search"></i>f
+                                <a class="btn btn-amber amber-icon-notika btn-reco-mg btn-button-mg waves-effect" asp-controller="Resultat" asp-action="resultat" asp-route-id="@ct.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="donner votre avis pour Cette Conseil" title="" data-original-title="Resultat">
+                                    <i class="notika-icon notika-search"></i>
                                 </a>
                             </div>
                         </div>
@@ -127,13 +127,16 @@
                             </div>
                             <div class="modal-body">
                                 <h2>Conseil</h2>
-                                <table>
+                                <table class="table table-striped">
+                                    <thead>
                                     <tr>
                                         <th>Quantite d'Eau</th>
                                         <th>Temperature</th>
                                         <th>Vent</th>
                                         <th>Humidite</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <tr>
                                         <td>@ct.Quantite_Eau</td>
                                         <td>Max : @ct.Temperature_Max</td>
@@ -146,6 +149,7 @@
                                         <td>Min : @ct.Vent_Min</td>
                                         <td>Min : @ct.Humidite_Min</td>
                                     </tr>
+                                    </tbody>
                                 </table>
                                 <p>@Html.Raw(ct.Text_Francais)</p>
                             </div>
@@ -163,13 +167,16 @@
                             </div>
                             <div class="modal-body">
                                 <h2>النصيحة</h2>
-                                <table>
-                                    <tr>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
                                         <th>كمية الماء</th>
                                         <th>درجة حرارة</th>
                                         <th>رياح</th>
                                         <th>رطوبة</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <tr>
                                         <td>@ct.Quantite_Eau</td>
                                         <td>@ct.Temperature_Max : أقصى</td>
@@ -182,6 +189,8 @@
                                         <td>@ct.Vent_Min : أدنى</td>
                                         <td>@ct.Humidite_Min : أدنى</td>
                                     </tr>
+                                    </tbody>
+
                                 </table>
                                 <p>@Html.Raw(ct.Text_Arabe)</p>
                             </div>

@@ -9,7 +9,7 @@ namespace Fallah_App.Models
         public string ? TextFrancais { get; set; }
         public WebMaster webMaster { get; set; }
         [ForeignKey(nameof(webMaster))]
-        public int Id_WebMaster { get; set; }
+        public int? Id_WebMaster { get; set; }
         public List<AgriculteurNotification> AgriculteurNotifications { get; set; }
         public List<Plante> Plantes { get; set; }
         public List<Terre> terres { get; set; }
