@@ -17,17 +17,21 @@ builder.Services.AddSession(opt =>
 builder.Services.AddQuartz(q =>
 {
     q.UseMicrosoftDependencyInjectionScopedJobFactory();
-    // Just use the name of your job that you created in the Jobs folder.
+
     var jobKey = new JobKey("EnvoyerConseil");
     q.AddJob<EnvoyerConseil>(opts => opts.WithIdentity(jobKey));
 
     q.AddTrigger(opts => opts
         .ForJob(jobKey)
-        .WithIdentity("SendEmailJob-trigger")
-        //This Cron interval can be described as "run every minute" (when second is zero)
-        .WithCronSchedule("0 * * ? * *")
+        .WithIdentity("EnvoyerConseil-trigger")
+        .StartNow()
+        .WithSimpleSchedule(x => x
+            .WithIntervalInSeconds(10) // Run every 10 seconds
+            .RepeatForever()
+        )
     );
 });
+
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)

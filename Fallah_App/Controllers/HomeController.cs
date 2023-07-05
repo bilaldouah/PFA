@@ -25,7 +25,7 @@ namespace Fallah_App.Controllers
             //float lat = db.users.OfType<Agriculteur>().Include(a=>a.Terres)
 
 
-            Meteo meteo = await Meteo.getMeteo(34.68, -1.91);
+            Meteo meteo = await Meteo.getMeteo("34.68", "34.68");
             CultureInfo culture = new CultureInfo("fr-FR");
             ViewBag.Culture = culture;
 
