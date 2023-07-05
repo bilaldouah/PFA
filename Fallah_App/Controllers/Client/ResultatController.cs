@@ -31,7 +31,7 @@ namespace Fallah_App.Controllers.Client
         }
         public IActionResult resultat(int id)
         {
-            if(id== null)
+            if(id==null)
             {
                 return RedirectToAction("listConseilPlant");
             }

@@ -8,7 +8,7 @@ namespace Fallah_App.les_filtres
         {
             if (context.HttpContext.Session.GetInt32("id")!=null) 
             {
-                if (context.HttpContext.Session.GetString("role") != "Agriculteur")
+                if (context.HttpContext.Session.GetString("role") != "Agriculteur" || context.HttpContext.Session.GetString("role") != "AgriculteurForme")
                 {
                     context.HttpContext.Response.Redirect("/Authentification/login");
                 }
