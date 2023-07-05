@@ -17,7 +17,7 @@ namespace Fallah_App.QuartzJobs
 
         public  Task Execute(IJobExecutionContext context)
         {
-           /*Notification notification = new Notification();
+           Notification notification = new Notification();
                 notification.TextFrancais = "Conseil d'Aujourd'hui";
                 notification.TextArabe = "نصيحة اليوم";
                 notification.type = "conseil";
@@ -35,7 +35,7 @@ namespace Fallah_App.QuartzJobs
                 agriculteurNotification.IsSeen = false;
                 db.agriculteurNotifications.Add(agriculteurNotification);
             }
-            db.SaveChanges();*/
+            db.SaveChanges();
 
             return Task.FromResult(true);
         }

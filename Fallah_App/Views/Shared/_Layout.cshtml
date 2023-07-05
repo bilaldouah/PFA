@@ -90,112 +90,28 @@
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
                             <li class="nav-item dropdown">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-search"></i></span></a>
-                                <div role="menu" class="dropdown-menu search-dd animated flipInX">
-                                    <div class="search-input">
-                                        <i class="notika-icon notika-left-arrow"></i>
-                                        <input type="text" />
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-mail"></i></span></a>
-                                <div role="menu" class="dropdown-menu message-dd animated zoomIn">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-alarm"></i></span></a>
+                                <div role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
                                     <div class="hd-mg-tt">
-                                        <h2>Messages</h2>
-                                    </div>
-                                    <div class="hd-message-info">
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Jonathan Morris</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/4.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Fredric Mitchell</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/1.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img">
-                                                    <img src="~/img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Glenn Jecobs</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="hd-mg-va">
-                                        <a href="~/#">View All</a>
-                                    </div>
-                                </div>
-                            </li>
-                        
-                            <li class="nav-item nc-al" id="notifId">
-                                <a href="/#" data-toggle="dropdown" role="button" aria-expanded="true" class="nav-link dropdown-toggle">
-                                    <span><i class="notika-icon notika-alarm"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn">
-                                        <span>
-                                                @Context.Items["count"]
-                                        </span>
-                                    </div>
-                                </a>
-                                <div  role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
-                                    <div  class="hd-mg-tt">
                                         <h2>Notification</h2>
                                     </div>
-                                    <div  class="hd-message-info">
-                                            @{
-                                                var myData = Context.Items["listNotif"];
+                                    <div class="hd-message-info">
+                                        @{
+                                            var myData = Context.Items["listNotif"];
 
-                                                @if (myData != null)
+                                            @if (myData != null)
+                                            {
+
+                                                @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
                                                 {
 
-                                                    @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
+
+                                                    @if (n.Notification.type == "risque")
                                                     {
-
-
-                                                        @if (n.Notification.type == "risque")
-                                                        {
                                                         <a class="nk-deep-orange sa-title text-center">
 
-                                                            <div  class="hd-message-sn">
-                                                                <div  class="">
+                                                            <div class="hd-message-sn">
+                                                                <div class="">
                                                                     <img style="width: 50%" src="/images/notif.png">
                                                                 </div>
                                                                 <div class="hd-mg-ctn">
@@ -204,187 +120,76 @@
                                                                     <h3>@n.webMaster.Nom</h3>
 
                                                                     <input type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                    <p  class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
-
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        }
-                                                        @if (n.Notification.type == "informatif")
-                                                        {
-                                                        <a  class="nk-light-green sa-title text-center">
-
-                                                            <div  class="hd-message-sn">
-                                                                <div  class="">
-                                                                  <img style="width: 50%" src="/images/notif.png">
-                                                                </div>
-                                                                <div class="hd-mg-ctn">
-
-
-                                                                    <h3>@n.webMaster.Nom</h3>
-
-                                                                    <input  type="hidden" value="@n.Notification.Id " id="idNot">
                                                                     <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
 
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                        }
-                                                        @if (n.Notification.type == "moyen")
-                                                        {
-                                                        <a class="nk-amber sa-title text-center ">
+                                                    }
+                                                    @if (n.Notification.type == "informatif")
+                                                    {
+                                                        <a class="nk-light-green sa-title text-center">
 
                                                             <div class="hd-message-sn">
-                                                                <div  class="">
-                                                                      <img style="width: 50%" src="/images/notif.png">
+                                                                <div class="">
+                                                                    <img style="width: 50%" src="/images/notif.png">
                                                                 </div>
                                                                 <div class="hd-mg-ctn">
 
 
                                                                     <h3>@n.webMaster.Nom</h3>
 
-                                                                    <input  type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                    <p  class="data border border-white border-2" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                    <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                    <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
 
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                        }
+                                                    }
+                                                    @if (n.Notification.type == "moyen")
+                                                    {
+                                                        <a class="nk-amber sa-title text-center ">
+
+                                                            <div class="hd-message-sn">
+                                                                <div class="">
+                                                                    <img style="width: 50%" src="/images/notif.png">
+                                                                </div>
+                                                                <div class="hd-mg-ctn">
 
 
+                                                                    <h3>@n.webMaster.Nom</h3>
+
+                                                                    <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                    <p class="data border border-white border-2" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+
+                                                                </div>
+                                                            </div>
+                                                        </a>
                                                     }
 
+
                                                 }
+
                                             }
+                                        }
 
                                     </div>
-                                    <div  class="hd-mg-va">
-                                        <a  href="/Notification/ListNotification">Voir tous</a>
-                                    </div>
-                                </div>
-                            
-                            </li>
-                            <li class="nav-item">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-menus"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span> @Context.Items["count"]</span></div></a>
-                                <div role="menu" class="dropdown-menu message-dd task-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
-                                        <h2>Tasks</h2>
-                                    </div>
-                                    <div class="hd-message-info hd-task-info">
-                                        <div class="skill">
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>HTML5 Validation Report</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s">
-                                                    <span>95%</span>
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>Google Chrome Extension</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="85%" style="width: 85%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>85%</span> </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>Social Internet Projects</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="75%" style="width: 75%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>75%</span> </div>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="lead-content">
-                                                    <p>Bootstrap Admin</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="93%" style="width: 65%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>65%</span> </div>
-                                            </div>
-                                            <div class="progress progress-bt">
-                                                <div class="lead-content">
-                                                    <p>Youtube App</p>
-                                                </div>
-                                                <div class="progress-bar wow fadeInLeft" data-progress="55%" style="width: 55%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>55%</span> </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="hd-mg-va">
-                                        <a href="~/#">View All</a>
+                                        <a href="/Notification/ListNotification">Voir tous</a>
                                     </div>
                                 </div>
                             </li>
+
                             <li class="nav-item">
-                                <a href="~/#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-chat"></i></span></a>
-                                <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
-                                    <div class="hd-mg-tt">
-                                        <h2>Chat</h2>
-                                    </div>
-                                    <div class="search-people">
-                                        <i class="notika-icon notika-left-arrow"></i>
-                                        <input type="text" placeholder="Search People" />
-                                    </div>
-                                    <div class="hd-message-info">
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="~/img/post/1.jpg" alt="" />
-                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Available</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="~/img/post/2.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Jonathan Morris</h3>
-                                                    <p>Last seen 3 hours ago</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="~/img/post/4.jpg" alt="" />
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Fredric Mitchell</h3>
-                                                    <p>Last seen 2 minutes ago</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="~/img/post/1.jpg" alt="" />
-                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>David Belle</h3>
-                                                    <p>Available</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="~/#">
-                                            <div class="hd-message-sn">
-                                                <div class="hd-message-img chat-img">
-                                                    <img src="~/img/post/2.jpg" alt="" />
-                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
-                                                </div>
-                                                <div class="hd-mg-ctn">
-                                                    <h3>Glenn Jecobs</h3>
-                                                    <p>Available</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="hd-mg-va">
-                                        <a href="~/#">View All</a>
-                                    </div>
-                                </div>
+                                <a asp-controller="Authentification" asp-action="LogOut" class="nav-link dropdown-toggle">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>
+                                    </span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>@Context.Items["count"]</span></div>
+                                </a>
+                               
                             </li>
                         </ul>
                     </div>
@@ -720,8 +525,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="footer-copy-right">
                         <p>
-                            Copyright © 2018
-                            . All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.
+                            Copyright © 2023
+                            . All rights reserved. Created by MALI Yassine ,ZEKHNINI Anass,KHABBOURI Adnane ,DOUAH Bilal.
                         </p>
                     </div>
                 </div>
