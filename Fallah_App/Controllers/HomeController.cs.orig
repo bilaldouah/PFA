@@ -1,7 +1,9 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
 using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System.Globalization;
@@ -11,14 +13,29 @@ namespace Fallah_App.Controllers
     public class HomeController : Controller
     {
         IMemoryCache memoryCache;
-        public HomeController( IMemoryCache memoryCache)
+<<<<<<< HEAD
+        
+        public HomeController( IMemoryCache memoryCache) 
         {
             this.memoryCache = memoryCache;
+           
+=======
 
+        MyContext db;
+        public HomeController( IMemoryCache memoryCache,MyContext db)
+        {
+            this.memoryCache = memoryCache;
+            this.db = db;
+
+>>>>>>> b303b0f577aa41b8235f8212e4bfbbc55fc54101
         }
         public async Task<IActionResult> IndexAsync() 
         {
-            Meteo meteo = await Meteo.getMeteo();
+           // int id = (int)HttpContext.Session.GetInt32("id");
+            //float lat = db.users.OfType<Agriculteur>().Include(a=>a.Terres)
+
+
+            Meteo meteo = await Meteo.getMeteo(34.68, -1.91);
             CultureInfo culture = new CultureInfo("fr-FR");
             ViewBag.Culture = culture;
 
@@ -53,7 +70,6 @@ namespace Fallah_App.Controllers
             // Add key-value pairs to the hash map
             for (int i = 1; i <= 3; i++)
             {
-<<<<<<< HEAD
                 icon.Add(i, "partly_cloudy.png");
             }
 
@@ -73,13 +89,6 @@ namespace Fallah_App.Controllers
             }
 
             ViewBag.icon = icon;
-=======
-                this.memoryCache.Set("weather", Meteo.getMeteo() , TimeSpan.FromHours(2));
-            }*/
-            ViewBag.hour = meteo.hourly.time.Take(12);
-            ViewBag.temp = meteo.hourly.temperature_2m.Take(12);
-    //        ViewBag.dayName = DateTime.ParseExact("meteo.daily.time[1]", "MM/dd/yyyy", CultureInfo.InvariantCulture);
->>>>>>> 0071b222752f206077bb5aeee835c2a5b544aecf
             return View(meteo);
 
         }

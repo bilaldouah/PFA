@@ -20,12 +20,12 @@ namespace Fallah_App.Models
         public double Vent_Max { get; set; }
         public double Vent_Min { get; set; }
         [NotMapped]
-        public EnumWeatherCode Weather_Code { get; set; }
+        public EnumWeatherCode weatherCode  { get; set; }
         [NotMapped]
         public IFormFile File { get; set; }
         public string? audio { get; set; }
 
-        public int weatherCode { get; set; }
+        public int Weather_Code { get; set; }
         public Resultat resultat { get; set; }
         public WebMaster webMaster { get; set; }
 
