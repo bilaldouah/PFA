@@ -54,18 +54,20 @@
                                         <tr>
                                             <td>@t.Id</td>
                                             <td>@t.Surface</td>
-                                            <td><a class="form-control" href="~/wwwroot/@t.image">scan de document</a></td>
+                                        <td>
+                                            <input class="form-control" type="hidden" asp-for="@t.image" placeholder=" ">
+                                            <img  src="~/ImageClient/@t.image"/>
+                                            </td>
                                             <td>@t.latitude</td>
                                             <td>@t.longitude</td>
                                             <td>@t.Id_categoryTerre</td>
                                             <td>
-                                                <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Modifier?id=@t.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette terre" title="" data-original-title="modifier">
-                                                    <i class="notika-icon notika-draft"></i>
+                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Modifier?id=@t.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette terre" title="" data-original-title="modifier">
+                                                <i class="notika-icon notika-draft"></i>
                                                 </a>
-                                                <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="Supprimer?id=@t.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer cette terre" title="" data-original-title="supprimer">
-                                                    <i class="notika-icon notika-close"></i>
-                                                </a>
-
+                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" data-confirm="supprimer" data-Action="supprimer!"  data-acc="La demande a ete bien supprimer" data-text="La demande vas etre supprimer" href="supprimer?id=@t.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer cette Terre " title="" data-original-title="supprimer">
+                                                <i class="notika-icon notika-close"></i>
+                                            </a>
                                             </td>
                                         </tr>
                                 }

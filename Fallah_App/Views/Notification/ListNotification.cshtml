@@ -1,0 +1,48 @@
+﻿@section title{
+    <title>List des Notification</title>
+}
+
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+           
+               
+                <div class="data-table-list">
+
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="text-center">
+                    <a href="/Notification/seen" class="btn btn-success">vu</a>  <a href="/Notification/unseen" class="btn btn-primary">inaperçu</a>
+                </div>
+                            <thead>
+
+                                <tr>
+                                    <th>contenu</th>
+                             
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var N in ViewBag.listNotif)
+                                {
+                                    <tr>
+                                        <td>@N.Notification.TextArabe @N.Notification.TextFrancais</td>
+                                         
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>contenu</th>
+                                 
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

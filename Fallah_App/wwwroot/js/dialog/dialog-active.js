@@ -1,3 +1,4 @@
+
 (function ($) {
  "use strict";
  
@@ -11,9 +12,19 @@
 	});
 
 	//A title with a text under
-	$('#sa-title').on('click', function(){
-		swal("Here's a message!", "Lorem ipsum dolor cry sit amet, consectetur adipiscing elit. Sed lorem erat, tincidunt vitae ipsum et, Spensaduran pellentesque maximus eniman. Mauriseleifend ex semper, lobortis purus.")
+	$('.sa-title').on('click', function () {
+		var myVal = $(this).find('.data').data("value");
+		var id = $(this).find("#idNot").val();
+		var Action = $(this).attr("data-Action");
+		swal({
+			text: myVal
+		}).then(function () {
+			swal(Action, "L'action a bien passé", "success");
+			window.location = '/Notification/selected?id=' + id;
+		});
 	});
+
+
 
 	//Success Message
 	$('#sa-success').on('click', function(){

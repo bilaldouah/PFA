@@ -11,9 +11,11 @@
 
   <ItemGroup>
     <None Remove="Views\Inscription\vorw1yob.ct3~" />
+    <None Remove="Views\Terre\paa5teji.txg~" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>
