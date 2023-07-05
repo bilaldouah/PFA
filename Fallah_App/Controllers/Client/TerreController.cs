@@ -30,6 +30,7 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult Ajouter(Terre t, int[] plante)
         {
+            t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
             List<Plante> plantes = new List<Plante>();
             for (int i = 0; i < plantes.Count(); i++)
             {
@@ -37,7 +38,6 @@ namespace Fallah_App.Controllers.Client
                 plantes.Add(plante1);
             }
             t.plantes = plantes;
-            t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))

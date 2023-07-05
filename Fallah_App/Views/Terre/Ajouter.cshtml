@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="bootstrap-select fm-cmp-mg w-100">
 
-                                        <select name="plante[]" class="selectpicker" data-live-search="true" multiple>
+                                        <select class="selectpicker" data-live-search="true" multiple asp-for="categoryTerre">
                                         @foreach (CategoryTerre p in ViewBag.list)
                                         {
                                             <option value="@p.Id">@p.Attribut_De_Categorisation</option>
@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="bootstrap-select fm-cmp-mg w-100">
 
-                                        <select name="plante[]" class="selectpicker" data-live-search="true" multiple>
+                                        <select name="plante[]" class="selectpicker" data-live-search="true" multiple asp-for="plantes">
                                             @foreach (Plante p in ViewBag.plante)
                                             {
                                                 <option value="@p.Id">@p.Nom</option>
