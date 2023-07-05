@@ -2,6 +2,7 @@
 using Fallah_App.les_filtres;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
 namespace Fallah_App.Controllers.Client
@@ -16,7 +17,8 @@ namespace Fallah_App.Controllers.Client
 
         public IActionResult List()
         {
-            return View(db.terres.ToList());
+            int id = (int)HttpContext.Session.GetInt32("id");
+            return View(db.terres.Include(t=>t.Agriculteur).Where(t=>t.Agriculteur.Id==id).ToList());
         }
         [FiltreAgriculteur]
         public IActionResult Ajouter()

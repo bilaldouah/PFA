@@ -1,6 +1,7 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fallah_App.Controllers.WebMaster
@@ -67,6 +68,18 @@ namespace Fallah_App.Controllers.WebMaster
         public IActionResult List()
         {
             ViewBag.conseilTerres = db.conseilTerres.Include(c=>c.webMaster).Include(c=>c.CategoryTerres).ToList();
+            return View();
+        }
+
+        public IActionResult ListConseil()
+        {
+            int id = (int)HttpContext.Session.GetInt32("id");
+            ViewBag.conseilTerres = db.conseilTerres
+                .Include(t => t.CategoryTerres)
+                    .ThenInclude(e => e.terres)
+                        .ThenInclude(a => a.Agriculteur)
+                .Where(a => a.CategoryTerres.Any(t => t.terres.Any(e => e.Agriculteur.Id == id)))
+                .ToList(); ;
             return View();
         }
 
