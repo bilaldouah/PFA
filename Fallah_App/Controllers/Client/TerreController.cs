@@ -2,6 +2,7 @@
 using Fallah_App.les_filtres;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
 namespace Fallah_App.Controllers.Client
@@ -22,12 +23,20 @@ namespace Fallah_App.Controllers.Client
         public IActionResult Ajouter()
         {
             ViewBag.list = db.categoryTerres.ToList();
+            ViewBag.plante=db.plantes.ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult Ajouter(Terre t)
+        public IActionResult Ajouter(Terre t, int[] plante)
         {
-                t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
+            List<Plante> plantes = new List<Plante>();
+            for (int i = 0; i < plantes.Count(); i++)
+            {
+                Models.Plante plante1 = db.plantes.Where(c => c.Id == plante[i]).Include(c => c.terres).FirstOrDefault();
+                plantes.Add(plante1);
+            }
+            t.plantes = plantes;
+            t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))
