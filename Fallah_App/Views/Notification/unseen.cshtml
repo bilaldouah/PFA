@@ -15,7 +15,10 @@
                         <thead>
 
                             <tr>
-                                <th>contenu</th>
+                                <th>text français</th>
+                                <th>text arabic</th>
+                                <th>type</th>
+                                 
 
                             </tr>
                         </thead>
@@ -23,7 +26,9 @@
                             @foreach (var N in ViewBag.listNotifUnseen)
                             {
                                 <tr>
-                                    <td>@N.Notification.TextArabe @N.Notification.TextFrancais</td>
+                                   <td>@N.Notification.TextFrancais</td>
+                                    <td>@N.Notification.TextArabe </td>
+                                    <td>@N.Notification.type</td>
 
 
                                 </tr>
@@ -31,7 +36,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>contenu</th>
+                              <th>text français</th>
+                                <th>text arabic</th>
+                                <th>type</th>
 
 
                             </tr>

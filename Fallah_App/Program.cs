@@ -14,7 +14,7 @@ builder.Services.AddSession(opt =>
 }
 );
 
-builder.Services.AddQuartz(q =>
+/*builder.Services.AddQuartz(q =>
 {
     q.UseMicrosoftDependencyInjectionScopedJobFactory();
     // Just use the name of your job that you created in the Jobs folder.
@@ -28,7 +28,7 @@ builder.Services.AddQuartz(q =>
         .WithCronSchedule("0 * * ? * *")
     );
 }); 
-builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);*/
 
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {
