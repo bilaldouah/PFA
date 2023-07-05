@@ -7,21 +7,17 @@ using NUnit.Framework;
 
 namespace Fallah_App.Controllers
 {
-    public class ConseilPlante : Controller
+    public class ConseilPlanteController : Controller
     {
         MyContext db;
-        public ConseilPlante(MyContext db)
+        public ConseilPlanteController(MyContext db)
         {
 
             this.db = db;
         }
        
        
-        public IActionResult List()
-        {
-            return View(db.conseilPlantes.ToList());
-
-        }
+    
         public IActionResult Ajouter()
         {
             if (TempData["erorImage"] != null)
@@ -29,17 +25,22 @@ namespace Fallah_App.Controllers
                 ViewBag.eror = true;
             }
 
-            ViewBag.Category = db.categoryTerres.ToList();
+            ViewBag.listeplante = db.plantes.ToList();
             return View();
             
         }
         [HttpPost]
-        public IActionResult Ajouter(Models.ConseilPlante csp)
+        public IActionResult Ajouter(Models.ConseilPlante csp, int[] plante)
         {
+            List<Plante> plantes = new List<Plante>();
+            for (int i = 0; i < plante.Count(); i++)
+            {
+                Models.Plante pln = db.plantes.Where(c => c.Id == plante[i]).Include(c=>c.conseilPlantes).FirstOrDefault();
+                plantes.Add(pln);
+            }
+            csp.plantes = plantes;
             if (csp.File != null)
             {
-
-
                 String[] ext = { ".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma", ".aiff" };
                 String file_ext = Path.GetExtension(csp.File.FileName).ToLower();
                 if (!ext.Contains(file_ext))
@@ -61,13 +62,88 @@ namespace Fallah_App.Controllers
 
             }
            
-            csp.Id_WebMaster = 1;
+            csp.Id_WebMaster = 4;
            
             db.conseilPlantes.Add(csp);
+            csp.Date_De_Creation = DateTime.Now;
             db.SaveChanges();
 
             return RedirectToAction("List");
         }
-   
+        public IActionResult List()
+        {
+          
+            ViewBag.conseil = db.conseilPlantes.Include(c => c.plantes).Include(c => c.webMaster).ToList()   ;
+            return View();
+        }
+
+        public IActionResult Supprimer(int id)
+        {
+            ConseilPlante cp = db.conseilPlantes.Include(c => c.plantes).Where(cc => cc.Id == id).FirstOrDefault();
+            foreach(Plante p in cp.plantes.ToList()) {
+                cp.plantes.Remove(p);
+            }
+            db.conseilPlantes.Remove(cp);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+        public IActionResult Modifier(int id)
+        {
+            if (TempData["erorImageM"] != null)
+            {
+                ViewBag.eror = true;
+            }
+            ViewBag.plante = db.plantes.ToList();
+            return View(db.conseilPlantes.Include(c => c.webMaster).Include(c => c.plantes).Where(cc => cc.Id == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public IActionResult Modifier(Models.ConseilPlante conseil, int[] plante)
+        {
+            List<Plante> plantes = new List<Plante>();
+            if (plante != null)
+            {
+                ConseilPlante cs = db.conseilPlantes.Include(c => c.plantes).Where(cc => cc.Id == conseil.Id).FirstOrDefault();
+                foreach (Plante ct in cs.plantes.ToList())
+                {
+                    cs.plantes.Remove(ct);
+                }
+                db.SaveChanges();
+                db.Entry(cs).State = EntityState.Detached;
+                for (int i = 0; i < plante.Count(); i++)
+                {
+                    Models.Plante pln= db.plantes.Where(c => c.Id == plante[i]).FirstOrDefault();
+                    plantes.Add(pln);
+                }
+                conseil.plantes = plantes;
+            }
+            if (conseil.File != null)
+            {
+                String[] ext = { ".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma", ".aiff" };
+                String file_ext = Path.GetExtension(conseil.File.FileName).ToLower();
+                if (!ext.Contains(file_ext))
+                {
+                    TempData["erorImageM"] = true;
+                    return RedirectToAction("Modifier");
+                }
+                if (ext.Contains(file_ext))
+                {
+                    String newName = Guid.NewGuid() + conseil.File.FileName;
+                    String path_file = Path.Combine("wwwroot/Audio", newName);
+                    conseil.audio = newName;
+                    using (FileStream stream = System.IO.File.Create(path_file))
+                    {
+                        conseil.File.CopyTo(stream);
+                    }
+
+                }
+
+            }
+
+            conseil.Id_WebMaster = 4;
+            db.conseilPlantes.Update(conseil);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+      
     }
 }
