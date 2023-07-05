@@ -57,5 +57,14 @@ namespace Fallah_App.Controllers.Client
         {
             return View();
         }
+
+        public IActionResult MesResultat()
+        {
+            //dirli hna resltat dial agriculteur where m session 
+            return View();
+        }
+
+
+
     }
 }
