@@ -21,9 +21,16 @@ namespace Fallah_App.Controllers.Client
         { 
             
             HttpContext httpContext = context.HttpContext;
-            int idLog = (int)httpContext.Session.GetInt32("id");
-            context.HttpContext.Items["listNotif"] = data.agriculteurNotifications.Include(u=>u.Notification).Include(a=>a.Agriculteur).Where(a => a.Agriculteur.Id == idLog && a.IsSeen == false).ToList();
-            context.HttpContext.Items["count"] = data.agriculteurNotifications.Where(u => u.Agriculteur.Id == idLog && u.IsSeen == false).Count();
+            if(httpContext.Session.GetInt32("id")!=null)
+            {
+
+                int idLog = (int)httpContext.Session.GetInt32("id");
+                context.HttpContext.Items["listNotif"] = data.agriculteurNotifications.Include(u => u.Notification).Include(a => a.webMaster).Where(a => a.Agriculteur.Id == idLog && a.IsSeen == false).Take(5).ToList();
+                context.HttpContext.Items["count"] = data.agriculteurNotifications.Where(u => u.Agriculteur.Id == idLog && u.IsSeen == false).Count();
+
+            }
+          else  context.Result = RedirectToAction("login", "authentification");
+
 
         }
 
