@@ -1,0 +1,87 @@
+﻿
+@section title{
+    <title>Liste des Conseil des Plante</title>
+}
+
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2> Conseil Plante</h2>
+                                    <p>Liste des Conseils Plante</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcomb area End-->
+<!-- Data Table area Start-->
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Text_Arabe</th>
+                                    <th>Text_Francais</th>
+                                    <th>Quantite_Eau</th>
+                                    <th>Date_De_Creation</th>
+                                    <th>Date_De_Modification</th>
+                                    <th>nbr_Modif</th>
+                                    <th>Temperature_Max</th>
+                                    <th>Temperature_Min</th>
+                                    <th>Humidite_Max</th>
+                                    <th>Humidite_Min</th>
+                                    <th>Vent_Max</th>
+                                    <th>Vent_Min</th>
+                                    <th>webMaster</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ConseilPlante c in ViewBag.conseilPlantes)
+                                {
+                                    <tr>
+                                        <td>@c.Text_Arabe</td>
+                                        <td>@c.Text_Francais</td>
+                                        <td>@c.Quantite_Eau</td>
+                                        <td>@c.Date_De_Creation</td>
+                                        <td>@c.Date_De_Modification</td>
+                                        <td>@c.nbr_Modif</td>
+                                        <td>@c.Temperature_Max</td>
+                                        <td>@c.Temperature_Min</td>
+                                        <td>@c.Humidite_Max</td>
+                                        <td>@c.Humidite_Min</td>
+                                        <td>@c.Vent_Max</td>
+                                        <td>@c.Vent_Min</td>
+                                        <td>@c.webMaster.Nom</td>
+                                        <td>
+                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Resultat?id=@c.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="resultat pour cette Conseil" title="" data-original-title="Resultat">
+                                                <i class="notika-icon notika-draft"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
 using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +14,11 @@ namespace Fallah_App.Controllers
     {
         IMemoryCache memoryCache;
 
-        MyContext db;
-        public HomeController( IMemoryCache memoryCache,MyContext db)
-        {
+        public HomeController( IMemoryCache memoryCache)
+      {
             this.memoryCache = memoryCache;
-            this.db = db;
 
-        }
+ }
         public async Task<IActionResult> IndexAsync() 
         {
            // int id = (int)HttpContext.Session.GetInt32("id");
