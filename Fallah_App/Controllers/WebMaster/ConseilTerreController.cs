@@ -59,7 +59,7 @@ namespace Fallah_App.Controllers.WebMaster
                 }
 
             }
-            conseil.Id_WebMaster = 1;
+            conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
 
             db.conseilTerres.Add(conseil);
             db.SaveChanges();
@@ -152,7 +152,7 @@ namespace Fallah_App.Controllers.WebMaster
                 }
 
             }
-            conseil.Id_WebMaster = 1;
+            conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
            
             
             db.conseilTerres.Update(conseil);
