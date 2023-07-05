@@ -29,9 +29,9 @@ builder.Services.AddSession(opt =>
     );
 }); 
 }); 
-<<<<<<< .minebuilder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);*/
-=======builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true*/
->>>>>>> .theirs
+.minebuilder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true); */
+
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {
     builder.Services.AddDbContext<MyContext>(opt =>
