@@ -13,19 +13,14 @@ namespace Fallah_App.Controllers
     public class HomeController : Controller
     {
         IMemoryCache memoryCache;
-
+              MyContext db;
         public HomeController( IMemoryCache memoryCache,MyContext db)
-     {
+        {
             this.memoryCache = memoryCache;
+           
             this.db = db;
-       }
 
-
-        public HomeController( IMemoryCache memoryCache)
-      {
-            this.memoryCache = memoryCache;
-
- }
+      }
         public async Task<IActionResult> IndexAsync() 
         {
            // int id = (int)HttpContext.Session.GetInt32("id");
