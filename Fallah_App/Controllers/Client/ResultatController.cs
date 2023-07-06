@@ -31,7 +31,7 @@ namespace Fallah_App.Controllers.Client
         }
         public IActionResult resultat(int id)
         {
-            if(id==null)
+           if(id==null)
             {
                 return RedirectToAction("listConseilPlant");
             }
@@ -41,10 +41,11 @@ namespace Fallah_App.Controllers.Client
                 TempData["id"] = p.Id;
             }
             return RedirectToAction("listConseilPlant");
+            return View();
         }
         [HttpPost]
         //khas filtre...
-        public IActionResult resultatConseilPlante(Resultat r)
+        public IActionResult resultat(Resultat r)
         {  
             r.Date_De_Saisie= DateTime.Now;
             r.Id_agriculteurForme = (int)HttpContext.Session.GetInt32("id");
@@ -57,14 +58,11 @@ namespace Fallah_App.Controllers.Client
         {
             return View();
         }
-
         public IActionResult MesResultat()
         {
-            //dirli hna resltat dial agriculteur where m session 
+            int id = (int)HttpContext.Session.GetInt32("id");
+            ViewBag.list = db.resultats.Include(a => a.ConseilPlante).ThenInclude(b => b.plantes).Where(e => e.Id_agriculteurForme == id).ToList();
             return View();
         }
-
-
-
     }
 }

@@ -2,6 +2,7 @@
 using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 
 namespace Fallah_App.Controllers
@@ -143,6 +144,28 @@ namespace Fallah_App.Controllers
             smtpClient.EnableSsl = true;
             smtpClient.Send(message);
             return randomNumber;
+        }
+        public IActionResult CompteAgriculteur()
+        {
+            int id = (int)HttpContext.Session.GetInt32("id");
+            return View(db.users.OfType<Agriculteur>().Where(a => a.Id == id).FirstOrDefault());
+        }
+        public IActionResult CompteWebMaster()
+        {
+            int id = (int)HttpContext.Session.GetInt32("id");
+            db.users.OfType<Models.WebMaster>().Where(a=>a.Id== id).FirstOrDefault();
+            return View();
+        }
+        public IActionResult ModifierCompte(int id)
+        {
+            return View(db.users.OfType<Agriculteur>().Where(a => a.Id == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public IActionResult ModifierCompte(Agriculteur a)
+        {   
+            db.users.Update(a);
+            db.SaveChanges();
+            return RedirectToAction("CompteAgriculteur");
         }
     }
 }

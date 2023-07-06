@@ -29,7 +29,12 @@ builder.Services.AddSession(opt =>
     );
 }); 
 }); 
-<<<<<<< .minebuilder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);*/
+
+.minebuilder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true); 
+
+ .minebuilder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);*/
+
 
 if (Environment.GetEnvironmentVariable("DB_NAME") != null)
 {

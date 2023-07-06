@@ -15,9 +15,6 @@ namespace Fallah_App.Controllers
 
             this.db = db;
         }
-       
-       
-    
         public IActionResult Ajouter()
         {
             if (TempData["erorImage"] != null)

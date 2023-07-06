@@ -173,17 +173,17 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult Specefic()
         {
-           
+            ViewBag.listDesPlantes= db.plantes.ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult Specefic(Notification notif)
+        public IActionResult Specefic(Notification notif,Plante p)
         {
             Notification notification = db.notifications.Find(notif.Id);
-            List<Agriculteur> agriculteurs = db.users.OfType<Agriculteur>().ToList();
-
-
-
+            Plante plante =db.plantes.Find(p.Id);
+            List<Agriculteur> agriculteurs = db.users.OfType<Agriculteur>().Include(a => a.Terres).ThenInclude(q => q.plantes).Where(a => a.Terres.Any(t => t.plantes.Any(p => p.Nom == plante.Nom))).ToList();
+            if(agriculteurs!=null)
+            {  
             foreach (Agriculteur u in agriculteurs)
             {
                 AgriculteurNotification agriculteurNotification = new AgriculteurNotification();
@@ -192,6 +192,7 @@ namespace Fallah_App.Controllers.WebMaster
                 agriculteurNotification.IsSeen = false;
                 agriculteurNotification.webmasterid = (int)HttpContext.Session.GetInt32("id");
                 db.agriculteurNotifications.Add(agriculteurNotification);
+            }
             }
             db.SaveChanges();
             return RedirectToAction("List");
