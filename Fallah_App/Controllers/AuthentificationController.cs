@@ -161,10 +161,11 @@ namespace Fallah_App.Controllers
             return View(db.users.OfType<Agriculteur>().Where(a => a.Id == id).FirstOrDefault());
         }
         [HttpPost]
-        public IActionResult ModifierCompte(User u)
-        {
-
-            return View();
+        public IActionResult ModifierCompte(Agriculteur a)
+        {   
+            db.users.Update(a);
+            db.SaveChanges();
+            return RedirectToAction("CompteAgriculteur");
         }
     }
 }

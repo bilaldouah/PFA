@@ -134,7 +134,9 @@
                         <span class="value">@Model.Login</span>
                     </div>
                     <div class="contact">
-                        <button class="btn btn-yellow notika-btn-yellow" asp-route-id="@Model.Id" asp-controller="Authentification" asp-action="Modifier" type="submit" id="btn">Modifier</button>
+                        <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="ModifierCompte?id=@Model.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette Agriculteur" title="" data-original-title="modifier">
+                            <i class="notika-icon notika-draft"></i>
+                        </a>
                     </div>
                 </div>
             </div>
