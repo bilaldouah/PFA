@@ -61,7 +61,7 @@ namespace Fallah_App.Controllers.Client
         public IActionResult MesResultat()
         {
             int id = (int)HttpContext.Session.GetInt32("id");
-            ViewBag.list=db.resultats.Where(a=>a.Id_agriculteurForme==id).ToList();
+            ViewBag.list = db.resultats.Include(a => a.ConseilPlante).ThenInclude(b => b.plantes).Where(e => e.Id_agriculteurForme == id).ToList();
             return View();
         }
     }

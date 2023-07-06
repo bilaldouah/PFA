@@ -36,38 +36,25 @@
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Date de Naissance</th>
-                                    <th>Date de demande</th>
-                                    <th>Statut</th>
-                                    <th>Detail</th>
-                                    <th>Action</th>
-
+                                    <th>Description</th>
+                                    <th>Date_De_Saisie</th>
+                                    <th>Statut_Favorable</th>
+                                    <th>agriculteurForme</th>
+                                    <th>plantes</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Resultat r in ViewBag.list)
+                                @foreach (var r in ViewBag.list)
                                 {
                                     <tr>
                                         <td>@r.Description</td>
                                         <td>@r.Date_De_Saisie</td>
                                         <td>@r.Statut_Favorable</td>
                                         <td>@r.agriculteurForme.Nom</td>
+                                        <td>@r.ConseilPlante.plantes.Nom</td>
                                     </tr>
                                 }
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Date de Naissance</th>
-                                    <th>Date de demande</th>
-                                    <th>Statut</th>
-                                    <th>Detail</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
