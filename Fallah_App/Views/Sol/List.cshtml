@@ -1,25 +1,25 @@
 ﻿@model List<Fallah_App.Models.Sol>
 @section title{
-    <title>Liste des Sol</title>
+    <title>Liste des Sols</title>
 }
 
-<div class="breadcomb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcomb-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcomb-wp">
-                                <div class="breadcomb-icon">
-                                    <i class="notika-icon notika-windows"></i>
-                                </div>
-                                <div class="breadcomb-ctn">
-                                    <h2>Liste des Sols</h2>
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
 
-                                    <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="ajouter" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Ajouter Categorie" title="" data-original-title="Ajouter">
-                                        Ajouter
-                                    </a>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcomb-wp">
+                                    <div class="breadcomb-icon">
+                                        <i class="notika-icon notika-windows"></i>
+                                    </div>
+                                    <div class="breadcomb-ctn">
+                                        <h2>Sol</h2>
+                                        <p>Liste des Sols</p>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-</div>
 <!-- Breadcomb area End-->
 <!-- Data Table area Start-->
 <div class="data-table-area">
@@ -44,6 +43,7 @@
                                     <th>Type</th>
                                     <th>Couleur</th>
                                     <th>Acidité</th>
+                                    <th>Action</th>
 
 
                                 </tr>
@@ -53,13 +53,14 @@
                                 {
                                     <tr>
                                         <td>@s.Type</td>
-                                        <td>@s.Couleur</td>
+                                        <td><input type="color" value="@s.Couleur" readonly/></td>
                                         <td>@s.Acidite</td>
                                         <td>
-                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Modifier?id=@s.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette Categorie" title="" data-original-title="modifier">
-                                                <i class="notika-icon notika-draft"></i>
+
+                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg" asp-controller="Sol" asp-action="Modifier" asp-route-id="@s.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette Categoriesol" data-original-title="Modifier">
+                                                <i class="notika-icon notika-edit"></i>
                                             </a>
-                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg" href="Supprimer?id=@s.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer cette categorie" title="" data-original-title="supprimer">
+                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="Supprimer" data-text="La Plante vas étre supprimer" data-href="/Sol/Supprimer/@s.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer cette sol" data-original-title="Supprimer">
                                                 <i class="notika-icon notika-close"></i>
                                             </a>
 
@@ -67,7 +68,17 @@
                                     </tr>
                                 }
                             </tbody>
+                            <tfoot>
+                                <tr>
 
+                                    <th>Type</th>
+                                    <th>Couleur</th>
+                                    <th>Acidité</th>
+                                    <th>Action</th>
+
+
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

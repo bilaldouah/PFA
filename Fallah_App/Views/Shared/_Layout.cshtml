@@ -89,6 +89,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
+                            @if(Context.Session.GetString("role")!= "WebMaster"){
                             <li class="nav-item dropdown">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-alarm"></i></span></a>
                                 <div role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
@@ -98,91 +99,91 @@
                                     <div class="hd-message-info">
                                         @{
                                             var myData = Context.Items["listNotif"];
-
-                                            @if (myData != null)
+                                           }
+                                                            @if (myData != null)
                                             {
 
-                                                @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
+                                                                @foreach (AgriculteurNotification n in myData as List<AgriculteurNotification>)
                                                 {
-                                                    if (n.Notification.type == "conseil")
+                                                    @if (n.Notification.type == "conseil")
                                                     {
-                                                        <a class="nk-light-blue text-center" asp-controller="ConseilAujourdhui" asp-action="Index">
-                                                            <div class="hd-message-sn">
-                                                                <div class="">
-                                                                    <img style="width: 50%" src="/images/notif.png">
-                                                                </div>
-                                                                <div class="hd-mg-ctn">
+                                                                        <a class="nk-light-blue text-center" asp-controller="ConseilAujourdhui" asp-action="Index">
+                                                                            <div class="hd-message-sn">
+                                                                                <div class="">
+                                                                                    <img style="width: 50%" src="/images/notif.png">
+                                                                                </div>
+                                                                                <div class="hd-mg-ctn">
 
 
-                                                                    <h3>@n.webMaster.Nom</h3>
+                                                                                    <h3>@n.webMaster.Nom</h3>
 
                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
-                                                                        <p> @n.Notification.TextArabe </p>
+                                                                                        <p> @n.Notification.TextArabe </p>
                                                                     }
                                                                     else
                                                                     {
-                                                                      <p>@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                                      <p>@n.Notification.TextFrancais @n.Notification.TextArabe </p>
                                                                     }
-                                                                </div>
-                                                            </div>
-                                                        </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
                                                     }
                                                     @if (n.Notification.type == "risque")
                                                     {
 
-                                                        <a class="nk-deep-orange sa-title text-center">
+                                                                        <a class="nk-deep-orange sa-title text-center">
 
-                                                            <div class="hd-message-sn">
-                                                                <div class="">
-                                                                    <img style="width: 50%" src="/images/notif.png">
-                                                                </div>
-                                                                <div class="hd-mg-ctn">
+                                                                            <div class="hd-message-sn">
+                                                                                <div class="">
+                                                                                    <img style="width: 50%" src="/images/notif.png">
+                                                                                </div>
+                                                                                <div class="hd-mg-ctn">
 
 
-                                                                    <h3>@n.webMaster.Nom</h3>
-                                                                    @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
+                                                                                    <h3>@n.webMaster.Nom</h3>
+                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
-                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
+                                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
                                                                     }
                                                                     else
 
                                                                     {
-                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
                                                                     }
-                                                                </div>
-                                                            </div>
-                                                        </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
 
                                                     }
                                                     @if (n.Notification.type == "informatif")
                                                     {
 
-                                                        <a class="nk-light-green sa-title text-center">
+                                                                        <a class="nk-light-green sa-title text-center">
 
-                                                            <div class="hd-message-sn">
-                                                                <div class="">
-                                                                    <img style="width: 50%" src="/images/notif.png">
-                                                                </div>
-                                                                <div class="hd-mg-ctn">
+                                                                            <div class="hd-message-sn">
+                                                                                <div class="">
+                                                                                    <img style="width: 50%" src="/images/notif.png">
+                                                                                </div>
+                                                                                <div class="hd-mg-ctn">
 
 
-                                                                    <h3>@n.webMaster.Nom</h3>
+                                                                                    <h3>@n.webMaster.Nom</h3>
                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
-                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
+                                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
                                                                     }
 
 
-                                                                </div>
-                                                            </div>
-                                                        </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
 
 
 
@@ -217,7 +218,7 @@
                                             }
 
      
-  }
+  
 
                                     </div>
                                     <div class="hd-mg-va">
@@ -225,15 +226,38 @@
                                     </div>
                                 </div>
                             </li>
+                                }
+                            <li class="nav-item" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Consulter votre compte" title="" data-original-title="Compte">
+                                @if(Context.Session.GetString("role") == "WebMaster")
+                                {
+                                <a asp-controller="Authentification" asp-action="CompteWebMaster" class="nav-link dropdown-toggle"/>
 
-                            <li class="nav-item">
+                                }else{
+                                 <a asp-controller="Authentification" asp-action="CompteAgriculteur" class="nav-link dropdown-toggle"/>
+
+                                }
+                                    <span>
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
+
+                                    </span>
+                                     @if(Context.Session.GetString("role") != "WebMaster")
+                                {
+                                    <div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>@Context.Items["count"]</span></div>
+                                }
+                                </a>
+                               
+                            </li>
+                            <li class="nav-item" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="Se Deconnecter" title="" data-original-title="Logout">
                                 <a asp-controller="Authentification" asp-action="LogOut" class="nav-link dropdown-toggle">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-</svg>
-                                    </span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>@Context.Items["count"]</span></div>
+                                            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                                            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                                        </svg>
+                                    </span>
                                 </a>
                                
                             </li>
@@ -243,9 +267,10 @@
             </div>
         </div>
     </div>
+    @if(Context.Session.GetString("role") == "WebMaster"){
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
-    <div class="mobile-menu-area">
+   <div class="mobile-menu-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -253,115 +278,41 @@
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
                                 <li>
-                                    <a data-toggle="collapse" data-target="#Charts" href="~/#">Home</a>
+                                    <a data-toggle="collapse" data-target="#Charts" href="~/#">Accueil</a>
                                     <ul class="collapse dropdown-header-top">
-                                        <li><a href="~/index.html">Dashboard One</a></li>
-                                        <li><a href="~/index-2.html">Dashboard Two</a></li>
-                                        <li><a href="~/index-3.html">Dashboard Three</a></li>
-                                        <li><a href="~/index-4.html">Dashboard Four</a></li>
-                                        <li><a href="~/analytics.html">Analytics</a></li>
-                                        <li><a href="~/widgets.html">Widgets</a></li>
+                                        <li><a asp-controller="" asp-action="">Statistique</a></li>
+                                        <li><a asp-controller="Home" >Meteo</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demoevent" href="~/#">Email</a>
+                                    <a data-toggle="collapse" data-target="#demoevent" href="~/#">Terre</a>
                                     <ul id="demoevent" class="collapse dropdown-header-top">
-                                        <li><a href="~/inbox.html">Inbox</a></li>
-                                        <li><a href="~/view-email.html">View Email</a></li>
-                                        <li><a href="~/compose-email.html">Compose Email</a></li>
+                                        <li><a asp-controller="Terre" asp-action="list">Liste</a></li>
+                                        <li><a asp-controller="Terre" asp-action="Ajouter">Ajouter</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#democrou" href="~/#">Interface</a>
+                                    <a data-toggle="collapse" data-target="#democrou" href="~/#">Conseil Plante</a>
                                     <ul id="democrou" class="collapse dropdown-header-top">
-                                        <li><a href="~/animations.html">Animations</a></li>
-                                        <li><a href="~/google-map.html">Google Map</a></li>
-                                        <li><a href="~/data-map.html">Data Maps</a></li>
-                                        <li><a href="~/code-editor.html">Code Editor</a></li>
-                                        <li><a href="~/image-cropper.html">Images Cropper</a></li>
-                                        <li><a href="~/wizard.html">Wizard</a></li>
+                                        <li><a asp-controller="Resultat" asp-action="listConseilPlant">Liste</a></li>
+                                        <li><a asp-controller="Resultat" asp-action="MesResultat">Mes Resultat</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demolibra" href="~/#">Charts</a>
+                                    <a data-toggle="collapse" data-target="#demolibra" href="~/#">Conseil Terre</a>
                                     <ul id="demolibra" class="collapse dropdown-header-top">
-                                        <li><a href="~/flot-charts.html">Flot Charts</a></li>
-                                        <li><a href="~/bar-charts.html">Bar Charts</a></li>
-                                        <li><a href="~/line-charts.html">Line Charts</a></li>
-                                        <li><a href="~/area-charts.html">Area Charts</a></li>
+                                        <li><a asp-controller="ConseilTerre" asp-action="ListConseil">List</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demodepart" href="~/#">Tables</a>
-                                    <ul id="demodepart" class="collapse dropdown-header-top">
-                                        <li><a href="~/normal-table.html">Normal Table</a></li>
-                                        <li><a href="~/data-table.html">Data Table</a></li>
-                                    </ul>
+                                    <a asp-controller="ConseilTerre" asp-action="ListConseil" >Conseil d'Aujourdhui</a>
+                                   
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Forms</a>
+                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Plante</a>
                                     <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="~/form-elements.html">Form Elements</a></li>
-                                        <li><a href="~/form-components.html">Form Components</a></li>
-                                        <li><a href="~/form-examples.html">Form Examples</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a data-toggle="collapse" data-target="#Miscellaneousmob" href="~/#">App views</a>
-                                    <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                        <li>
-                                            <a href="~/notification.html">Notifications</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/alert.html">Alerts</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/modals.html">Modals</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/buttons.html">Buttons</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/tabs.html">Tabs</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/accordion.html">Accordion</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/dialog.html">Dialogs</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/popovers.html">Popovers</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/tooltips.html">Tooltips</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/dropdown.html">Dropdowns</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a data-toggle="collapse" data-target="#Pagemob" href="~/#">Pages</a>
-                                    <ul id="Pagemob" class="collapse dropdown-header-top">
-                                        <li>
-                                            <a href="~/contact.html">Contact</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/invoice.html">Invoice</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/typography.html">Typography</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/color.html">Color</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/login-register.html">Login Register</a>
-                                        </li>
-                                        <li>
-                                            <a href="~/404.html">404 Page</a>
-                                        </li>
+                                        <li><a asp-controller="Plante" asp-action="Mesplantes">List</a></li>
+                                        <li><a asp-controller="Plante" asp-action="Ajouter">Ajouter</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -379,190 +330,224 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li class="active">
-                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Home</a>
+                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Accueil</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="~/#mailbox"><i class="notika-icon notika-mail"></i></a>
+                            <a data-toggle="tab" href="~/#mailbox"><i class="notika-icon notika-windows"></i>Terre</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="~/#Interface"><i class="notika-icon notika-edit"></i> Interface</a>
+                            <a data-toggle="tab" href="~/#Interface"><i class="notika-icon notika-edit"></i> Conseil Plante</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="~/#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
+                            <a data-toggle="tab" href="~/#Charts"><i class="notika-icon notika-edit"></i> Conseil Terre</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="~/#Tables"><i class="notika-icon notika-windows"></i> Tables</a>
+                            <a data-toggle="tab" href="~/#Tables"><i class="notika-icon notika-form"></i>Conseil d'Aujourdhui</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="~/#Forms"><i class="notika-icon notika-form"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="~/#Appviews"><i class="notika-icon notika-app"></i> App views</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="~/#Page"><i class="notika-icon notika-support"></i> Pages</a>
+                            <a data-toggle="tab" href="~/#Forms"><i class="notika-icon notika-star"></i> Plante</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
                         <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
-                                    <a href="~/index.html">Dashboard One</a>
+                                    <a asp-controller="" asp-action="">Statistique</a>
                                 </li>
                                 <li>
-                                    <a href="~/index-2.html">Dashboard Two</a>
-                                </li>
-                                <li>
-                                    <a href="~/index-3.html">Dashboard Three</a>
-                                </li>
-                                <li>
-                                    <a href="~/index-4.html">Dashboard Four</a>
-                                </li>
-                                <li>
-                                    <a href="~/analytics.html">Analytics</a>
-                                </li>
-                                <li>
-                                    <a href="~/widgets.html">Widgets</a>
+                                    <a asp-controller="Home">Meteo</a>
                                 </li>
                             </ul>
                         </div>
                         <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
-                                    <a href="~/inbox.html">Inbox</a>
+                                     <a asp-controller="Terre" asp-action="list">Liste</a>
                                 </li>
                                 <li>
-                                    <a href="~/view-email.html">View Email</a>
-                                </li>
-                                <li>
-                                    <a href="~/compose-email.html">Compose Email</a>
+                                    <a asp-controller="Terre" asp-action="Ajouter">Ajouter</a>
                                 </li>
                             </ul>
                         </div>
                         <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
-                                    <a href="~/animations.html">Animations</a>
+                                      <a asp-controller="Resultat" asp-action="listConseilPlant">Liste</a>
                                 </li>
                                 <li>
-                                    <a href="~/google-map.html">Google Map</a>
-                                </li>
-                                <li>
-                                    <a href="~/data-map.html">Data Maps</a>
-                                </li>
-                                <li>
-                                    <a href="~/code-editor.html">Code Editor</a>
-                                </li>
-                                <li>
-                                    <a href="~/image-cropper.html">Images Cropper</a>
-                                </li>
-                                <li>
-                                    <a href="~/wizard.html">Wizard</a>
+                                        <a asp-controller="Resultat" asp-action="MesResultat">Mes Resultat</a>
                                 </li>
                             </ul>
                         </div>
                         <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
-                                    <a href="~/flot-charts.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="~/bar-charts.html">Bar Charts</a>
-                                </li>
-                                <li>
-                                    <a href="~/line-charts.html">Line Charts</a>
-                                </li>
-                                <li>
-                                    <a href="~/area-charts.html">Area Charts</a>
+                                    <a asp-controller="ConseilTerre" asp-action="ListConseil">List</a>                                
                                 </li>
                             </ul>
                         </div>
                         <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
-                                    <a href="~/normal-table.html">Normal Table</a>
-                                </li>
-                                <li>
-                                    <a href="~/data-table.html">Data Table</a>
+                                     <a asp-controller="ConseilTerre" asp-action="ListConseil" >Conseil d'Aujourdhui</a>
                                 </li>
                             </ul>
                         </div>
                         <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li>
-                                    <a href="~/form-elements.html">Form Elements</a>
-                                </li>
-                                <li>
-                                    <a href="~/form-components.html">Form Components</a>
-                                </li>
-                                <li>
-                                    <a href="~/form-examples.html">Form Examples</a>
-                                </li>
+                               <li><a asp-controller="Plante" asp-action="Mesplantes">List</a></li>
+                                        <li><a asp-controller="Plante" asp-action="Ajouter">Ajouter</a></li>
                             </ul>
                         </div>
-                        <div id="Appviews" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li>
-                                    <a href="~/notification.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="~/alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="~/modals.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="~/buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="~/tabs.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="~/accordion.html">Accordion</a>
-                                </li>
-                                <li>
-                                    <a href="~/dialog.html">Dialogs</a>
-                                </li>
-                                <li>
-                                    <a href="~/popovers.html">Popovers</a>
-                                </li>
-                                <li>
-                                    <a href="~/tooltips.html">Tooltips</a>
-                                </li>
-                                <li>
-                                    <a href="~/dropdown.html">Dropdowns</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li>
-                                    <a href="~/contact.html">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="~/invoice.html">Invoice</a>
-                                </li>
-                                <li>
-                                    <a href="~/typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="~/color.html">Color</a>
-                                </li>
-                                <li>
-                                    <a href="~/login-register.html">Login Register</a>
-                                </li>
-                                <li>
-                                    <a href="~/404.html">404 Page</a>
-                                </li>
-                            </ul>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    }
+    else{
+    <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li>
+                                    <a data-toggle="collapse" data-target="#Charts" href="~/#">Accueil</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a asp-controller="" asp-action="">Statistique</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#democrou" href="~/#">Conseil Plante</a>
+                                    <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li><a asp-controller="ConseilPlante" asp-action="List">Liste</a></li>
+                                        <li><a asp-controller="ConseilPlante" asp-action="Ajouter">Ajouter</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demolibra" href="~/#">Conseil Terre</a>
+                                    <ul id="demolibra" class="collapse dropdown-header-top">
+                                        <li><a asp-controller="ConseilTerre" asp-action="List">List</a></li>
+                                        <li><a asp-controller="ConseilTerre" asp-action="Ajouter">Ajouter</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demolibra" href="~/#">Notification</a>
+                                    <ul id="demolibra" class="collapse dropdown-header-top">
+                                        <li><a asp-controller="Notification" asp-action="List">List</a></li>
+                                        <li><a asp-controller="Notification" asp-action="Ajouter">Ajouter</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Plante</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a asp-controller="Plante" asp-action="Mesplantes">List</a></li>
+                                        <li><a asp-controller="Plante" asp-action="Ajouter">Ajouter</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Sol</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a asp-controller="Sol" asp-action="List">List</a></li>
+                                        <li><a asp-controller="Sol" asp-action="Ajouter">Ajouter</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Demandes</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a asp-controller="Demandes" asp-action="List">List</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <li class="active">
+                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Accueil</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Conseil Plante</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#Charts"><i class="notika-icon notika-edit"></i> Conseil Terre</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#Tables"><i class="notika-icon notika-mail"></i>Notification</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#Forms"><i class="notika-icon notika-star"></i> Plante</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#Forms2"><i class="notika-icon notika-refresh"></i> Sol</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#Forms3"><i class="notika-icon notika-support"></i> Demandes</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content custom-menu-content">
+                        <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a asp-controller="" asp-action="">Statistique</a>
+                                </li>
+                            </ul>
+                        </div>
+                            <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a asp-controller="ConseilPlante" asp-action="List">Liste</a></li>
+                                <li><a asp-controller="ConseilPlante" asp-action="Ajouter">Ajouter</a></li>
+                            </ul>
+                        </div>
+                            <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a asp-controller="ConseilTerre" asp-action="List">List</a></li>
+                                <li><a asp-controller="ConseilTerre" asp-action="Ajouter">Ajouter</a></li>
+                            </ul>
+                        </div>
+                        <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a asp-controller="Notification" asp-action="List">List</a></li>
+                                <li><a asp-controller="Notification" asp-action="Ajouter">Ajouter</a></li>
+                            </ul>
+                        </div>
+                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a asp-controller="Plante" asp-action="Mesplantes">List</a></li>
+                                <li><a asp-controller="Plante" asp-action="Ajouter">Ajouter</a></li>
+                            </ul>
+                        </div>
+                        <div id="Forms2" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a asp-controller="Sol" asp-action="List">List</a></li>
+                                <li><a asp-controller="Sol" asp-action="Ajouter">Ajouter</a></li>
 
-    <!-- Main Menu area End-->
+                            </ul>
+                        </div>
+                            <div id="Forms3" class="tab-pane notika-tab-menu-bg animated flipInX">
+                                <ul class="notika-main-menu-dropdown">
+                                    <li><a asp-controller="Demandes" asp-action="List">List</a></li>
+                                </ul>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
     @RenderBody()
     <!-- Start Footer area-->
     <div class="footer-copyright-area">

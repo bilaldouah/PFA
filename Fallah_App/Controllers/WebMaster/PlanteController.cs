@@ -93,12 +93,24 @@ namespace Fallah_App.Controllers.WebMaster
             {
                 return RedirectToAction("Index", "ERROR404");
             }
-            Plante plante = db.plantes.Find(id);
+            Plante plante = db.plantes.Include(p=>p.terres).Include(p=>p.notifications).Include(p=>p.conseilPlantes).Where(p=>p.Id==id).FirstOrDefault();
             if (plante == null)
             {
                 return RedirectToAction("Index", "ERROR404");
 
 
+            }
+            foreach(Terre t in plante.terres.ToList())
+            {
+                plante.terres.Remove(t);
+            }
+            foreach (Notification t in plante.notifications.ToList())
+            {
+                plante.notifications.Remove(t);
+            }
+            foreach (ConseilPlante t in plante.conseilPlantes.ToList())
+            {
+                plante.conseilPlantes.Remove(t);
             }
             db.plantes.Remove(plante);
             db.SaveChanges();

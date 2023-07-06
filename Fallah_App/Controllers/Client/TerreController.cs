@@ -20,7 +20,7 @@ namespace Fallah_App.Controllers.Client
             int id = (int)HttpContext.Session.GetInt32("id");
             return View(db.terres.Include(t=>t.Agriculteur).Where(t=>t.Agriculteur.Id==id).ToList());
         }
-        [FiltreAgriculteur]
+       
         public IActionResult Ajouter()
         {
             ViewBag.list = db.categoryTerres.ToList();

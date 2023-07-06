@@ -1,5 +1,6 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.Controllers.Client;
+using Fallah_App.les_filtres;
 using Fallah_App.Models;
 using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -10,22 +11,33 @@ using System.Globalization;
 
 namespace Fallah_App.Controllers
 {
+   
     public class HomeController : Controller
     {
         IMemoryCache memoryCache;
 
-        public HomeController( IMemoryCache memoryCache)
-      {
-            this.memoryCache = memoryCache;
-
- }
-        public async Task<IActionResult> IndexAsync() 
+        MyContext db;
+        public HomeController( IMemoryCache memoryCache ,MyContext db)
         {
-           // int id = (int)HttpContext.Session.GetInt32("id");
-            //float lat = db.users.OfType<Agriculteur>().Include(a=>a.Terres)
+            this.memoryCache = memoryCache;
+            this.db = db;
+
+        }
+        [FiltreAgriculteur]
+        public async Task<IActionResult> IndexAsync(int id) 
+        {
+            int idAgr = (int)HttpContext.Session.GetInt32("id");
+       
+            List<Terre> terres = db.terres.Include(t=>t.Agriculteur).Where(t=>t.Agriculteur.Id==idAgr).ToList();
+            if(terres.Count == 0)
+            {
+                return View("PasDeTerre");
+            }
+
+                Meteo meteo = await Meteo.getMeteo(terres[id].latitude, terres[id].longitude);
+                
 
 
-            Meteo meteo = await Meteo.getMeteo("34.68", "34.68");
             CultureInfo culture = new CultureInfo("fr-FR");
             ViewBag.Culture = culture;
 
@@ -77,8 +89,9 @@ namespace Fallah_App.Controllers
             {
                 icon.Add(i, "Rain showers.png");
             }
-
+            ViewBag.id = id;
             ViewBag.icon = icon;
+            ViewBag.Terre= terres;
             return View(meteo);
 
         }
