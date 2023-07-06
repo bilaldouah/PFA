@@ -17,7 +17,6 @@ namespace Fallah_App.Controllers.WebMaster
             this.memoryCache = memoryCache;
 
         }
-        [FiltreWebMaster]
         public IActionResult List()
         {
             RemplireCache();
