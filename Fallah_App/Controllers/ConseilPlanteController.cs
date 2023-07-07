@@ -138,6 +138,7 @@ namespace Fallah_App.Controllers
 
             conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
             db.conseilPlantes.Update(conseil);
+              
             db.SaveChanges();
             return RedirectToAction("List");
         }
