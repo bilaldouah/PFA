@@ -1,7 +1,7 @@
 ﻿@section title{
     <title>Information</title>
 }
-@section style{
+    @section style{
     <style>
 
         .user-info {
@@ -68,21 +68,22 @@
         }
     </style>
 }
-@model Fallah_App.Models.Agriculteur;
+    @model Fallah_App.Models.Agriculteur;
 <div class="breadcomb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcomb-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcomb-wp">
-                                <div class="breadcomb-icon">
-                                    <i class="notika-icon notika-support"></i>
-                                </div>
-                                <div class="breadcomb-ctn">
-                                    <h2>Information</h2>
-                                    <p>Les Information du Compte</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcomb-wp">
+                                    <div class="breadcomb-icon">
+                                        <i class="notika-icon notika-support"></i>
+                                    </div>
+                                    <div class="breadcomb-ctn">
+                                        <h2>Compte</h2>
+                                        <p>Vos Information</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,54 +92,47 @@
             </div>
         </div>
     </div>
-</div>
-<div class="contact-area">
-    <div class="container">
-        <div class="row">
-            <div class="contact-list ">
+    <div class="contact-area">
+        <div class="container">
+            <div class="row">
+                <div class="contact-list ">
 
-                <div class="user-info">
-                    <img src="~/imageClient/@Model.Image" alt="@Model.Nom @Model.Prenom">
-                    <div>
-                        <h3>@Model.Nom @Model.Prenom</h3>
-                        <p>@Model.Nom</p>
+                    <div class="user-info">
+                        <img src="~/imageClient/@Model.Image" alt="@Model.Nom @Model.Prenom">
+                        <div>
+                            <h3>@Model.Nom @Model.Prenom</h3>
+                        </div>
                     </div>
+                    <div class="user-details">
+                        <div class="contact">
+                            <span class="label">Nom:</span>
+                            <span class="value">@Model.Nom</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Prenom:</span>
+                            <span class="value">@Model.Prenom</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Email:</span>
+                            <span class="value">@Model.Email</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Telephone</span>
+                            <span class="value">@Model.Telephone</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Date de Naissance</span>
+                            <span class="value">@Model.Date_De_Naissance</span>
+                        </div>
+                        <div>
+                            <a class="btn btn-warning warning-icon-notika btn-reco-mg btn-button-mg" asp-controller="Authentification" asp-action="ModifierCompte" asp-route-id="@Model.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Modifier votre compte" title="" data-original-title="Modifer">
+                                Modifier
+                            </a>
+
+                        </div>
+                    
                 </div>
-                <div class="user-details">
-                    <div class="contact">
-                        <span class="label">Nom:</span>
-                        <span class="value">@Model.Nom</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Prenom:</span>
-                        <span class="value">@Model.Prenom</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Email:</span>
-                        <span class="value">@Model.Email</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Telephone</span>
-                        <span class="value">@Model.Telephone</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Date de Naissance</span>
-                        <span class="value">@Model.Date_De_Naissance</span>
-                    </div>
-                     <div class="contact">
-                        <span class="label">Date de Creation du compte</span>
-                        <span class="value">@Model.Date_Creation_Compte</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Login</span>
-                        <span class="value">@Model.Login</span>
-                    </div>
-                    <div class="contact">
-                        <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="ModifierCompte?id=@Model.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette Agriculteur" title="" data-original-title="modifier">
-                            <i class="notika-icon notika-draft"></i>
-                        </a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

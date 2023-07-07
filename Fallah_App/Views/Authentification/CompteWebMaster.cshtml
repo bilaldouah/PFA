@@ -92,41 +92,48 @@
         </div>
     </div>
 </div>
-<div class="contact-area">
-    <div class="container">
-        <div class="row">
-            <div class="contact-list ">
+    <div class="contact-area">
+        <div class="container">
+            <div class="row">
+                <div class="contact-list ">
 
-                <div class="user-info">
-                    <img src="~/imageAdmin/@Model.Image" alt="@Model.Nom @Model.Prenom">
-                    <div>
-                        <h3>@Model.Nom @Model.Prenom</h3>
-                        <p>@Model.Nom</p>
+                    <div class="user-info">
+                        <img src="~/imageAdmin/@Model.Image" alt="@Model.Nom @Model.Prenom">
+                        <div>
+                            <h3>@Model.Nom @Model.Prenom</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="user-details">
-                    <div class="contact">
-                        <span class="label">Nom:</span>
-                        <span class="value">@Model.Nom</span>
+                    <div class="user-details">
+                        <div class="contact">
+                            <span class="label">Nom:</span>
+                            <span class="value">@Model.Nom</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Prenom:</span>
+                            <span class="value">@Model.Prenom</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Email:</span>
+                            <span class="value">@Model.Email</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label">Login:</span>
+                            <span class="value">@Model.Login</span>
+                        </div>
+                        <div class="contact">
+                            <span class="label"></span>
+                            <span class="value"></span>
+                        </div>
+                        <div>
+                            <a class="btn btn-warning warning-icon-notika btn-reco-mg btn-button-mg" asp-controller="Authentification" asp-action="ModifierCompteWebMaster" asp-route-id="@Model.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Modifier votre compte" title="" data-original-title="Modifer">
+                                Modifier
+                            </a>
+
+                        </div>
+
                     </div>
-                    <div class="contact">
-                        <span class="label">Prenom:</span>
-                        <span class="value">@Model.Prenom</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Email:</span>
-                        <span class="value">@Model.Email</span>
-                    </div>
-                    <div class="contact">
-                        <span class="label">Login</span>
-                        <span class="value">@Model.Login</span>
-                    </div>
-                    <div class="contact">
-                        <button class="btn btn-yellow notika-btn-yellow" asp-all-route-id="@Model.Id" asp-controller="Authentification" asp-action="Modifier" type="submit" id="btn">Modifier</button>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-

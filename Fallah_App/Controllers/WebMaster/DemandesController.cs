@@ -50,6 +50,7 @@ namespace Fallah_App.Controllers.WebMaster
             {
                 AgriculteurForme agriculteurForme = new AgriculteurForme();
                 agriculteurForme.Nom = demande.Nom;
+                agriculteurForme.Telephone = demande.Telephone;
                 agriculteurForme.Prenom = demande.Prenom;
                 agriculteurForme.Date_De_Naissance = demande.Date_De_Naissance;
                 agriculteurForme.Login = demande.Login;
@@ -64,6 +65,7 @@ namespace Fallah_App.Controllers.WebMaster
                 Agriculteur agriculteur = new Agriculteur();
                 agriculteur.Nom = demande.Nom;
                 agriculteur.Prenom = demande.Prenom;
+                agriculteur.Telephone = demande.Telephone;
                 agriculteur.Date_De_Naissance = demande.Date_De_Naissance;
                 agriculteur.Login = demande.Login;
                 agriculteur.Password = demande.Password;

@@ -1,4 +1,4 @@
-﻿@model Fallah_App.Models.Agriculteur
+﻿@model Fallah_App.Models.WebMaster
 @section title
     {
     <title>Modifier Compte</title>
@@ -62,7 +62,7 @@
                                                 </div>
                                                 <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                     <div class="nk-int-st">
-                                                        <input class="form-control input-lg" asp-for="Nom" >
+                                                        <input class="form-control input-lg" asp-for="Nom">
                                                     </div>
                                                     <span asp-validation-for="Nom" class="text-danger"></span>
 
@@ -78,25 +78,9 @@
                                                 </div>
                                                 <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                     <div class="nk-int-st">
-                                                        <input class="form-control input-lg" asp-for="Prenom" >
+                                                        <input class="form-control input-lg" asp-for="Prenom">
                                                     </div>
                                                     <span asp-validation-for="Prenom" class="text-danger"></span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-example-int form-horizental">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                    <label class="hrzn-fm">Telephone</label>
-                                                </div>
-                                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                    <div class="nk-int-st">
-                                                        <input class="form-control input-lg" asp-for="Telephone">
-                                                    </div>
-                                                    <span asp-validation-for="Telephone" class="text-danger"></span>
 
                                                 </div>
                                             </div>
@@ -153,8 +137,8 @@
                                         </div>
                                     </div>
 
-                          
-                                   <div class="form-example-int mg-t-15">
+
+                                    <div class="form-example-int mg-t-15">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-7 col-sm-7 col-xs-12 dcenter">
                                                 <button class="btn btn-success notika-btn-success" type="submit">Modifier</button>

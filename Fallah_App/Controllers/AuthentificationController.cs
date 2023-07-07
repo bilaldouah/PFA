@@ -161,11 +161,135 @@ namespace Fallah_App.Controllers
             return View(db.users.OfType<Agriculteur>().Where(a => a.Id == id).FirstOrDefault());
         }
         [HttpPost]
-        public IActionResult ModifierCompte(Agriculteur a)
-        {   
+        public IActionResult ModifierCompte(Agriculteur a,IFormFile file)
+        {
+            String log = db.users.Where(u => u.Id == a.Id).Select(u => u.Login).FirstOrDefault();
+            String mail = db.users.Where(u => u.Id == a.Id).Select(u => u.Email).FirstOrDefault();
+            bool t = false;
+
+            User user = db.users.Where(l => l.Login == a.Login && l.Login!= log).FirstOrDefault();
+            User user_Email = db.users.Where(l => l.Email == a.Email && l.Email != mail).FirstOrDefault();
+            if (user != null)
+            {
+                ViewData["erorLogin"] = "Ce login est déjà utilise";
+                t = true;
+            }
+            if (user_Email != null )
+            {
+                ViewData["errorEmail"] = "Ce  Email est déjà utilise";
+                t = true;
+
+            }
+            if (file != null)
+            {
+                String[] extt = { ".jpg", ".png", ".jpeg" };
+                String file_extt = Path.GetExtension(file.FileName).ToLower();
+                if (!extt.Contains(file_extt))
+                {
+                    ViewData["erorImage"] = "Le choix de fichier doit être une image.";
+                    t = true;
+                }
+            }
+            if (t == true)
+            {
+                return View(a);
+            }
+            Agriculteur ag = db.users.OfType<Agriculteur>().Where(ass => ass.Id == a.Id).FirstOrDefault();
+            a.Date_Creation_Compte = ag.Date_Creation_Compte;
+            a.Date_De_Naissance = ag.Date_De_Naissance;
+            a.Password=ag.Password;
+            a.Image = ag.Image;
+            db.Entry(ag).State = EntityState.Detached;
+
+            if (file != null)
+            {
+                String[] ext = { ".jpg", ".png", ".jpeg" };
+                String file_ext = Path.GetExtension(file.FileName).ToLower();
+                if (ext.Contains(file_ext))
+                {
+                    String newName = Guid.NewGuid() + file.FileName;
+                    String path_file = Path.Combine("wwwroot/ImageClient", newName);
+                    a.Image = newName;
+                    db.users.Update(a);
+                    db.SaveChanges();
+                    using (FileStream stream = System.IO.File.Create(path_file))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                }
+            }
+
             db.users.Update(a);
             db.SaveChanges();
             return RedirectToAction("CompteAgriculteur");
+        }
+
+        public IActionResult ModifierCompteWebMaster(int id)
+        {
+            return View(db.users.OfType<Models.WebMaster>().Where(a => a.Id == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public IActionResult ModifierCompteWebMaster(Models.WebMaster a, IFormFile file)
+        {
+            String log = db.users.Where(u => u.Id == a.Id).Select(u => u.Login).FirstOrDefault();
+            String mail = db.users.Where(u => u.Id == a.Id).Select(u => u.Email).FirstOrDefault();
+            bool t = false;
+
+            User user = db.users.Where(l => l.Login == a.Login && l.Login != log).FirstOrDefault();
+            User user_Email = db.users.Where(l => l.Email == a.Email && l.Email != mail).FirstOrDefault();
+            if (user != null)
+            {
+                ViewData["erorLogin"] = "Ce login est déjà utilise";
+                t = true;
+            }
+            if (user_Email != null)
+            {
+                ViewData["errorEmail"] = "Ce  Email est déjà utilise";
+                t = true;
+
+            }
+            if (file != null)
+            {
+                String[] extt = { ".jpg", ".png", ".jpeg" };
+                String file_extt = Path.GetExtension(file.FileName).ToLower();
+                if (!extt.Contains(file_extt))
+                {
+                    ViewData["erorImage"] = "Le choix de fichier doit être une image.";
+                    t = true;
+                }
+            }
+            if (t == true)
+            {
+                return View(a);
+            }
+            Models.WebMaster ag = db.users.OfType<Models.WebMaster>().Where(ass => ass.Id == a.Id).FirstOrDefault();
+            a.Password = ag.Password;
+            a.Image = ag.Image;
+            db.Entry(ag).State = EntityState.Detached;
+
+            if (file != null)
+            {
+                String[] ext = { ".jpg", ".png", ".jpeg" };
+                String file_ext = Path.GetExtension(file.FileName).ToLower();
+                if (ext.Contains(file_ext))
+                {
+                    String newName = Guid.NewGuid() + file.FileName;
+                    String path_file = Path.Combine("wwwroot/ImageAdmin", newName);
+                    a.Image = newName;
+                    db.users.Update(a);
+                    db.SaveChanges();
+                    using (FileStream stream = System.IO.File.Create(path_file))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                }
+            }
+
+            db.users.Update(a);
+            db.SaveChanges();
+            return RedirectToAction("CompteWebMaster");
         }
     }
 }
