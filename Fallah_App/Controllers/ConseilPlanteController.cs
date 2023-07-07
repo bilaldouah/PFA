@@ -15,9 +15,6 @@ namespace Fallah_App.Controllers
 
             this.db = db;
         }
-       
-       
-    
         public IActionResult Ajouter()
         {
             if (TempData["erorImage"] != null)
@@ -62,7 +59,7 @@ namespace Fallah_App.Controllers
 
             }
            
-            csp.Id_WebMaster = 4;
+            csp.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
            
             db.conseilPlantes.Add(csp);
             csp.Date_De_Creation = DateTime.Now;
@@ -139,7 +136,7 @@ namespace Fallah_App.Controllers
 
             }
 
-            conseil.Id_WebMaster = 4;
+            conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
             db.conseilPlantes.Update(conseil);
               
             db.SaveChanges();

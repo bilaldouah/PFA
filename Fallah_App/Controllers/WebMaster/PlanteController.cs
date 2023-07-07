@@ -1,6 +1,8 @@
 ﻿using Fallah_App.Context;
+using Fallah_App.Migrations;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 namespace Fallah_App.Controllers.WebMaster
 {
@@ -41,9 +43,30 @@ namespace Fallah_App.Controllers.WebMaster
             ViewBag.mois = mois;
             return View(db.plantes.ToList());
         }
+
+        public IActionResult Mesplantes()
+        {
+            RemplireCache();
+            Dictionary<int, string> mois = new Dictionary<int, string>();
+
+            mois.Add(1, "Janvier");
+            mois.Add(2, "Février");
+            mois.Add(3, "Mars");
+            mois.Add(4, "Avril");
+            mois.Add(5, "Mai");
+            mois.Add(6, "Juin");
+            mois.Add(7, "Juillet");
+            mois.Add(8, "Août");
+            mois.Add(9, "Septembre");
+            mois.Add(10, "Octobre");
+            mois.Add(11, "Novembre");
+            mois.Add(12, "Décembre");
+            ViewBag.mois = mois;
+            int id = (int)HttpContext.Session.GetInt32("id");
+            return View(db.plantes.Include(p=>p.terres).ThenInclude(p=>p.Agriculteur).Where(t => t.terres.Any(e => e.Agriculteur.Id == id)).ToList());
+        }
         public IActionResult Ajouter()
         {
-
             return View();
         }
         [HttpPost]

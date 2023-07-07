@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Fallah_App.Models;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -24,6 +25,11 @@ namespace Fallah_App.Migrations
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
+        }
+
+        public static explicit operator terre(Terre v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

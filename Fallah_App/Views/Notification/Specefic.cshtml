@@ -1,1 +1,47 @@
-﻿
+﻿@model Fallah_App.Models.Plante
+@section title{
+    <title>envoyer une notification</title>
+}
+ <head>
+    @section style
+        {
+        <link rel="stylesheet" href="~/css/bootstrap-select/bootstrap-select.css">
+  
+    }
+
+ </head>
+<body>
+
+    <form method="Post">
+        <div class="summernote-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="summernote-wrap mg-t-30">
+                            <div class="cmp-tb-hd text-center">
+                                <div class="w-100 ">
+                                    <h4>choisir un plante</h4>
+                                    <select asp-for="Id" class="selectpicker" data-live-search="true">
+                                        @foreach (Plante p in ViewBag.listDesPlantes)
+                                        {
+                                            <option class="text-center" value="@p.Id">@p.Nom</option>
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success notika-btn-success waves-effect btn-lg">Envoyer</button>
+                               
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+@section script
+    {
+    <script src="~/js/bootstrap-select/bootstrap-select.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+  }

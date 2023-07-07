@@ -2,6 +2,7 @@
 using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 
 namespace Fallah_App.Controllers
@@ -72,7 +73,7 @@ namespace Fallah_App.Controllers
             if(user != null)
             {
                 TempData["id"]=user.Id;
-                TempData["nbr"]= EnvoyerNombre();
+                TempData["nbr"]= EnvoyerNombre(user.Email);
                 return View("NombreDeRecuperation");
             }
             ViewBag.Emaileror = true;
@@ -127,7 +128,7 @@ namespace Fallah_App.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
-        public int EnvoyerNombre()
+        public int EnvoyerNombre(string mail)
         {
             Random random = new Random();
 
@@ -137,12 +138,34 @@ namespace Fallah_App.Controllers
             string subject = "Modifier mot de passe ";
             string body = "Nous avons bien reçu votre demande de récupération de mot de passe. Pour procéder à la récupération, veuillez utiliser le code de vérification suivant :\r\n\r\n"+randomNumber+"\r\n\r\nVeuillez noter que ce code de vérification est valable pendant une durée limitée. Une fois que vous avez reçu cet e-mail, veuillez saisir le code dans le champ prévu à cet effet sur notre site Web.\r\n\r\nSi vous n'avez pas initié cette demande de récupération de mot de passe, veuillez ignorer cet e-mail et prendre les mesures appropriées pour sécuriser votre compte.\r\n\r\n| |\r\n| [ CODE :"+randomNumber+" ] |\r\n| |\r\nCordialement,\r\nL'équipe du FALLH_APP";
 
-            MailMessage message = new MailMessage(from, "anasszekhnini682@gmail.com", subject, body);
+            MailMessage message = new MailMessage(from, mail, subject, body);
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.Credentials = new System.Net.NetworkCredential("falla7app@gmail.com", "ifkbjdfapakuqixv");
             smtpClient.EnableSsl = true;
             smtpClient.Send(message);
             return randomNumber;
+        }
+        public IActionResult CompteAgriculteur()
+        {
+            int id = (int)HttpContext.Session.GetInt32("id");
+            return View(db.users.OfType<Agriculteur>().Where(a => a.Id == id).FirstOrDefault());
+        }
+        public IActionResult CompteWebMaster()
+        {
+            int id = (int)HttpContext.Session.GetInt32("id");
+            db.users.OfType<Models.WebMaster>().Where(a=>a.Id== id).FirstOrDefault();
+            return View();
+        }
+        public IActionResult ModifierCompte(int id)
+        {
+            return View(db.users.OfType<Agriculteur>().Where(a => a.Id == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public IActionResult ModifierCompte(Agriculteur a)
+        {   
+            db.users.Update(a);
+            db.SaveChanges();
+            return RedirectToAction("CompteAgriculteur");
         }
     }
 }

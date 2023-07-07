@@ -48,7 +48,8 @@
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>contenu</th>
+                                    <th>text français</th>
+                                    <th>text arabic</th>
                                     <th>type</th>
                                     <th>action</th>
                                 </tr>
@@ -57,7 +58,8 @@
                                 @foreach (Notification N in Model)
                                 {
                                     <tr>
-                                        <td>@N.TextFrancais @N.TextArabe</td>
+                                        <td>@N.TextFrancais</td>
+                                        <td>@N.TextArabe </td>
                                         <td>@N.type</td>
                                         <td>
 
@@ -70,7 +72,7 @@
                                             <a class="btn btn-lightblue lightblue-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="envoyer" data-text="Le Notification  vas etre Envoyer pour tous les agriculteures" data-href="/Notification/Broadcast/@N.Id" data-trigger="hover" data-toggle="popover" data-placement="top" title="" data-original-title="envoyer pour tous les agriculteures">
                                                 <i class="notika-icon notika-next"></i>
                                             </a>
-                                            <a class="btn btn-teal lightblue-icon-notika btn-reco-mg btn-button-mg sa-warning" data-href="/Notification/Specefic/@N.Id" data-trigger="hover" data-toggle="popover" data-placement="top" title="" data-original-title="envoyer pour un ou des agriculteures spécifique">
+                                            <a class="btn btn-teal lightblue-icon-notika btn-reco-mg btn-button-mg sa-warning" data-text="Le Notification  vas etre Envoyer a un ou des agriculteures spécifique" data-confirm="envoyer" data-href="/Notification/Specefic/@N.Id" data-trigger="hover" data-toggle="popover" data-placement="top" title="" data-original-title="envoyer pour un ou des agriculteures spécifique">
                                                 <i class="notika-icon notika-next"></i>
                                             </a>
                                         </td>
@@ -79,7 +81,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>contenu</th>
+                                    
+                                    <th>text français</th>
+                                    <th>text arabic</th>
+                                    <th>type</th>
                                     <th>action</th>
 
                                 </tr>

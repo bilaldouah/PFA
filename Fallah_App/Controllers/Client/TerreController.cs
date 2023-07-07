@@ -1,7 +1,9 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.les_filtres;
+using Fallah_App.Migrations;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
 namespace Fallah_App.Controllers.Client
@@ -16,18 +18,27 @@ namespace Fallah_App.Controllers.Client
 
         public IActionResult List()
         {
-            return View(db.terres.ToList());
+            int id = (int)HttpContext.Session.GetInt32("id");
+            return View(db.terres.Include(t=>t.Agriculteur).Where(t=>t.Agriculteur.Id==id).ToList());
         }
         [FiltreAgriculteur]
         public IActionResult Ajouter()
         {
             ViewBag.list = db.categoryTerres.ToList();
+            ViewBag.plante=db.plantes.ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult Ajouter(Terre t)
+        public IActionResult Ajouter(Terre t, int[] plantes)
         {
-                t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
+            t.Id_Agriculteur = (int)HttpContext.Session.GetInt32("id");
+            List<Plante> plante = new List<Plante>();
+            for (int i = 0; i < plantes.Count(); i++)
+            {
+                Models.Plante plante1 = db.plantes.Where(c => c.Id == plantes[i]).Include(c => c.terres).FirstOrDefault();
+                plante.Add(plante1);
+            }
+            t.plantes = plante;
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))
@@ -53,7 +64,11 @@ namespace Fallah_App.Controllers.Client
         }
         public IActionResult supprimer(int id)
         {
-            Terre t = db.terres.Find(id);
+            Models.Terre t= db.terres.Include(a => a.plantes).Where(f => f.Id == id).FirstOrDefault();
+            foreach (Plante p in t.plantes.ToList())
+            {
+                t.plantes.Remove(p);
+            }
             db.terres.Remove(t);
             db.SaveChanges();
             return RedirectToAction("list");

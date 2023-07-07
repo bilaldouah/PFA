@@ -17,7 +17,6 @@ namespace Fallah_App.Controllers.WebMaster
             this.memoryCache = memoryCache;
 
         }
-        [FiltreWebMaster]
         public IActionResult List()
         {
             RemplireCache();
@@ -83,7 +82,7 @@ namespace Fallah_App.Controllers.WebMaster
             db.SaveChanges();
             memoryCache.Remove("Demandes");
             RemplireCache();
-            EnvoyerEmailAcceptation();
+            EnvoyerEmailAcceptation(demande.Email);
             return RedirectToAction("List");
         }
 
@@ -116,7 +115,7 @@ namespace Fallah_App.Controllers.WebMaster
                 this.memoryCache.Set("Demandes", db.demandes.ToList(), TimeSpan.FromHours(2));
             }
         }
-        public void EnvoyerEmailAcceptation()
+        public void EnvoyerEmailAcceptation(string mail)
         {
             string from = "falla7app@gmail.com";
             string subject = "Acceptation de votre demande de compte";
@@ -128,7 +127,7 @@ namespace Fallah_App.Controllers.WebMaster
                 "Nous vous remercions de votre confiance et espérons vous offrir une expérience exceptionnelle chez FallahApp." +
                 "Cordialement,";
 
-            MailMessage message = new MailMessage(from,"anasszekhnini682@gmail.com", subject, body);
+            MailMessage message = new MailMessage(from,mail, subject, body);
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.Credentials = new System.Net.NetworkCredential("falla7app@gmail.com", "ifkbjdfapakuqixv");
             smtpClient.EnableSsl = true;
