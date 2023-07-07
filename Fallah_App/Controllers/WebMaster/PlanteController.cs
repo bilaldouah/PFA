@@ -41,6 +41,10 @@ namespace Fallah_App.Controllers.WebMaster
             mois.Add(11, "Novembre");
             mois.Add(12, "Décembre");
             ViewBag.mois = mois;
+            if (TempData["err"] != null)
+            {
+                ViewBag.Serr = true;
+            }
             return View(db.plantes.ToList());
         }
 
@@ -100,17 +104,11 @@ namespace Fallah_App.Controllers.WebMaster
 
 
             }
-            foreach(Terre t in plante.terres.ToList())
+            if (plante.terres.Count() != 0 || plante.conseilPlantes.Count() != 0 || plante.notifications.Count() != 0)
             {
-                plante.terres.Remove(t);
-            }
-            foreach (Notification t in plante.notifications.ToList())
-            {
-                plante.notifications.Remove(t);
-            }
-            foreach (ConseilPlante t in plante.conseilPlantes.ToList())
-            {
-                plante.conseilPlantes.Remove(t);
+                TempData["err"] = true;
+                return RedirectToAction("List");
+
             }
             db.plantes.Remove(plante);
             db.SaveChanges();

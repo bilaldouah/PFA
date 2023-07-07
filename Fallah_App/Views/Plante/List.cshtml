@@ -37,6 +37,9 @@
                  
                 <div class="data-table-list">
                     <div class="table-responsive">
+                        @if (ViewBag.Serr!=null){
+                            <h3 class="text-danger">La Supression est echoué La plante deja utilisé</h3>
+                        }
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>

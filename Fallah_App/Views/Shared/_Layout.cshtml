@@ -267,7 +267,7 @@
             </div>
         </div>
     </div>
-    @if(Context.Session.GetString("role") == "WebMaster"){
+    @if(Context.Session.GetString("role") != "WebMaster"){
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
    <div class="mobile-menu-area">
@@ -444,7 +444,7 @@
                                 <li>
                                     <a data-toggle="collapse" data-target="#demo" href="~/#">Plante</a>
                                     <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a asp-controller="Plante" asp-action="Mesplantes">List</a></li>
+                                        <li><a asp-controller="Plante" asp-action="List">List</a></li>
                                         <li><a asp-controller="Plante" asp-action="Ajouter">Ajouter</a></li>
                                     </ul>
                                 </li>
@@ -456,9 +456,12 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Demandes</a>
+                                    <a data-toggle="collapse" data-target="#demo" href="~/#">Compte</a>
                                     <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a asp-controller="Demandes" asp-action="List">List</a></li>
+                                        <li><a asp-controller="Demandes" asp-action="List">List des demandes</a></li>
+                                            <li><a asp-controller="Compte" asp-action="ListAgriculteur">List des Agriculteur</a></li>
+                                            <li><a asp-controller="WebMaster" asp-action="Ajouter">Ajouter WebMaster</a></li>
+                                            <li><a asp-controller="WebMaster" asp-action="List">Listes WebMaster</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -494,7 +497,7 @@
                             <a data-toggle="tab" href="#Forms2"><i class="notika-icon notika-refresh"></i> Sol</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#Forms3"><i class="notika-icon notika-support"></i> Demandes</a>
+                                <a data-toggle="tab" href="#Forms3"><i class="notika-icon notika-support"></i> Compte</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
@@ -525,7 +528,7 @@
                         </div>
                         <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a asp-controller="Plante" asp-action="Mesplantes">List</a></li>
+                                <li><a asp-controller="Plante" asp-action="List">List</a></li>
                                 <li><a asp-controller="Plante" asp-action="Ajouter">Ajouter</a></li>
                             </ul>
                         </div>
@@ -538,7 +541,10 @@
                         </div>
                             <div id="Forms3" class="tab-pane notika-tab-menu-bg animated flipInX">
                                 <ul class="notika-main-menu-dropdown">
-                                    <li><a asp-controller="Demandes" asp-action="List">List</a></li>
+                                    <li><a asp-controller="Demandes" asp-action="List">List des demandes</a></li>
+                                    <li><a asp-controller="Compte" asp-action="ListAgriculteur">List des Agriculteur</a></li>
+                                    <li><a asp-controller="WebMaster" asp-action="Ajouter">Ajouter WebMaster</a></li>
+                                    <li><a asp-controller="WebMaster" asp-action="List">Listes WebMaster</a></li>
                                 </ul>
                             </div>
 

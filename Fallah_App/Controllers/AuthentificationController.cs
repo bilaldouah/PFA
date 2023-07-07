@@ -153,8 +153,8 @@ namespace Fallah_App.Controllers
         public IActionResult CompteWebMaster()
         {
             int id = (int)HttpContext.Session.GetInt32("id");
-            db.users.OfType<Models.WebMaster>().Where(a=>a.Id== id).FirstOrDefault();
-            return View();
+            
+            return View(db.users.OfType<Models.WebMaster>().Where(a => a.Id == id).FirstOrDefault());
         }
         public IActionResult ModifierCompte(int id)
         {

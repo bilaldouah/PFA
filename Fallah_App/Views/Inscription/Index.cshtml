@@ -25,7 +25,7 @@
                             <div class="col-12 mb-4">
                                 <label for="email_address">Email Address *</label>
                                 <input type="email" class="form-control" id="email_address" asp-for="Email" >
-                                <span class="text-danger">@ViewData["errorEmail"]</span>
+                                    <span class="text-danger">@ViewData["errorEmail"]</span>
                                 <span asp-validation-for="Email"></span>
                             </div>
                             <div class="col-12 mb-4">
@@ -46,33 +46,28 @@
                             </div>
                             
                             <div class="col-md-6 mb-4">
-                                <label for="Password">Password</label>
+                                <label for="Password">Mot de passe</label>
                                 <input type="password" class="form-control" id="Password" asp-for="Password" >
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-4">
-                                <label for="conf_Password">Password</label>
+                                <label for="conf_Password">Confirmation</label>
                                 <input type="password" class="form-control" id="conf_Password" asp-for="conf_Password">
                                 <span asp-validation-for="conf_Password" class="text-danger"></span>
-                                <span class="text-danger">@ViewData["message1"]</span>
+                                    <span class="text-danger">@ViewData["message1"]</span>
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <input type="hidden" class="form-control" id="Date_Demande" asp-for="Date_Demande" value="@DateTime.Now">
-                            </div>
+                            
                             <div class="col-md-6 mb-4">
                                 <label for="file">choisie une image</label>
                                 <input type="file" class="form-control" asp-for="file" >
                                 <span class="text-danger">@ViewData["erorImage"]</span>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <input type="hidden" class="form-control"asp-for="Statut" value="false">
                             </div>
                             <div class="col-12">
                                 <div class="d-flex align-items-center">
                                     <!-- Single Checkbox -->
                                     <div class="custom-control custom-checkbox d-flex align-items-center mr-30">
                                         <input type="checkbox" class="custom-control-input" asp-for=forme id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Agriculteur former?</label>
+                                        <label class="custom-control-label" for="customCheck1">Vous etes former?</label>
                                     </div>
                                     <!-- Single Checkbox -->
                                 </div>

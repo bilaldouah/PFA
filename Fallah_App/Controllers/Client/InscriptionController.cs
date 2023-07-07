@@ -2,6 +2,7 @@
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -24,15 +25,7 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult Index(Demande d)
         {
-
-
-            if (d.conf_Password != d.Password)
-            {
-                ViewData["erorconfpass"] = "le mot de passe est confirmation de mot de passe pas le meme.";
-                return View(d);
-            }
-            else
-            {
+                bool t = false;
                 //recuperer le login dans table demande et user
                 Demande demande = db.demandes.Where(D => D.Login == d.Login).FirstOrDefault();
                 Demande demande_Email = db.demandes.Where(D => D.Email == d.Email).FirstOrDefault();
@@ -41,30 +34,48 @@ namespace Fallah_App.Controllers.Client
                 //comparer le login inserer avec le login deja dans la  base
                 if (demande != null || user != null)
                 {
-                    ViewData["erorLogin"] = "Ce login   est déjà inscrit ou une demande d'inscription est en cours.";
-                    return View(d);
+                    ViewData["erorLogin"] = "Ce login est déjà utilise";
+                    t = true;
                 }
                 if (user_Email != null || demande_Email != null)
                 {
-                    ViewData["errorEmail"] = "Ce  Email est déjà inscrit ou une demande d'inscription est en cours.";
-                    return View(d);
+                    ViewData["errorEmail"] = "Ce  Email est déjà utilise";
+                    t = true;
+                    
                 }
                 if (d.Password != d.conf_Password)
                 {
-                    ViewData["message1"] = "Le password et confiramation du password et diferent";
+                    ViewData["message1"] = "le mot de passe et la confirmation sont different";
+                    t = true;
+                   
+                }
+                
+                if (d.file == null)
+                {
+                    ViewData["erorImage"] = "L'image est obligatoire";
+                    t = true;
+                }
+                else
+                {
+                    String[] extt = { ".jpg", ".png", ".jpeg" };
+                    String file_extt = Path.GetExtension(d.file.FileName).ToLower();
+                    if (!extt.Contains(file_extt))
+                    {
+                        ViewData["erorImage"] = "Le choix de fichier doit être une image.";
+                        t = true;
+                    }
+                }
+                if (t == true)
+                {
                     return View(d);
                 }
                 //hashPassword
                 d.Password = HashPasswordWithSalt(d.Password);
                 d.Date_Demande = DateTime.Now;
+                d.Statut = false;
                 //importer image
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(d.file.FileName).ToLower();
-                if (!ext.Contains(file_ext))
-                {
-                    ViewData["erorImage"] = "Le choix de fichier doit être une image.";
-                    return View(d);
-                }
                 if (ext.Contains(file_ext))
                 {
                     String newName = Guid.NewGuid() + d.file.FileName;
@@ -79,10 +90,7 @@ namespace Fallah_App.Controllers.Client
 
                     ViewData["message"] = "La demande a été enregistrée avec succès.";
                 }
-
-            }
-            ViewData["message"] = "La demande a été enregistrée avec succès.";
-            return View();
+            return View(d);
         }
         public static string HashPasswordWithSalt(string password)
         {

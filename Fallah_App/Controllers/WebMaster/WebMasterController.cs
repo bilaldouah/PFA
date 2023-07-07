@@ -2,6 +2,7 @@
 using Fallah_App.Controllers.Client;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Fallah_App.Controllers.WebMaster
@@ -28,40 +29,58 @@ namespace Fallah_App.Controllers.WebMaster
         }
         [HttpPost]
         public IActionResult Ajouter(Models.WebMaster webMaster)
-        {
-        //    if(ModelState.IsValid)
-          //  {       
+        { 
                 //recuperer le login dans la table  user
-                Models.WebMaster login  = db.users.OfType<Models.WebMaster>().Where(D => D.Login == webMaster.Login).FirstOrDefault();
+                Models.User login  = db.users.Where(D => D.Login == webMaster.Login).FirstOrDefault();
                 Models.WebMaster Email = db.users.OfType<Models.WebMaster>().Where(D => D.Email == webMaster.Email).FirstOrDefault();
-
             //comparer le login inserer avec le login deja dans la  base
-
+            bool t = false;
+            if(webMaster.Password == null)
+            {
+                ViewData["samePasswordError"] = "le mot de passe est obligatoire";
+            }
             if (webMaster.PasswordConfirmation != webMaster.Password)
             {
-                ViewData["samePasswordError"] = "le mot de passe est confirmation de mot de passe pas le meme.";
+                ViewData["samePasswordError"] = "le mot de passe et la confirmation sont different";
+                t = true;
+            }
+            if (login != null)
+            {
+                ViewData["erorLogin"] = "Ce login est déjà utilise";
+                t = true;
+
+            }
+            if (Email != null)
+            {
+                ViewData["errorEmail"] = "Ce  Email est déjà utilise .";
+                t = true;
+
+            }
+
+            if (webMaster.file == null)
+            {
+                ViewData["erorImage"] = "L'image est obligatoire";
+                t = true;
+            }
+            else
+            {
+                String[] extt = { ".jpg", ".png", ".jpeg" };
+                String file_extt = Path.GetExtension(webMaster.file.FileName).ToLower();
+                if (!extt.Contains(file_extt))
+                {
+                    ViewData["erorImage"] = "Le choix de fichier doit être une image.";
+                    t = true;
+                }
+            }
+            if (t == true)
+            {
                 return View(webMaster);
             }
-            if (login != null )
-                {
-                    ViewData["erorLogin"] = "Ce login   est déjà inscrit.";
-                    return View(webMaster);
-                }
-                if (Email !=  null)
-                {
-                    ViewData["errorEmail"] = "Ce  Email est déjà inscrit .";
-                    return View(webMaster);
-                }
-               
-            
-                webMaster.Password= InscriptionController.HashPasswordWithSalt(webMaster.Password);           
+
+
+            webMaster.Password= InscriptionController.HashPasswordWithSalt(webMaster.Password);           
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(webMaster.file.FileName).ToLower();
-                if (!ext.Contains(file_ext))
-                {
-                    ViewBag.erorImage = "Le choix de fichier doit être une image.";
-                    return View(webMaster);
-                }
                 if (ext.Contains(file_ext))
                 {
                     String newName = Guid.NewGuid() + webMaster.file.FileName;
@@ -75,12 +94,12 @@ namespace Fallah_App.Controllers.WebMaster
                         webMaster.file.CopyTo(stream);
                     }
                    
-           //     }
-                return RedirectToAction("List");
-            }
+                }
+            return RedirectToAction("List");
 
-            return View(webMaster);
-           
+
         }
+
+        
     }
 }

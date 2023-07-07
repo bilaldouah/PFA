@@ -10,17 +10,15 @@ namespace Fallah_App.Controllers.WebMaster
     public class DemandesController : Controller
     {
         MyContext db;
-        IMemoryCache memoryCache;
-        public DemandesController(MyContext db,IMemoryCache memoryCache)
+        public DemandesController(MyContext db)
         {
             this.db = db;
-            this.memoryCache = memoryCache;
 
         }
         public IActionResult List()
         {
-            RemplireCache();
-            return View(this.memoryCache.Get<List<Demande>>("Demandes"));
+            
+            return View(db.demandes.ToList());
             //return View(db.demandes.ToList());
         }
         public IActionResult Information(int id)
@@ -29,8 +27,7 @@ namespace Fallah_App.Controllers.WebMaster
             {
                 return RedirectToAction("Index", "ERROR404");
             }
-            RemplireCache();
-            Demande demande = this.memoryCache.Get<List<Demande>>("Demandes").Where(demande => demande.Id == id).FirstOrDefault();
+            Demande demande = db.demandes.Where(demande => demande.Id == id).FirstOrDefault();
             if (demande == null)
             {
                 return RedirectToAction("Index", "ERROR404");
@@ -44,7 +41,6 @@ namespace Fallah_App.Controllers.WebMaster
             {
                 return RedirectToAction("Index", "ERROR404");
             }
-            RemplireCache();
             Demande demande = db.demandes.Where(demande => demande.Id == id).FirstOrDefault();
             if (demande == null)
             {
@@ -80,8 +76,6 @@ namespace Fallah_App.Controllers.WebMaster
 
             db.demandes.Remove(demande);
             db.SaveChanges();
-            memoryCache.Remove("Demandes");
-            RemplireCache();
             EnvoyerEmailAcceptation(demande.Email);
             return RedirectToAction("List");
         }
@@ -92,7 +86,6 @@ namespace Fallah_App.Controllers.WebMaster
             {
                 return RedirectToAction("Index", "ERROR404");
             }
-            RemplireCache();
             Demande demande = db.demandes.Find(id);
             if (demande == null)
             {
@@ -102,19 +95,10 @@ namespace Fallah_App.Controllers.WebMaster
             //demande.Id_WebMaster = (int)HttpContext.Session.GetInt32("webMasterID");
             db.demandes.Update(demande);
             db.SaveChanges();
-            memoryCache.Remove("Demandes");
-            RemplireCache();
+
             return RedirectToAction("List");
         }
 
-        public void RemplireCache()
-        {
-            List<Demande> demandes = null;
-            if (!this.memoryCache.TryGetValue("Demandes" ,out demandes))
-            {
-                this.memoryCache.Set("Demandes", db.demandes.ToList(), TimeSpan.FromHours(2));
-            }
-        }
         public void EnvoyerEmailAcceptation(string mail)
         {
             string from = "falla7app@gmail.com";

@@ -1,6 +1,7 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System.Numerics;
 
@@ -16,7 +17,10 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult List()
         {
-            
+            if (TempData["err"] != null)
+            {
+                ViewBag.Serr = true;
+            }
             return View(db.sols.ToList());
         }
         public IActionResult Ajouter()
@@ -39,7 +43,12 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult Supprimer(int id)
         {
-            Sol sol = db.sols.Find(id);
+            Sol sol = db.sols.Include(s=>s.terres).Where(s=>s.Id==id).FirstOrDefault();
+            if (sol.terres.Count() != 0)
+            {
+                TempData["err"] = true;
+                return RedirectToAction("List");
+            }
             db.sols.Remove(sol);
             db.SaveChanges();
             return RedirectToAction("List");

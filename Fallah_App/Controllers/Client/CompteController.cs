@@ -61,5 +61,15 @@ namespace Fallah_App.Controllers.Client
             
             return View();
         }
+    
+        public IActionResult ListAgriculteur()
+        {
+            
+            return View(db.users.OfType<Agriculteur>().ToList());
+        }
+        public IActionResult Information(int id)
+        {
+            return View(db.users.OfType<Agriculteur>().Where(a=>a.Id==id).FirstOrDefault());
+        }
     }
 }

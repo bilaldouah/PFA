@@ -2,6 +2,16 @@
 @section title{
     <title>List des admins</title>
 }
+ @section style
+    {
+        <style>
+    .img-responsive {
+  max-width: 100% !important;
+  height: 70px !important;
+}
+    </style>
+    }
+
 <div class="breadcomb-area">
     <div class="container">
         <div class="row">
@@ -15,8 +25,8 @@
                                     <i class="notika-icon notika-windows"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Liste des Admins</h2>
-                                    
+                                    <h2>Admins</h2>
+                                    <p>Liste des Admins</p>
 
                                 </div>
                             </div>
@@ -39,45 +49,29 @@
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Nom</th>
                                     <th>Prenom</th>
-                                    <th>Email</th>
-                            
-                                    <th>Action</th>
-
-
+                                    <th>Email</th>                            
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (WebMaster webMaster in ViewBag.listWebMaster)
                                 {
                                     <tr>
+                                        <td><img class="img-responsive" src="~/imageAdmin/@webMaster.Image" /></td>
                                         <td>@webMaster.Nom</td>
                                         <td>@webMaster.Prenom</td>
                                         <td>@webMaster.Email</td>
-                                   
-
-                                        <td>
-
-                                            <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg" asp-controller="WebMaster" asp-action="Modifier" asp-route-id="@webMaster.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Modifier  @webMaster.Nom" data-original-title="Modifier">
-                                                <i class="notika-icon notika-edit"></i>
-                                            </a>
-                                            <a class="btn btn-deeporange deeporange-icon-notika btn-reco-mg btn-button-mg sa-warning" data-confirm="Supprimer" data-text="Le Admin vas étre supprimer" data-href="/WebMaster/Supprimer/@webMaster.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="supprimer  @webMaster.Nom" data-original-title="Supprimer">
-                                                <i class="notika-icon notika-close"></i>
-                                            </a>
-
-                                        </td>
                                     </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Nom</th>
-                                    <th>Type</th>
-                                    <th>Mois de debut</th>
-                                    <th>Mois de fin</th>
-                                    <th>Action</th>
-
+                                    <th>Prenom</th>
+                                    <th>Email</th>
                                 </tr>
                             </tfoot>
                         </table>
