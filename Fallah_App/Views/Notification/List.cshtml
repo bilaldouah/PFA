@@ -37,6 +37,9 @@
                 <div class="data-table-list">
                   
                     <div class="table-responsive">
+                        @if (ViewBag.eror != null){
+                            <h4 class="text-danger text-center">Notification a ete deja envoye</h4>
+                        }
                         <table id="data-table-basic" class="table table-striped">
                             <thead>
                                 <tr>
