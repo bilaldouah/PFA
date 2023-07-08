@@ -8,19 +8,24 @@
 	var basiclinechart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: ["January", "February", "March"],
+			labels: ["January", "February", "March", "April", "May", "June",
+				"July", "August", "September", "October", "November", "December"],
 			datasets: [{
 				label: "My First dataset",
 				fill: false,
-                backgroundColor: '#00c292',
+				backgroundColor: '#00c292',
 				borderColor: '#00c292',
 				data: [9, 12, 19]
-            }, {
-                label: "My Second dataset",
+			}, {
+				label: "My Second dataset",
 				fill: false,
-                backgroundColor: '#fb9678',
+				backgroundColor: '#fb9678',
 				borderColor: '#fb9678',
-				data: [-12, -3, -4]
+					for(int i = 0;i<= 12; i++)
+	{
+		data: [-12, -3, -4]
+	}
+				
 				
 		}]
 		},

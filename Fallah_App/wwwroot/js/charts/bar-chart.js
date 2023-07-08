@@ -2,27 +2,38 @@
  "use strict";
 	 /*----------------------------------------*/
 	/*  1.  Bar Chart
-	/*----------------------------------------*/
+	/*----------------------------------------
 
 	var ctx = document.getElementById("barchart1");
+ 
+	var agriculteur = document.getElementsByClassName('Ag');
+	var countAg = agriculteur[0].getAttribute('data-Ag');
+
+	var agriculteurForme = document.getElementsByClassName('AgForme');
+	var countAgForme = agriculteurForme[0].getAttribute('data-AgForme');
+
+	var admin = document.getElementsByClassName('admin');
+	var countAdmins = admin[0].getAttribute('data-Admin');
+ 
 	var barchart1 = new Chart(ctx, {
+		 
 		type: 'bar',
 		data: {
-			labels: ["Red", "Blue", "Yellow", "Green"],
+			labels: ["agriculteur", "agriculteurForme", "admin"],
 			datasets: [{
 				label: 'Bar Chart',
-				data: [12, 19, 3, 5, 2, 3],
+				data: [countAg, countAgForme, countAdmins],
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgb(50,205,50, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)'
+					'rgba(255, 206, 86, 0.2)'
+			 
 				],
 				borderColor: [
 					'rgba(255,99,132,1)',
 					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)'
+					'rgba(255, 206, 86, 1)'
+			 
 				],
 				borderWidth: 1
 			}]
@@ -37,6 +48,7 @@
 			}
 		}
 	});
+	*/
 	/*----------------------------------------*/
 	/*  2.  Bar Chart vertical
 	/*----------------------------------------*/
