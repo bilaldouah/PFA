@@ -32,7 +32,7 @@ namespace Fallah_App.Controllers
             
             if (user != null)
             {
-
+                user.Date_Dernier_Auth = DateTime.Now;
                 HttpContext.Session.SetInt32("id", (int)user.Id);
 
                 if (user is Models.WebMaster)
