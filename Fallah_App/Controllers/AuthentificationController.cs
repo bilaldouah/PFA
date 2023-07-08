@@ -33,12 +33,14 @@ namespace Fallah_App.Controllers
             if (user != null)
             {
                 user.Date_Dernier_Auth = DateTime.Now;
+                db.users.Update(user);
+                db.SaveChanges();
                 HttpContext.Session.SetInt32("id", (int)user.Id);
 
                 if (user is Models.WebMaster)
                 {
                     HttpContext.Session.SetString("role", "WebMaster");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("List", "Sol");
 
                 }
                 if (user is Models.Agriculteur)

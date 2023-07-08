@@ -12,11 +12,11 @@ namespace Fallah_App.Controllers.WebMaster
 {
 
  
-    public class NotificationController : FilterNotifController
+    public class NotificationController : Controller
     {
         IMemoryCache memoryCache;
         MyContext db;
-        public NotificationController(MyContext db, IMemoryCache memoryCache):base(db)
+        public NotificationController(MyContext db, IMemoryCache memoryCache)
         {
 
             this.db = db;
