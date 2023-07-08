@@ -5,23 +5,23 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace Fallah_App.Controllers.Client
+namespace Fallah_App.Filters
 {
-    public class FilterNotifController : Controller
+    public class FilterNotifController : ActionFilterAttribute
     {
         MyContext data;
- 
+
         public FilterNotifController(MyContext data)
         {
             this.data = data;
-           
+
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
-        { 
-            
+        {
+
             HttpContext httpContext = context.HttpContext;
-            if(httpContext.Session.GetInt32("id")!=null)
+            if (httpContext.Session.GetInt32("id") != null)
             {
 
                 int idLog = (int)httpContext.Session.GetInt32("id");
@@ -29,7 +29,7 @@ namespace Fallah_App.Controllers.Client
                 context.HttpContext.Items["count"] = data.agriculteurNotifications.Where(u => u.Agriculteur.Id == idLog && u.IsSeen == false).Count();
 
             }
-          else  context.Result = RedirectToAction("login", "authentification");
+            else { context.Result = new RedirectResult("/Authentification/login"); return; }
 
 
         }
@@ -38,7 +38,7 @@ namespace Fallah_App.Controllers.Client
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-        
+
         }
     }
 }

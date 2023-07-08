@@ -12,26 +12,23 @@ namespace Fallah_App.Controllers.WebMaster
 {
 
  
-    public class NotificationController : FilterNotifController
+    public class NotificationController : Controller
     {
         IMemoryCache memoryCache;
         MyContext db;
-        public NotificationController(MyContext db, IMemoryCache memoryCache):base(db)
+        public NotificationController(MyContext db, IMemoryCache memoryCache)
         {
 
             this.db = db;
             this.memoryCache = memoryCache;
         }
-        public void RemplireCache()
-        {
-            if (this.memoryCache.Get<List<Notification>>("notifications") == null)
-            {
-                this.memoryCache.Set("notifications", db.notifications.ToList(), TimeSpan.FromHours(2));
-            }
-        }
+        
         public IActionResult List()
         {
-            RemplireCache();
+            if(TempData["err"] != null)
+            {
+                ViewBag.eror = true;
+            }
             return View(db.notifications.ToList());
         }
         public IActionResult seen()
@@ -113,10 +110,13 @@ namespace Fallah_App.Controllers.WebMaster
         public IActionResult Supprimer(int id)
         {
             Notification notification = db.notifications.Include(a=>a.AgriculteurNotifications).Where(a=>a.Id==id).FirstOrDefault();
-           /* foreach(AgriculteurNotification ag in notification.AgriculteurNotifications.ToList())
+            if (notification.AgriculteurNotifications.Count()!=0)
             {
-                notification.AgriculteurNotifications.Remove(ag);
-            }*/
+                TempData["err"] = true;
+                return RedirectToAction("List");
+
+
+            }
             db.notifications.Remove(notification);
             db.SaveChanges();
             return RedirectToAction("List");
