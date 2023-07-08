@@ -122,27 +122,29 @@
                                     </div>
                                 </div>
                                 <div class="cmp-tb-hd bsc-smp-sm">
-                                    <label>Categori Terre</label>
+                                    <label>Category Terre</label>
                                 </div>
                                 <div class="bootstrap-select fm-cmp-mg w-100">
-
                                     <select asp-for="categoryTerre">
-                                            @foreach (CategoryTerre p in ViewBag.list)
-                                            {
+                                        @foreach (CategoryTerre p in ViewBag.list)
+                                        {
                                             <option value="@p.Id">@p.Attribut_De_Categorisation</option>
-                                            }
-                                    </select>
-
-                                    <div class="cmp-tb-hd bsc-smp-sm">
-                                        <label>Plantes</label>
-                                    </div>
-                                    <select name="plante[]" class="selectpicker" data-live-search="true" multiple asp-for="plantes">
-                                            @foreach (Plante p in ViewBag.plante)
-                                            {
-                                            <option value="@p.Id">@p.Nom</option>
-                                            }
+                                        }
                                     </select>
                                 </div>
+                                <div class="summernote-wrap mg-t-30">
+                                        <div class="cmp-tb-hd bsc-smp-sm">
+                                            <label>Plantes</label>
+                                        </div>
+                                        <div class="bootstrap-select fm-cmp-mg w-100">
+                                            <select name="plante[]" class="selectpicker" data-live-search="true" multiple asp-for="plantes">
+                                                @foreach (Plante p in ViewBag.plante)
+                                                {
+                                                    <option value="@p.Id">@p.Nom</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
                                 <div id="us3" style="height: 400px;"></div>
                                 <div class="form-example-int mg-t-15">
                                     <div class="row">

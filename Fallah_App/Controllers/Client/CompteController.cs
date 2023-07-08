@@ -9,7 +9,6 @@ namespace Fallah_App.Controllers.Client
         MyContext db;
         public CompteController(MyContext db)
         {
-
             this.db = db;
         }
         public IActionResult Index()
@@ -27,9 +26,6 @@ namespace Fallah_App.Controllers.Client
         [HttpPost]
         public IActionResult changerpassword(string NvPassword,User user)
         {
-
-            if (ModelState.IsValid)
-            {
                     string Password = InscriptionController.HashPasswordWithSalt(user.Password);
                     int id = (int)HttpContext.Session.GetInt32("id");
                     User u = (User)db.users.Where(us => us.Id == id).FirstOrDefault();
@@ -52,13 +48,10 @@ namespace Fallah_App.Controllers.Client
                     {
                         ViewData["message"] = "le mot de pass ou confirmation de mot de pass et incorect";
                     }
-                
-            }
             return View();
         }
         public IActionResult MotDePasseOublier()
         {
-            
             return View();
         }
     
