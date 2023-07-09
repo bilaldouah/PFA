@@ -94,6 +94,10 @@
                         {
                             <h3 class="text-danger">Au mois un type de conseil (Audio,Text en Francais ou en Arabe)</h3>
                         }
+                        @if (ViewBag.w != null)
+                        {
+                            <h3 class="text-danger">Weather code est obigatoire</h3>
+                        }
                         <div class="cmp-tb-hd bsc-smp-sm">
                             <label>Conseil en Audio</label>
                         </div>
