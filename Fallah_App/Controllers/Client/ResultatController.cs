@@ -35,21 +35,22 @@ namespace Fallah_App.Controllers.Client
             {
                 return RedirectToAction("listConseilPlant");
             }
-            var p = db.conseilPlantes.Find(id);
-            if (p != null)
-            {
-                TempData["id"] = p.Id;
-            }
-            return RedirectToAction("listConseilPlant");
+                return View();
+            
         }
         [HttpPost]
         //khas filtre...
         public IActionResult resultat(Resultat r)
-        {  
-            r.Date_De_Saisie= DateTime.Now;
-            r.Id_agriculteurForme = (int)HttpContext.Session.GetInt32("id");
-            r.Id_ConseilPlante = (int)TempData["id"];
-            db.Add(r);
+        {
+            Resultat rs = new Resultat();
+            rs.Date_De_Saisie= DateTime.Now;
+            rs.Id_agriculteurForme = (int)HttpContext.Session.GetInt32("id");
+            rs.ConseilPlante =db.conseilPlantes.Where(p=>p.Id== r.Id).FirstOrDefault();
+            rs.Description = r.Description;
+            rs.Statut_Favorable = r.Statut_Favorable;
+            db.Add(rs);
+            
+            
             db.SaveChanges();
             return RedirectToAction("listConseilPlant");
         }

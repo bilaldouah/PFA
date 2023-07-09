@@ -54,7 +54,6 @@ namespace Fallah_App.Controllers.Client
         {
             return View();
         }
-    
         public IActionResult ListAgriculteur()
         {
             
