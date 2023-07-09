@@ -7,7 +7,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Fallah_App.Filters
 {
-    public class FilterNotifController : ActionFilterAttribute
+    public class FilterNotifController : Controller
     {
         MyContext data;
 
@@ -16,7 +16,6 @@ namespace Fallah_App.Filters
             this.data = data;
 
         }
-
         public override void OnActionExecuted(ActionExecutedContext context)
         {
 

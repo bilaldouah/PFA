@@ -53,9 +53,9 @@
                                 @foreach (Notification N in Model)
                                 {
                                     <tr>
-                                        <td>@N.TextFrancais</td>
-                                        <td>@N.TextArabe </td>
-                                        <td>@N.type</td>
+                                        <td>@Html.Raw( N.TextFrancais)</td>
+                                        <td>@Html.Raw(N.TextArabe) </td>
+                                        <td>@Html.Raw(N.type)</td>
                                         <td>
 
                                             <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg" href="/Notification/Modifier/@N.Id" data-trigger="hover" data-toggle="popover" data-placement="top" title="Modifier" data-original-title="Modifier">

@@ -119,11 +119,11 @@
 
                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
-                                                                                        <p> @n.Notification.TextArabe </p>
+                                                                                        <p> @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                     else
                                                                     {
-                                                                                      <p>@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                                      <p>@Html.Raw(n.Notification.TextFrancais) @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                                 </div>
                                                                             </div>
@@ -142,15 +142,15 @@
 
 
                                                                                     <h3>@n.webMaster.Nom</h3>
-                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
+                                                                    @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
-                                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
+                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                     else
-
                                                                     {
-                                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                            <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@Html.Raw(n.Notification.TextFrancais) @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                                 </div>
                                                                             </div>
@@ -173,11 +173,12 @@
                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
                                                                                         <input type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
+                                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                     else
                                                                     {
-                                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@Html.Raw(n.Notification.TextFrancais) @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
 
 
@@ -204,11 +205,12 @@
                                                                     @if (n.Notification.TextFrancais != null && n.Notification.TextArabe != null)
                                                                     {
                                                                         <input type="hidden" value="@n.Notification.Id " id="idNot">
-                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @n.Notification.TextArabe </p>
+                                                                        <p class="data" data-value="@n.Notification.TextArabe"> @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@n.Notification.TextFrancais @n.Notification.TextArabe </p>
+                                                                        <input type="hidden" value="@n.Notification.Id " id="idNot">
+                                                                        <p class="data" data-value="@n.Notification.TextFrancais @n.Notification.TextArabe">@Html.Raw(n.Notification.TextFrancais) @Html.Raw(n.Notification.TextArabe) </p>
                                                                     }
                                                                 </div>
                                                             </div>

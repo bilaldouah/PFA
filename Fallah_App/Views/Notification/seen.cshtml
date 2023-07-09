@@ -25,9 +25,9 @@
                             @foreach (var N in ViewBag.listNotifSeen)
                                 {
                                 <tr>
-                                     <td>@N.Notification.TextFrancais</td>
-                                    <td>@N.Notification.TextArabe </td>
-                                    <td>@N.Notification.type</td>
+                                     <td>@Html.Raw(N.Notification.TextFrancais)</td>
+                                    <td>@Html.Raw(N.Notification.TextArabe) </td>
+                                    <td>@Html.Raw(N.Notification.type)</td>
 
                                 </tr>
                                 }

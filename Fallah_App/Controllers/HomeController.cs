@@ -8,21 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Xml.Serialization;
 
+using Fallah_App.Filters;
 namespace Fallah_App.Controllers
 {
-   
-    public class HomeController : Controller
+
+    public class HomeController : FilterNotifController
     {
         IMemoryCache memoryCache;
-
         MyContext db;
-        public HomeController( IMemoryCache memoryCache ,MyContext db)
+        public HomeController(IMemoryCache memoryCache, MyContext db):base(db)
         {
             this.memoryCache = memoryCache;
             this.db = db;
 
         }
+
+
         [FiltreAgriculteur]
         public async Task<IActionResult> IndexAsync(int id) 
         {

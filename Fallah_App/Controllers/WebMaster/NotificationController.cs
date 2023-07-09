@@ -7,16 +7,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
-
+using Fallah_App.Filters;
 namespace Fallah_App.Controllers.WebMaster
 {
 
  
-    public class NotificationController : Controller
+    public class NotificationController : FilterNotifController
     {
         IMemoryCache memoryCache;
         MyContext db;
-        public NotificationController(MyContext db, IMemoryCache memoryCache)
+        public NotificationController(MyContext db, IMemoryCache memoryCache):base(db)
         {
 
             this.db = db;
@@ -65,12 +65,18 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult Selected(int id)
         {
-            int idAgriculteur =  (int)HttpContext.Session.GetInt32("id"); 
+            int idAgriculteur =  (int)HttpContext.Session.GetInt32("id");
+            string previousUrl = HttpContext.Request.Headers["Referer"].ToString();
+
             var not = db.agriculteurNotifications.Include(u => u.Notification).Where(a => a.Agriculteur.Id == idAgriculteur && a.Notification.Id==id && a.IsSeen==false).FirstOrDefault();
-            not.IsSeen = true;
-            db.agriculteurNotifications.Update(not);
-            db.SaveChanges();
-            return RedirectToAction("List");
+            if(not!=null)
+            {
+                not.IsSeen = true;
+                db.agriculteurNotifications.Update(not);
+                db.SaveChanges();
+                return Redirect(previousUrl);
+            }
+            return Ok();
         }
         public IActionResult Ajouter()
         {
