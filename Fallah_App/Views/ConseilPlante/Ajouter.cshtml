@@ -32,7 +32,7 @@
             .recording::before {
                 content: '🔴';
                 position: absolute;
-                left: 5px;
+                left: 20px;
                 animation: recording 600ms alternate infinite;
             }
 
@@ -80,15 +80,24 @@
     </div>
 </div>
 
-<div class="summernote-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                @if (ViewBag.eror != null)
-                {
-                    <h3 class="text-danger">Fichier doit etre un audio</h3>
-                }
-
+    <div class="summernote-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="summernote-wrap mg-t-30">
+                        <div class="cmp-tb-hd">
+                        @if (ViewBag.eror != null)
+                        {
+                            <h3 class="text-danger">Fichier doit etre un audio</h3>
+                        }
+                        @if (ViewBag.erornull != null)
+                        {
+                            <h3 class="text-danger">Au mois un type de conseil (Audio,Text en Francais ou en Arabe)</h3>
+                        }
+                        <div class="cmp-tb-hd bsc-smp-sm">
+                            <label>Conseil en Audio</label>
+                        </div>
+                        <br/>
                 <div class="container">
                     <div class="display">
                     </div>
@@ -97,6 +106,8 @@
                     </div>
                 </div>
                 <form method="post" enctype="multipart/form-data">
+                            <br />
+
                     <input type="file" id="fileInput" asp-for="File">
                     <div class="summernote-wrap mg-t-30">
                         <div class="cmp-tb-hd bsc-smp-sm">
@@ -111,11 +122,13 @@
                                 }
                             </select>
                         </div>
+                                <br />
 
                         <div class="cmp-tb-hd bsc-smp-sm">
                             <label>Conseil en Francais</label>
                         </div>
                         <textarea class="html-editor" asp-for="Text_Francais"></textarea>
+                                <br />
 
                         <div class="cmp-tb-hd bsc-smp-sm">
                             <label>Conseil En arabe</label>
@@ -282,6 +295,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 

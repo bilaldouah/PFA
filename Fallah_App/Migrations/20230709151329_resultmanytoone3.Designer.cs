@@ -4,6 +4,7 @@ using Fallah_App.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230709151329_resultmanytoone3")]
+    partial class resultmanytoone3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -481,6 +484,21 @@ namespace Fallah_App.Migrations
                     b.ToTable("NotificationPlante");
                 });
 
+            modelBuilder.Entity("NotificationTerre", b =>
+                {
+                    b.Property<int>("notificationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("terresId")
+                        .HasColumnType("int");
+
+                    b.HasKey("notificationsId", "terresId");
+
+                    b.HasIndex("terresId");
+
+                    b.ToTable("NotificationTerre");
+                });
+
             modelBuilder.Entity("PlanteTerre", b =>
                 {
                     b.Property<int>("plantesId")
@@ -698,6 +716,21 @@ namespace Fallah_App.Migrations
                     b.HasOne("Fallah_App.Models.Notification", null)
                         .WithMany()
                         .HasForeignKey("notificationsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NotificationTerre", b =>
+                {
+                    b.HasOne("Fallah_App.Models.Notification", null)
+                        .WithMany()
+                        .HasForeignKey("notificationsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Fallah_App.Models.Terre", null)
+                        .WithMany()
+                        .HasForeignKey("terresId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

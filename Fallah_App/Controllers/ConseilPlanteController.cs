@@ -90,14 +90,19 @@ namespace Fallah_App.Controllers
             {
                 ViewBag.eror = true;
             }
-            ViewBag.plante = db.plantes.ToList();
+            ViewBag.listeplante = db.plantes.ToList();
             return View(db.conseilPlantes.Include(c => c.webMaster).Include(c => c.plantes).Where(cc => cc.Id == id).FirstOrDefault());
         }
         [HttpPost]
         public IActionResult Modifier(Models.ConseilPlante conseil, int[] plante)
         {
+            if (conseil.Text_Arabe == null && conseil.Text_Francais == null && conseil.audio == null)
+            {
+                ViewBag.erornull = true;
+                return View(conseil);
+            }
             List<Plante> plantes = new List<Plante>();
-            if (plante != null)
+            if (plante.Count() != 0)
             {
                 ConseilPlante cs = db.conseilPlantes.Include(c => c.plantes).Where(cc => cc.Id == conseil.Id).FirstOrDefault();
                 foreach (Plante ct in cs.plantes.ToList())
@@ -135,7 +140,13 @@ namespace Fallah_App.Controllers
                 }
 
             }
+            else
+            {
+                Models.ConseilPlante cf = db.conseilPlantes.Where(cc => cc.Id == conseil.Id).FirstOrDefault();
+                conseil.audio = cf.audio;
+                db.Entry(cf).State = EntityState.Detached;
 
+            }
             conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
             db.conseilPlantes.Update(conseil);
               

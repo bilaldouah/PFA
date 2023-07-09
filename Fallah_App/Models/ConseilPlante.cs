@@ -26,7 +26,7 @@ namespace Fallah_App.Models
         public string? audio { get; set; }
 
         public int Weather_Code { get; set; }
-        public Resultat resultat { get; set; }
+        public List<Resultat> resultat { get; set; }
         public WebMaster webMaster { get; set; }
 
         [ForeignKey(nameof(webMaster))]

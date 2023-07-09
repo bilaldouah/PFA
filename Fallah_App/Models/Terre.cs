@@ -14,7 +14,6 @@ namespace Fallah_App.Models
         public Agriculteur Agriculteur { get; set; }
         [ForeignKey(nameof(Agriculteur))]
         public int Id_Agriculteur { get; set; }
-        public List<Notification> notifications { get; set; }
         public List<Plante> plantes { get; set; }
         public CategoryTerre categoryTerre { get; set; }
         [ForeignKey(nameof(categoryTerre))]

@@ -28,6 +28,11 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Ajouter(Models.ConseilTerre conseil, int[] categories)
         {
+            if(conseil.Text_Arabe == null && conseil.Text_Francais==null && conseil.Audio == null)
+            {
+                ViewBag.erornull = true;
+                return View(conseil);
+            }
             List<CategoryTerre> categoryTerres = new List<CategoryTerre>();
            for(int i=0;i<categories.Count();i++)
             {
@@ -110,9 +115,14 @@ namespace Fallah_App.Controllers.WebMaster
         [HttpPost]
         public IActionResult Modifier(Models.ConseilTerre conseil, int[] categories)
         {
+            if (conseil.Text_Arabe == null && conseil.Text_Francais == null && conseil.Audio == null)
+            {
+                ViewBag.erornull = true;
+                return View(conseil);
+            }
             List<CategoryTerre> categoryTerres = new List<CategoryTerre>();
 
-            if (categories != null)
+            if (categories.Count() != 0)
             {
                 ConseilTerre cs = db.conseilTerres.Include(c => c.CategoryTerres).Where(cc => cc.Id == conseil.Id).FirstOrDefault();
                 foreach (CategoryTerre ct in cs.CategoryTerres.ToList())
@@ -150,6 +160,13 @@ namespace Fallah_App.Controllers.WebMaster
                     }
 
                 }
+
+            }
+            else
+            {
+                Models.ConseilTerre cf = db.conseilTerres.Where(cc => cc.Id == conseil.Id).FirstOrDefault();
+                conseil.Audio = cf.Audio;
+                db.Entry(cf).State = EntityState.Detached;
 
             }
             conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");

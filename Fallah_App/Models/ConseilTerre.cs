@@ -15,7 +15,7 @@ namespace Fallah_App.Models
 
         [ForeignKey(nameof(webMaster))]
         public int Id_WebMaster { get; set; }
-        public Resultat resultat { get; set; }
+        public List<Resultat> resultats { get; set; }
 
     }
 }
