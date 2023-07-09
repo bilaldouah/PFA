@@ -38,7 +38,7 @@ namespace Fallah_App.Controllers.Client
                 Models.Plante plante1 = db.plantes.Where(c => c.Id == plantes[i]).Include(c => c.terres).FirstOrDefault();
                 plante.Add(plante1);
             }
-            t.plantes = plante;
+                t.plantes = plante;
                 String[] ext = { ".jpg", ".png", ".jpeg" };
                 String file_ext = Path.GetExtension(t.file.FileName).ToLower();
                 if (!ext.Contains(file_ext))
@@ -94,6 +94,5 @@ namespace Fallah_App.Controllers.Client
             db.SaveChanges();
             return RedirectToAction("list");
         }
-
     }
 }
