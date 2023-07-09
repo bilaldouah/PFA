@@ -475,7 +475,7 @@ namespace Fallah_App.Migrations
                 name: "IX_resultats_Id_ConseilPlante",
                 table: "resultats",
                 column: "Id_ConseilPlante",
-                unique: true);
+                unique: false);
 
             migrationBuilder.CreateIndex(
                 name: "IX_SolTerre_terresId",

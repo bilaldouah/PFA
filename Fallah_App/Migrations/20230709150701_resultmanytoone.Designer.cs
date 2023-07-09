@@ -4,6 +4,7 @@ using Fallah_App.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fallah_App.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230709150701_resultmanytoone")]
+    partial class resultmanytoone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -326,6 +329,9 @@ namespace Fallah_App.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CategoryTerreId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date_De_Saisie")
                         .HasColumnType("datetime2");
 
@@ -347,9 +353,13 @@ namespace Fallah_App.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryTerreId");
+
                     b.HasIndex("Id_ConseilPlante");
 
-                    b.HasIndex("Id_ConseilTerre");
+                    b.HasIndex("Id_ConseilTerre")
+                        .IsUnique()
+                        .HasFilter("[Id_ConseilTerre] IS NOT NULL");
 
                     b.HasIndex("Id_agriculteurForme");
 
@@ -660,14 +670,19 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.Resultat", b =>
                 {
+                    b.HasOne("Fallah_App.Models.CategoryTerre", null)
+                        .WithMany("resultats")
+                        .HasForeignKey("CategoryTerreId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Fallah_App.Models.ConseilPlante", "ConseilPlante")
                         .WithMany("resultat")
                         .HasForeignKey("Id_ConseilPlante")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Fallah_App.Models.ConseilTerre", "ConseilTerre")
-                        .WithMany("resultats")
-                        .HasForeignKey("Id_ConseilTerre")
+                        .WithOne("resultat")
+                        .HasForeignKey("Fallah_App.Models.Resultat", "Id_ConseilTerre")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Fallah_App.Models.AgriculteurForme", "agriculteurForme")
@@ -764,6 +779,8 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.CategoryTerre", b =>
                 {
+                    b.Navigation("resultats");
+
                     b.Navigation("terres");
                 });
 
@@ -774,7 +791,8 @@ namespace Fallah_App.Migrations
 
             modelBuilder.Entity("Fallah_App.Models.ConseilTerre", b =>
                 {
-                    b.Navigation("resultats");
+                    b.Navigation("resultat")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Fallah_App.Models.Notification", b =>

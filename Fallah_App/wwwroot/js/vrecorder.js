@@ -65,7 +65,6 @@ const downloadAudio = () => {
 
 const uploadAudio = () => {
     const file = new File([chunks[0]], 'audio.ogg', { type: 'audio/ogg' });
-    alert(file.size);
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(file);
     fileInput.files = dataTransfer.files;
