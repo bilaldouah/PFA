@@ -59,7 +59,6 @@ namespace Fallah_App.Controllers.Client
                     }
                     ViewData["message"] = "Bien Ajouter";
                 }
-
             return RedirectToAction("list");
         }
         public IActionResult supprimer(int id)

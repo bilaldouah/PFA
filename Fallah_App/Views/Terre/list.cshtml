@@ -45,22 +45,25 @@
                                     <th>image</th>
                                     <th>Lattitude</th>
                                     <th>Longtitude</th>
+                                    <th>Plante</th>
+                                    <th>Categorie</th>
+                                    <th>Sole</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Terre t in Model)
+                                @foreach (var t in Model)
                                 {
                                         <tr>
                                             <td>@t.Id</td>
                                             <td>@t.Surface</td>
-                                        <td>
+                                        <td style="width: 200px; height: 150px;">
                                             <input class="form-control" type="hidden" asp-for="@t.image" placeholder=" ">
-                                            <img class="img-responsive" src="~/ImageClient/@t.image" />
-                                            </td>
+                                            <img class="img-responsive" src="~/ImageClient/@t.image" style="max-width: 100%; max-height: 100%;"/>
+                                        </td>
                                             <td>@t.latitude</td>
                                             <td>@t.longitude</td>
-                                            <td>@t.Id_categoryTerre</td>
+                                            <td>@t.categoryTerre.Attribut_De_Categorisation</td>
                                             <td>
                                             <a class="btn btn-success success-icon-notika btn-reco-mg btn-button-mg " href="Modifier?id=@t.Id" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="modifier cette terre" title="" data-original-title="modifier">
                                                 <i class="notika-icon notika-draft"></i>

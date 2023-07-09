@@ -49,8 +49,6 @@ namespace Fallah_App.Controllers.Client
             rs.Description = r.Description;
             rs.Statut_Favorable = r.Statut_Favorable;
             db.Add(rs);
-            
-            
             db.SaveChanges();
             return RedirectToAction("listConseilPlant");
         }
