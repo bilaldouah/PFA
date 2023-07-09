@@ -47,6 +47,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\imageAdmin\" />
     <Folder Include="wwwroot\Audio\" />
+    <Folder Include="wwwroot\ImageTerre\" />
   </ItemGroup>
 
 </Project>

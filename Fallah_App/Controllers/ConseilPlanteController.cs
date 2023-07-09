@@ -28,7 +28,16 @@ namespace Fallah_App.Controllers
         }
         [HttpPost]
         public IActionResult Ajouter(Models.ConseilPlante csp, int[] plante)
-        {
+        {   if(csp.File == null && csp.Text_Francais==null && csp.Text_Arabe == null)
+            {
+                ViewBag.erornull = true;
+                return View(csp);
+            }
+        if(csp.weatherCode == null)
+            {
+                ViewBag.w = true;
+                return View(csp);
+            }
             List<Plante> plantes = new List<Plante>();
             for (int i = 0; i < plante.Count(); i++)
             {
@@ -118,6 +127,8 @@ namespace Fallah_App.Controllers
                 }
                 conseil.plantes = plantes;
             }
+            Models.ConseilPlante cf = db.conseilPlantes.Where(cc => cc.Id == conseil.Id).FirstOrDefault();
+            db.Entry(cf).State = EntityState.Detached;
             if (conseil.File != null)
             {
                 String[] ext = { ".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma", ".aiff" };
@@ -142,12 +153,12 @@ namespace Fallah_App.Controllers
             }
             else
             {
-                Models.ConseilPlante cf = db.conseilPlantes.Where(cc => cc.Id == conseil.Id).FirstOrDefault();
                 conseil.audio = cf.audio;
-                db.Entry(cf).State = EntityState.Detached;
 
             }
             conseil.Id_WebMaster = (int)HttpContext.Session.GetInt32("id");
+            conseil.nbr_Modif = cf.nbr_Modif+1;
+
             db.conseilPlantes.Update(conseil);
               
             db.SaveChanges();
