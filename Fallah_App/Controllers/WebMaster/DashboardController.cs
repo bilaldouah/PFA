@@ -1,5 +1,6 @@
 ﻿using Fallah_App.Context;
 using Fallah_App.Models;
+using Fallah_App.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -15,19 +16,22 @@ namespace Fallah_App.Controllers.WebMaster
         }
         public IActionResult Index()
         {
-            /*   bar chart 1   */
+            /*   count of how many users we have   */
             ViewBag.CountAgriculteures = db.users.ToList().Where(item => item.GetType() == typeof(Agriculteur)).Count();
             ViewBag.CountAgriculteureFormes = db.users.ToList().Where(item => item.GetType() == typeof(AgriculteurForme)).Count();
             ViewBag.CountAdmins = db.users.ToList().Where(item => item.GetType() == typeof(Models.WebMaster)).Count();
             ViewBag.CountDemandes = db.demandes.Count();
-            /*-----------------------------------------------------------------------------------------------------------*/
-
+            /*     count How Many Users Authentify Each Month */
+            int Year = DateTime.Now.Year;
+            ViewBag.Year = Year;
+            List<int> countHowManyUsersAuthentifyEachMonth = new List<int>();
+            ViewBag.MonthsNames = Months.getMonthNames();
             for (int i = 1; i <= 12; i++)
             {
-                ViewBag.countHowManyUsersAuthentifyEachMonth = db.users.Where(u=>u.Date_Dernier_Auth.Value.Month==i).Count();
-
+                countHowManyUsersAuthentifyEachMonth.Add(db.users.Count(u => u.Date_Dernier_Auth.Value.Year == Year && u.Date_Dernier_Auth.Value.Month == i));
             }
-
+            ViewBag.countHowManyUsersAuthentifyEachMonth = countHowManyUsersAuthentifyEachMonth;
+            /*     count How Many Users Authentify Each Month */
 
             return View();
         }
