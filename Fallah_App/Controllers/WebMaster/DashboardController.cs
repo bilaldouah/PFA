@@ -31,8 +31,18 @@ namespace Fallah_App.Controllers.WebMaster
                 countHowManyUsersAuthentifyEachMonth.Add(db.users.Count(u => u.Date_Dernier_Auth.Value.Year == Year && u.Date_Dernier_Auth.Value.Month == i));
             }
             ViewBag.countHowManyUsersAuthentifyEachMonth = countHowManyUsersAuthentifyEachMonth;
-            /*     count How Many Users Authentify Each Month */
+            /*     count How Many chnages has been made on each plante */
+            List<Plante> plantes= db.plantes.ToList();
+            ViewBag.Plantes = plantes;
+        //    List<int> countHowManyChangesOnEachPlante = new List<int>();
+            foreach (Plante plante in plantes) 
+            {
+                ViewBag.countHowManyChangesOnEachPlante=db.conseilPlantes.Select(p => p.nbr_Modif).ToList();
+            }
 
+            /*     count How Many terre and plantes de we have */
+            ViewBag.CountTerres = db.terres.Count();
+            ViewBag.CountPlantes = db.plantes.Count();
             return View();
         }
        
